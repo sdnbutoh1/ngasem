@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Papan Skor Murid</title>
+    <title>Lihat Nilai Murid</title>
     <link rel="icon" type="image/png" href="../favicon.png">
     <!-- Aset Visual Font & Icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -24,20 +24,62 @@
             box-sizing: border-box;
         }
 
+        /* --- HEADER PAPAN SKOR (Tema Hijau Elegan) --- */
         .header-skor {
-            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            background: linear-gradient(135deg, #065f46 0%, #10b981 100%); /* Emerald & Teal Gradient */
             color: white;
             border-radius: 24px;
             padding: 35px;
             margin-bottom: 25px;
-            box-shadow: 0 10px 25px rgba(30, 58, 138, 0.1);
+            box-shadow: 0 10px 25px rgba(6, 95, 70, 0.15);
             display: flex;
             align-items: center;
             justify-content: space-between;
+            gap: 20px;
         }
-        .header-title h1 { margin: 0 0 5px 0; font-size: 1.8rem; font-weight: 700; color: #ffffff; }
-        .header-title p { margin: 0; opacity: 0.85; font-size: 0.95rem; color: #ffffff; }
+        
+        /* Merapikan susunan teks agar seimbang dan tidak terlalu ke pinggir */
+        .header-title-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        /* Kontainer khusus untuk mempermudah ganti logo sendiri */
+        .logo-kustom-wrapper {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            backdrop-filter: blur(4px);
+        }
+        
+        .logo-kustom-wrapper img {
+            width: 85%;
+            height: 85%;
+            object-fit: contain;
+        }
+        
+        .header-title h1 { 
+            margin: 0 0 4px 0; 
+            font-size: 1.8rem; 
+            font-weight: 700; 
+            color: #ffffff; 
+        }
+        
+        .header-title p { 
+            margin: 0; 
+            opacity: 0.9; 
+            font-size: 0.95rem; 
+            color: #e2fbe8; /* Hijau pastel super soft */
+            font-weight: 500;
+        }
 
+        /* --- KONTROL FILTER --- */
         .filter-skor {
             background: #ffffff;
             border: 1px solid #e2e8f0;
@@ -50,38 +92,59 @@
             gap: 15px;
             align-items: flex-end;
         }
+        
         .form-grup { display: flex; flex-direction: column; }
         .form-grup label { font-size: 0.8rem; font-weight: 600; color: #64748b; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
-        .form-grup input { padding: 12px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 0.95rem; outline: none; color: #334155; background: #fff; font-family: inherit; }
-        .form-grup input:focus { border-color: #3b82f6; }
+        .form-grup input { padding: 12px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 0.95rem; outline: none; color: #334155; background: #fff; font-family: inherit; transition: border-color 0.2s; }
         
-        .btn-reset-skor { background: #64748b; color: white; border: none; padding: 12px; border-radius: 12px; font-weight: 600; font-size: 0.95rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; font-family: inherit; transition: background 0.2s; }
+        /* Fokus input berubah menjadi warna tema hijau */
+        .form-grup input:focus { border-color: #10b981; }
+        
+        .btn-reset-skor { 
+            background: #64748b; 
+            color: white; 
+            border: none; 
+            padding: 12px; 
+            border-radius: 12px; 
+            font-weight: 600; 
+            font-size: 0.95rem; 
+            cursor: pointer; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            gap: 8px; 
+            font-family: inherit; 
+            transition: background 0.2s; 
+        }
         .btn-reset-skor:hover { background: #475569; }
 
-        /* PERBAIKAN UTAMA: Mengaktifkan scroll horizontal di HP */
+        /* --- TABEL DATA --- */
         .tabel-wrapper {
             background: #ffffff;
             border: 1px solid #e2e8f0;
             border-radius: 20px;
-            overflow-x: auto; /* Izinkan geser horizontal */
+            overflow-x: auto;
             overflow-y: hidden;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-            -webkit-overflow-scrolling: touch; /* Membuat scroll di iPhone/iOS jadi mulus */
+            -webkit-overflow-scrolling: touch;
         }
         
-        table { width: 100%; border-collapse: collapse; min-width: 800px; } /* Memaksa tabel punya ruang minimal agar kolom kanan tidak gepeng */
+        table { width: 100%; border-collapse: collapse; min-width: 800px; }
         th { background-color: #f8fafc; color: #64748b; font-weight: 600; padding: 16px 20px; border-bottom: 2px solid #e2e8f0; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.5px; }
         td { padding: 16px 20px; border-bottom: 1px solid #e2e8f0; color: #475569; font-size: 0.95rem; }
 
         .badge-status-siswa { display: inline-block; padding: 6px 14px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; text-align: center; }
         .lulus-style { background-color: #dcfce7; color: #15803d; }
         .remedial-style { background-color: #fee2e2; color: #b91c1c; }
-        .skor-tebal { font-weight: 700; color: #1e3a8a; font-size: 1.1rem; }
+        
+        /* Penyesuaian warna teks skor tebal agar menyatu tema */
+        .skor-tebal { font-weight: 700; color: #065f46; font-size: 1.1rem; }
 
         .info-box { padding: 40px; text-align: center; color: #64748b; font-weight: 500; }
-        .loader-putar { width: 35px; height: 35px; border: 4px solid #f3f3f3; border-top: 4px solid #3b82f6; border-radius: 50%; margin: 0 auto 15px; animation: spin 1s linear infinite; }
         
-        /* Tambahan petunjuk visual khusus di layar HP */
+        /* Spinner loading berubah tema hijau */
+        .loader-putar { width: 35px; height: 35px; border: 4px solid #f3f3f3; border-top: 4px solid #10b981; border-radius: 50%; margin: 0 auto 15px; animation: spin 1s linear infinite; }
+        
         .petunjuk-geser {
             display: none;
             text-align: right;
@@ -93,14 +156,15 @@
 
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-        /* Kustomisasi khusus perangkat mobile (Layar di bawah 768px) */
+        /* Kustomisasi Responsif Mobile */
         @media (max-width: 768px) {
             .container-skor { margin: 15px auto; padding: 0 12px; }
             .header-skor { padding: 20px; border-radius: 16px; }
-            .header-skor div:last-child { display: none; } /* Sembunyikan ikon besar di header agar hemat ruang */
+            .header-skor div:last-child { display: none; } 
             .header-title h1 { font-size: 1.4rem; }
             .filter-skor { padding: 15px; border-radius: 16px; }
-            .petunjuk-geser { display: block; } /* Munculkan teks petunjuk geser tabel */
+            .petunjuk-geser { display: block; }
+            .logo-kustom-wrapper { width: 48px; height: 48px; border-radius: 12px; }
         }
     </style>
 </head>
@@ -110,11 +174,17 @@
     
     <!-- Header Papan Skor -->
     <div class="header-skor">
-        <div class="header-title">
-            <h1><i class="fa-solid fa-trophy" style="color: #f59e0b;"></i> Catatan Nilai Latihan</h1>
-            <p style="margin: 0; opacity: 0.85;">Data diambil secara real-time</p>
+        <div class="header-title-wrapper">
+            <!-- LOGO KUSTOM ANDA: Ganti atribut src dengan URL Gambar Logo Anda atau ID Google Drive -->
+            <div class="logo-kustom-wrapper">
+                <img src="https://drive.google.com/thumbnail?sz=120&id=ID_FOTO_LOGOMU_DISINI" alt="Logo RBM" onerror="this.src='../favicon.png'">
+            </div>
+            <div class="header-title">
+                <h1>Catatan Nilai Latihan</h1>
+                <p>Data diambil secara real-time</p>
+            </div>
         </div>
-        <div style="font-size: 3.5rem; opacity: 0.2;"><i class="fa-solid fa-square-poll-horizontal"></i></div>
+        <div style="font-size: 3.5rem; opacity: 0.15;"><i class="fa-solid fa-square-poll-horizontal"></i></div>
     </div>
 
     <!-- Kontrol Filter -->
@@ -164,7 +234,7 @@
 </div>
 
 <script>
-    // URL Web App Google Apps Script Anda
+    // URL Web App Google Apps Script
     const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxoB5JYdZ_YoE9-5Z4etI8yqJwH_MeYskwC6UPB8sNYlkZKPV1vbNjnD8EcdJdg_WWbTQ/exec";
     let masterDataSkor = [];
 
