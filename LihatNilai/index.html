@@ -156,15 +156,19 @@
 
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-        /* Kustomisasi Responsif Mobile */
+        /* Kustomisasi Perangkat Mobile (Sudah Diperbaiki) */
         @media (max-width: 768px) {
             .container-skor { margin: 15px auto; padding: 0 12px; }
             .header-skor { padding: 20px; border-radius: 16px; }
-            .header-skor div:last-child { display: none; } 
-            .header-title h1 { font-size: 1.4rem; }
+            
+            /* PERBAIKAN: Target langsung ke ikon bayangan kanan, bukan ke judul */
+            .header-skor > div:last-child { display: none; } 
+            
+            .header-title h1 { font-size: 1.3rem; }
+            .header-title p { font-size: 0.85rem; }
             .filter-skor { padding: 15px; border-radius: 16px; }
             .petunjuk-geser { display: block; }
-            .logo-kustom-wrapper { width: 48px; height: 48px; border-radius: 12px; }
+            .logo-kustom-wrapper { width: 45px; height: 45px; border-radius: 10px; }
         }
     </style>
 </head>
