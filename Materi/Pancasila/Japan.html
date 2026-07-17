@@ -92,6 +92,7 @@
       }
       .image-container img {
           width: 100%;
+          height: auto;
           max-height: 400px;
           object-fit: cover;
           border-radius: 12px;
@@ -174,6 +175,75 @@
           letter-spacing: 0.5px;
       }
 
+      /* --- KARTU HALAMAN TUGAS MANDIRI (PERBAIKAN BARU) --- */
+      .task-card {
+          background: #ffffff;
+          border: 1px solid #e2e8f0;
+          border-radius: 24px;
+          padding: 35px;
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.01);
+          margin-bottom: 35px;
+          position: relative;
+          overflow: hidden;
+          animation: fadeInUp 0.85s cubic-bezier(0.25, 0.8, 0.25, 1);
+      }
+      .task-card::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 6px;
+          background: linear-gradient(90deg, #f59e0b, #d97706); /* Gradien warna oranye khas tugas */
+      }
+      .task-header {
+          margin-bottom: 20px;
+      }
+      .task-badge {
+          background: #fef3c7;
+          color: #d97706;
+          padding: 6px 14px;
+          border-radius: 50px;
+          font-size: 0.75rem;
+          font-weight: 800;
+          letter-spacing: 0.5px;
+          display: inline-block;
+          margin-bottom: 10px;
+      }
+      .task-title {
+          color: #1e3a8a;
+          font-size: 1.4rem;
+          font-weight: 800;
+          margin: 0;
+      }
+      .instruction-box {
+          background-color: #fffbeb;
+          border-left: 4px solid #f59e0b;
+          padding: 12px 18px;
+          border-radius: 0 10px 10px 0;
+          margin-bottom: 25px;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          color: #b45309;
+          font-weight: 600;
+          font-size: 0.9rem;
+      }
+      .instruction-box i {
+          font-size: 1.1rem;
+      }
+      .questions-list {
+          padding-left: 20px;
+          margin-bottom: 30px;
+      }
+      .questions-list li {
+          font-size: 1rem;
+          color: #334155;
+          margin-bottom: 12px;
+          padding-left: 5px;
+          font-weight: 500;
+      }
+
       /* --- Baris Tombol Aksi Bawah --- */
       .action-row {
           display: flex;
@@ -194,6 +264,7 @@
           gap: 10px;
           transition: all 0.2s ease;
           cursor: pointer;
+          border: none;
       }
       .btn-danger {
           background-color: #ef4444;
@@ -215,6 +286,17 @@
           transform: translateY(-2px);
           box-shadow: 0 6px 16px rgba(16, 185, 129, 0.25);
       }
+      .btn-pelajari {
+          background-color: #f1f5f9;
+          color: #475569;
+          border: 1px solid #cbd5e1;
+          margin-bottom: 5px;
+      }
+      .btn-pelajari:hover {
+          background-color: #e2e8f0;
+          color: #1e293b;
+          transform: translateY(-2px);
+      }
 
       /* --- Keyframes Animasi --- */
       @keyframes fadeInUp {
@@ -231,7 +313,7 @@
           .container { margin: 20px auto; }
           .materi-header { padding: 25px 20px; }
           .materi-header h1 { font-size: 1.4rem; }
-          .materi-body { padding: 20px; }
+          .materi-body, .task-card { padding: 20px; }
           .materi-body p { font-size: 0.95rem; text-indent: 20px; }
           .action-row { flex-direction: column; gap: 12px; }
           .btn-action { width: 100%; box-sizing: border-box; }
@@ -256,9 +338,8 @@
         <p><i class="fa-solid fa-book-open-reader"></i> Pendidikan Pancasila • Kelas V SD • Sejarah Lahirnya Pancasila</p>
     </div>
 
-    <!-- WADAH GAMBAR ILUSTRASI (Menggunakan Direct Link Google Drive) -->
+    <!-- WADAH GAMBAR ILUSTRASI -->
     <div class="image-container">
-        <!-- SILAHKAN GANTI "ID_FOTO_DRIVE_KAMU" DENGAN ID FILE DARI GOOGLE DRIVE -->
         <img src="https://drive.google.com/thumbnail?sz=w800&id=1C7YFQZItFhBwznu9_vFX3IkPO0pgQuC0" alt="Ilustrasi Masa Pendudukan Jepang">
         <div class="image-caption"><i class="fa-solid fa-camera"></i> Ilustrasi kedatangan pasukan Jepang di Indonesia</div>
     </div>
@@ -283,7 +364,7 @@
 
         <p>Serangan Sekutu terus berlanjut dan semakin menekan Jepang. Untuk mendapatkan dukungan rakyat Indonesia, Jepang kemudian membentuk Badan Penyelidik Usaha-Usaha Persiapan Kemerdekaan Indonesia (BPUPKI) atau dalam bahasa Jepang disebut <em>Dokuritsu Junbi Cosakai</em>.</p>
 
-        <!-- KOTAK REFLEKSI/KATA MUTIARA (Dari halaman 7 buku) -->
+        <!-- KOTAK REFLEKSI/KATA MUTIARA -->
         <div class="refleksi-card">
             <i class="fa-solid fa-lightbulb"></i>
             <div class="refleksi-content">
@@ -294,35 +375,40 @@
 
     </div>
     
+    <!-- KARTU HALAMAN TUGAS MANDIRI -->
     <div class="task-card">
-            <div class="task-header">
-                <span class="task-badge">TUGAS MANDIRI</span>
-                <h2 class="task-title">Uji Pemahaman Materi</h2>
-            </div>
+        <div class="task-header">
+            <span class="task-badge">TUGAS MANDIRI</span>
+            <h2 class="task-title">Uji Pemahaman Materi</h2>
+        </div>
 
-            <div class="instruction-box">
-                <i class="fa-solid fa-pen-to-square"></i>
-                <span>Petunjuk: Salin dan jawablah 16 pertanyaan di bawah ini dengan rapi di Buku Tulis masing-masing!</span>
-            </div>
+        <div class="instruction-box">
+            <i class="fa-solid fa-pen-to-square"></i>
+            <span>Petunjuk: Salin dan jawablah 10 pertanyaan di bawah ini dengan rapi di Buku Tulis masing-masing!</span>
+        </div>
 
-            <ol class="questions-list">
-    <li>Mengapa pada awalnya rakyat Indonesia menyambut kedatangan Jepang dengan harapan?</li>
-    <li>Apa sebutan yang digunakan Jepang untuk menarik simpati rakyat Indonesia?</li>
-    <li>Sebutkan isi Gerakan Tiga A!</li>
-    <li>Kapan Gerakan Tiga A didirikan?</li>
-    <li>Apa yang dimaksud dengan romusa?</li>
-    <li>Sebutkan dua penderitaan yang dialami rakyat Indonesia pada masa pendudukan Jepang!</li>
-    <li>Mengapa Jepang akhirnya menjanjikan kemerdekaan kepada Indonesia?</li>
-    <li>Pada tanggal berapakah Jepang mengumumkan janji kemerdekaan bagi Indonesia?</li>
-    <li>Siapakah Perdana Menteri Jepang yang mengumumkan janji kemerdekaan Indonesia?</li>
-    <li>Mengapa rakyat Indonesia tidak langsung percaya pada janji kemerdekaan yang diberikan Jepang?</li>
-</ol>
-<a href="Pembahasan/" class="btn-action btn-pelajari">Lihat Jawaban</a>
+        <ol class="questions-list">
+            <li>Mengapa pada awalnya rakyat Indonesia menyambut kedatangan Jepang dengan harapan?</li>
+            <li>Apa sebutan yang digunakan Jepang untuk menarik simpati rakyat Indonesia?</li>
+            <li>Sebutkan isi Gerakan Tiga A!</li>
+            <li>Kapan Gerakan Tiga A didirikan?</li>
+            <li>Apa yang dimaksud dengan romusa?</li>
+            <li>Sebutkan dua penderitaan yang dialami rakyat Indonesia pada masa pendudukan Jepang!</li>
+            <li>Mengapa Jepang akhirnya menjanjikan kemerdekaan kepada Indonesia?</li>
+            <li>Pada tanggal berapakah Jepang mengumumkan janji kemerdekaan bagi Indonesia?</li>
+            <li>Siapakah Perdana Menteri Jepang yang mengumumkan janji kemerdekaan Indonesia?</li>
+            <li>Mengapa rakyat Indonesia tidak langsung percaya pada janji kemerdekaan yang diberikan Jepang?</li>
+        </ol>
+        
+        <a href="KunciJawaban/2-japan.html" class="btn-action btn-pelajari">
+            <i class="fa-solid fa-eye"></i> Lihat Jawaban
+        </a>
+    </div>
 
     <!-- TOMBOL AKSI BAWAH -->
     <div class="action-row">
         <a href="../../" class="btn-action btn-danger">
-            <i class="fa-solid fa-circle-arrow-left"></i> Kembali
+            <i class="fa-solid fa-circle-arrow-left"></i> Kembali Beranda
         </a>
         <a href="../../LatihanSoal/" class="btn-action btn-success">
             <i class="fa-solid fa-pencil"></i> Saya Siap Ulangan!
