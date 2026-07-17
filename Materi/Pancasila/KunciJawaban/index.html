@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar Kunci Jawaban: Pendidikan Pancasila</title>
+    <link rel="icon" type="image/png" href="../../../favicon.png">
+    <!-- Load FontAwesome untuk Ikon Modern -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+      /* --- Gaya Dasar / Reset --- */
+      body {
+          margin: 0;
+          padding: 0;
+          background-color: #f8fafc;
+          font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+          color: #334155;
+          line-height: 1.6;
+      }
+
+      .container {
+          max-width: 900px;
+          margin: 40px auto;
+          padding: 0 20px;
+      }
+
+      /* --- Navigasi Atas --- */
+      .top-nav {
+          display: flex;
+          align-items: center;
+          margin-bottom: 25px;
+          animation: fadeInDown 0.5s ease;
+      }
+      .btn-back-top {
+          text-decoration: none;
+          color: #64748b;
+          font-weight: 600;
+          font-size: 0.9rem;
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          transition: color 0.2s;
+      }
+      .btn-back-top:hover {
+          color: #4f46e5;
+      }
+
+      /* --- Header Portal --- */
+      .header-portal {
+          background: linear-gradient(135deg, #4f46e5, #7c3aed);
+          color: white;
+          border-radius: 24px;
+          padding: 35px 30px;
+          box-shadow: 0 10px 25px rgba(124, 58, 237, 0.15);
+          margin-bottom: 30px;
+          animation: fadeInUp 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+      }
+      .meta-badge {
+          background: rgba(255, 255, 255, 0.2);
+          padding: 6px 14px;
+          border-radius: 50px;
+          font-size: 0.8rem;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+          display: inline-block;
+          margin-bottom: 12px;
+      }
+      .header-portal h1 {
+          margin: 0 0 10px 0;
+          font-size: 1.8rem;
+          font-weight: 800;
+      }
+      .header-portal p {
+          margin: 0;
+          font-size: 0.95rem;
+          opacity: 0.9;
+      }
+
+      /* --- Fitur Pencarian Pintar --- */
+      .search-container {
+          position: relative;
+          margin-bottom: 25px;
+          animation: fadeInUp 0.7s cubic-bezier(0.25, 0.8, 0.25, 1);
+      }
+      .search-container input {
+          width: 100%;
+          box-sizing: border-box;
+          padding: 16px 16px 16px 50px;
+          border: 1px solid #e2e8f0;
+          border-radius: 16px;
+          font-size: 1rem;
+          background: #ffffff;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+          outline: none;
+          transition: all 0.2s;
+      }
+      .search-container input:focus {
+          border-color: #4f46e5;
+          box-shadow: 0 4px 20px rgba(79, 70, 229, 0.1);
+      }
+      .search-container i {
+          position: absolute;
+          left: 20px;
+          top: 50%;
+          transform: translateY(-50%);
+          color: #94a3b8;
+          font-size: 1.1rem;
+      }
+
+      /* --- Tabel Card / Container --- */
+      .table-card {
+          background: #ffffff;
+          border: 1px solid #e2e8f0;
+          border-radius: 24px;
+          padding: 15px;
+          box-shadow: 0 4px 25px rgba(0, 0, 0, 0.01);
+          animation: fadeInUp 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+      }
+
+      .table-container {
+          overflow-x: auto;
+          border-radius: 16px;
+      }
+
+      .custom-table {
+          width: 100%;
+          border-collapse: collapse;
+          text-align: left;
+          font-size: 1rem;
+      }
+
+      /* Header Tabel Mengikuti Aksen Gambar Berwarna Cerah/Modern */
+      .custom-table th {
+          background: linear-gradient(135deg, #f59e0b, #d97706);
+          color: white;
+          padding: 16px 20px;
+          font-weight: 700;
+          letter-spacing: 0.5px;
+      }
+
+      .custom-table td {
+          border-bottom: 1px solid #f1f5f9;
+          padding: 16px 20px;
+          vertical-align: middle;
+          color: #334155;
+          font-weight: 500;
+      }
+
+      .custom-table tr:last-child td {
+          border-bottom: none;
+      }
+
+      .custom-table tr:nth-child(even) {
+          background-color: #f8fafc;
+      }
+
+      .custom-table tr:hover {
+          background-color: #eef2ff;
+      }
+
+      /* --- Tombol "Lihat" Yang Interaktif --- */
+      .btn-lihat {
+          text-decoration: none;
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          background: linear-gradient(135deg, #4f46e5, #6366f1);
+          color: white;
+          padding: 8px 16px;
+          border-radius: 10px;
+          font-size: 0.85rem;
+          font-weight: 700;
+          box-shadow: 0 4px 10px rgba(79, 70, 229, 0.15);
+          transition: all 0.2s ease;
+          white-space: nowrap;
+      }
+
+      .btn-lihat:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 6px 14px rgba(79, 70, 229, 0.25);
+          opacity: 0.95;
+      }
+
+      /* --- Baris Tombol Kembali Di Bawah --- */
+      .action-row {
+          display: flex;
+          margin-top: 35px;
+          animation: fadeInUp 0.9s cubic-bezier(0.25, 0.8, 0.25, 1);
+      }
+      .btn-danger {
+          text-decoration: none;
+          flex: 1;
+          padding: 16px;
+          border-radius: 16px;
+          font-weight: 700;
+          font-size: 0.95rem;
+          background-color: #ef4444;
+          color: white;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+          box-shadow: 0 4px 12px rgba(239, 68, 68, 0.15);
+          transition: all 0.2s ease;
+      }
+      .btn-danger:hover {
+          background-color: #dc2626;
+          transform: translateY(-2px);
+          box-shadow: 0 6px 16px rgba(239, 68, 68, 0.25);
+      }
+
+      /* --- Notifikasi Jika Hasil Cari Kosong --- */
+      .no-results {
+          display: none;
+          text-align: center;
+          padding: 30px;
+          color: #64748b;
+          font-weight: 600;
+          font-size: 0.95rem;
+      }
+
+      /* --- Keyframes Animasi --- */
+      @keyframes fadeInUp {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
+      }
+      @keyframes fadeInDown {
+          from { opacity: 0; transform: translateY(-15px); }
+          to { opacity: 1; transform: translateY(0); }
+      }
+
+      /* --- Optimasi Layar HP --- */
+      @media (max-width: 640px) {
+          .container { margin: 20px auto; }
+          .header-portal { padding: 25px 20px; }
+          .header-portal h1 { font-size: 1.4rem; }
+          .table-card { padding: 8px; }
+          .custom-table th, .custom-table td { padding: 12px 14px; font-size: 0.9rem; }
+          .btn-lihat { padding: 6px 12px; font-size: 0.8rem; }
+      }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <!-- NAVIGASI ATAS -->
+    <div class="top-nav">
+        <a href="index.html" class="btn-back-top">
+            <i class="fa-solid fa-arrow-left"></i> Kembali ke Menu Utama
+        </a>
+    </div>
+
+    <!-- HEADER PORTAL -->
+    <div class="header-portal">
+        <span class="meta-badge"><i class="fa-solid fa-key"></i> Pusat Data Guru</span>
+        <h1>Kunci Jawaban Pendidikan Pancasila</h1>
+        <p>Daftar lengkap berkas kunci jawaban evaluasi murid per pokok bahasan materi</p>
+    </div>
+
+    <!-- BOX PENCARIAN -->
+    <div class="search-container">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="inputCari" onkeyup="filterMateri()" placeholder="Ketik untuk mencari nama bahasan materi...">
+    </div>
+
+    <!-- KARTU TABEL UTAMA -->
+    <div class="table-card">
+        <div class="table-container">
+            <table class="custom-table" id="tabelMateri">
+                <thead>
+                    <tr>
+                        <th>Materi Pembelajaran</th>
+                        <th width="120">Kunci Jawaban</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Masa Pendudukan Jepang dan Janji Kemerdekaan</td>
+                        <td><a href="2-japan.html" class="btn-lihat"><i class="fa-solid fa-eye"></i> Lihat</a></td>
+                    </tr>
+                    <tr>
+                        <td>Pembentukan BPUPKI</td>
+                        <td><a href="kunci/bab5-2.html" class="btn-lihat"><i class="fa-solid fa-eye"></i> Lihat</a></td>
+                    </tr>
+                    <tr>
+                        <td>Sidang BPUPKI dan Perumusan Pancasila</td>
+                        <td><a href="kunci/bab5-3.html" class="btn-lihat"><i class="fa-solid fa-eye"></i> Lihat</a></td>
+                    </tr>
+                    <tr>
+                        <td>Panitia Sembilan dan Piagam Jakarta</td>
+                        <td><a href="kunci/bab5-4.html" class="btn-lihat"><i class="fa-solid fa-eye"></i> Lihat</a></td>
+                    </tr>
+                    <tr>
+                        <td>Pembentukan PPKI</td>
+                        <td><a href="kunci/bab5-5.html" class="btn-lihat"><i class="fa-solid fa-eye"></i> Lihat</a></td>
+                    </tr>
+                    <tr>
+                        <td>Proklamasi Kemerdekaan Indonesia</td>
+                        <td><a href="kunci/bab5-6.html" class="btn-lihat"><i class="fa-solid fa-eye"></i> Lihat</a></td>
+                    </tr>
+                    <tr>
+                        <td>Sidang PPKI dan Pengesahan Pancasila</td>
+                        <td><a href="kunci/bab5-7.html" class="btn-lihat"><i class="fa-solid fa-eye"></i> Lihat</a></td>
+                    </tr>
+                    <tr>
+                        <td>Nilai-Nilai Keteladanan para Perumus Pancasila</td>
+                        <td><a href="kunci/bab5-8.html" class="btn-lihat"><i class="fa-solid fa-eye"></i> Lihat</a></td>
+                    </tr>
+                    <tr>
+                        <td>Penerapan Nilai Keteladanan dalam Kehidupan Sehari-hari</td>
+                        <td><a href="kunci/bab5-9.html" class="btn-lihat"><i class="fa-solid fa-eye"></i> Lihat</a></td>
+                    </tr>
+                    <tr>
+                        <td>Hubungan Antar Sila dalam Pancasila</td>
+                        <td><a href="kunci/bab5-10.html" class="btn-lihat"><i class="fa-solid fa-eye"></i> Lihat</a></td>
+                    </tr>
+                    <tr>
+                        <td>Fungsi Pancasila</td>
+                        <td><a href="kunci/bab5-11.html" class="btn-lihat"><i class="fa-solid fa-eye"></i> Lihat</a></td>
+                    </tr>
+                    <tr>
+                        <td>Penerapan Nilai-nilai Pancasila dalam Kehidupan Sehari-hari</td>
+                        <td><a href="kunci/bab5-12.html" class="btn-lihat"><i class="fa-solid fa-eye"></i> Lihat</a></td>
+                    </tr>
+                    <tr>
+                        <td>Mengenal Norma</td>
+                        <td><a href="kunci/bab5-13.html" class="btn-lihat"><i class="fa-solid fa-eye"></i> Lihat</a></td>
+                    </tr>
+                    <tr>
+                        <td>Berbagai Jenis Norma di Sekitarku</td>
+                        <td><a href="kunci/bab5-14.html" class="btn-lihat"><i class="fa-solid fa-eye"></i> Lihat</a></td>
+                    </tr>
+                    <tr>
+                        <td>Menyeimbangkan Hak dan Kewajiban</td>
+                        <td><a href="kunci/bab5-15.html" class="btn-lihat"><i class="fa-solid fa-eye"></i> Lihat</a></td>
+                    </tr>
+                    <tr>
+                        <td>Penyebab Terjadinya Pelanggaran Norma</td>
+                        <td><a href="kunci/bab5-16.html" class="btn-lihat"><i class="fa-solid fa-eye"></i> Lihat</a></td>
+                    </tr>
+                    <tr>
+                        <td>Bertindak Sesuai Norma</td>
+                        <td><a href="kunci/bab5-17.html" class="btn-lihat"><i class="fa-solid fa-eye"></i> Lihat</a></td>
+                    </tr>
+                    <tr>
+                        <td>Apa itu Musyawarah?</td>
+                        <td><a href="kunci/bab5-18.html" class="btn-lihat"><i class="fa-solid fa-eye"></i> Lihat</a></td>
+                    </tr>
+                    <tr>
+                        <td>Ciri-ciri musyawarah yang baik</td>
+                        <td><a href="kunci/bab5-19.html" class="btn-lihat"><i class="fa-solid fa-eye"></i> Lihat</a></td>
+                    </tr>
+                    <tr>
+                        <td>Syarat musyawarah yang baik</td>
+                        <td><a href="kunci/bab5-20.html" class="btn-lihat"><i class="fa-solid fa-eye"></i> Lihat</a></td>
+                    </tr>
+                    <tr>
+                        <td>Prinsip-prinsip dalam musyawarah</td>
+                        <td><a href="kunci/bab5-21.html" class="btn-lihat"><i class="fa-solid fa-eye"></i> Lihat</a></td>
+                    </tr>
+                    <tr>
+                        <td>Cara melaksanakan musyawarah</td>
+                        <td><a href="kunci/bab5-22.html" class="btn-lihat"><i class="fa-solid fa-eye"></i> Lihat</a></td>
+                    </tr>
+                    <tr>
+                        <td>Manfaat musyawarah</td>
+                        <td><a href="kunci/bab5-23.html" class="btn-lihat"><i class="fa-solid fa-eye"></i> Lihat</a></td>
+                    </tr>
+                    <tr>
+                        <td>Contoh musyawarah di berbagai tempat</td>
+                        <td><a href="kunci/bab5-24.html" class="btn-lihat"><i class="fa-solid fa-eye"></i> Lihat</a></td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <!-- PESAN JIKA MATERI TIDAK DITEMUKAN -->
+            <div id="noData" class="no-results">
+                <i class="fa-solid fa-folder-open" style="font-size: 1.5rem; display:block; margin-bottom:8px; color:#cbd5e1;"></i>
+                Materi yang Anda cari tidak ditemukan.
+            </div>
+        </div>
+    </div>
+
+    <!-- TOMBOL AKSI BAWAH -->
+    <div class="action-row">
+        <a href="../../../" class="btn-danger">
+            <i class="fa-solid fa-circle-arrow-left"></i> Kembali ke Menu Utama
+        </a>
+    </div>
+
+</div>
+
+<!-- JAVASCRIPT LIVE FILTER SEARCH -->
+<script>
+function filterMateri() {
+    const input = document.getElementById("inputCari");
+    const filter = input.value.toUpperCase();
+    const table = document.getElementById("tabelMateri");
+    const tr = table.getElementsByTagName("tr");
+    const noData = document.getElementById("noData");
+    let countVisible = 0;
+
+    // Loop semua baris tabel (lewati header indeks 0)
+    for (let i = 1; i < tr.length; i++) {
+        const td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+            const txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+                countVisible++;
+            } else {
+                tr[i].style.display = "none";
+            }
+        }
+    }
+
+    // Tampilkan notifikasi jika semua baris tersembunyi
+    if (countVisible === 0) {
+        noData.style.display = "block";
+    } else {
+        noData.style.display = "none";
+    }
+}
+</script>
+
+</body>
+</html>
