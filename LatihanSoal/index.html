@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Latihan Soal - Ruang Belajar Murid</title>
-    <link rel="icon" type="image/png" href="../favicon.png">
+    
     <!-- Google Fonts & FontAwesome untuk Ikon -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
@@ -306,7 +306,7 @@
             <div class="form-group">
                 <label><i class="fa-solid fa-graduation-cap"></i> Pilih Kelas</label>
                 <select id="select-kelas" onchange="updateMapelOptions()">
-                    <option value="">-- Pilih Kelas --</option>
+                    <option value="">-- Memuat Pilihan Kelas... --</option>
                 </select>
             </div>
             <div class="form-group">
@@ -389,14 +389,27 @@
     });
 
     function fetchMetadata() {
-        fetch(`${WEB_APP_URL}?action=getMetadata`)
-            .then(res => res.json())
-            .then(response => {
-                if(response.status === "success") {
-                    metadataRelations = response.data.relations;
-                    populateKelasOptions();
-                }
-            }).catch(err => alert("Gagal terhubung dengan server database soal."));
+        // Menggunakan mode cors explisit agar GitHub Pages diizinkan mengambil data eksternal
+        fetch(`${WEB_APP_URL}?action=getMetadata`, {
+            method: 'GET',
+            redirect: 'follow'
+        })
+        .then(res => {
+            if (!res.ok) throw new Error("Koneksi bermasalah");
+            return res.json();
+        })
+        .then(response => {
+            if(response.status === "success") {
+                metadataRelations = response.data.relations;
+                populateKelasOptions();
+            } else {
+                alert("Gagal memproses struktur database kuis.");
+            }
+        })
+        .catch(err => {
+            console.error(err);
+            alert("Gagal terhubung dengan database Google Sheets. Pastikan Web App sudah di-deploy dengan akses 'Anyone'.");
+        });
     }
 
     function populateKelasOptions() {
@@ -453,22 +466,28 @@
         document.getElementById("setup-section").style.display = "none";
         document.getElementById("loading-section").style.display = "block";
         
-        fetch(`${WEB_APP_URL}?action=getQuestions&kelas=${encodeURIComponent(kelas)}&bab=${encodeURIComponent(bab)}`)
-            .then(res => res.json())
-            .then(response => {
-                document.getElementById("loading-section").style.display = "none";
-                if(response.status === "success" && response.data.length > 0) {
-                    questionsData = response.data;
-                    startQuiz();
-                } else {
-                    alert("Soal belum tersedia untuk pilihan materi ini.");
-                    document.getElementById("setup-section").style.display = "block";
-                }
-            }).catch(err => {
-                document.getElementById("loading-section").style.display = "none";
+        fetch(`${WEB_APP_URL}?action=getQuestions&kelas=${encodeURIComponent(kelas)}&bab=${encodeURIComponent(bab)}`, {
+            method: 'GET',
+            redirect: 'follow'
+        })
+        .then(res => {
+            if (!res.ok) throw new Error("Gagal mengambil data");
+            return res.json();
+        })
+        .then(response => {
+            document.getElementById("loading-section").style.display = "none";
+            if(response.status === "success" && response.data.length > 0) {
+                questionsData = response.data;
+                startQuiz();
+            } else {
+                alert("Soal belum tersedia untuk pilihan materi ini.");
                 document.getElementById("setup-section").style.display = "block";
-                alert("Kesalahan memuat data soal.");
-            });
+            }
+        }).catch(err => {
+            document.getElementById("loading-section").style.display = "none";
+            document.getElementById("setup-section").style.display = "block";
+            alert("Kesalahan memuat data soal dari server.");
+        });
     }
 
     function startQuiz() {
