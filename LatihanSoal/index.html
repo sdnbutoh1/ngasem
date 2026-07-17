@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ruang Belajar Murid</title>
+    <title>Latihan Soal - Ruang Belajar Murid</title>
     <link rel="icon" type="image/png" href="../favicon.png">
-    <!-- Load FontAwesome untuk Ikon Keren -->
+    <!-- Google Fonts & FontAwesome untuk Ikon -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     
-    <!-- STYLE CUSTOM DASHBOARD KUIS -->
     <style>
         /* --- RESET & BASE STYLE --- */
         * {
@@ -20,553 +20,363 @@
         body {
             margin: 0;
             padding: 0;
-            background-color: #f8fafc;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: #334155;
+            background-color: #f4f7fc;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: #1e293b;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
-        .ruang-belajar-container {
-            max-width: 950px;
+        .kuis-online-container { 
+            max-width: 650px; 
             width: 100%;
-            margin: 40px auto;
-            padding: 0 20px;
+            margin: 20px auto; 
+            padding: 0 15px; 
         }
 
-        .dashboard-wrapper {
-            display: grid;
-            grid-template-columns: 320px 1fr;
-            gap: 30px;
-            align-items: start;
+        .kuis-box { 
+            background: #ffffff; 
+            border: 1px solid #e2e8f0; 
+            border-radius: 24px; 
+            padding: 35px; 
+            box-shadow: 0 15px 35px rgba(30, 58, 138, 0.04); 
+            position: relative; 
+            overflow: hidden; 
         }
 
-        /* Profil Guru (Kiri) */
-        .profile-card {
-            background: #ffffff;
-            border: 1px solid #e2e8f0;
-            border-radius: 24px;
-            padding: 35px 20px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(30, 58, 138, 0.04);
-            position: relative;
-            overflow: hidden;
-            animation: fadeInUp 0.6s ease forwards;
+        .kuis-box::before { 
+            content: ''; 
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 6px; 
+            background: linear-gradient(to right, #1e3a8a, #a855f7); 
         }
 
-        .profile-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 8px;
-            background: linear-gradient(to right, #3b82f6, #8b5cf6);
+        .kuis-header { 
+            text-align: center; 
+            margin-bottom: 25px; 
         }
 
-        .avatar-wrapper {
-            position: relative;
-            width: 140px;
-            height: 140px;
-            margin: 0 auto 20px;
+        .kuis-header h2 { 
+            color: #1e3a8a; 
+            font-weight: 800; 
+            margin-bottom: 6px; 
+            font-size: 1.6rem;
         }
 
-        .profile-img {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid #f1f5f9;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            transition: transform 0.3s ease;
+        .kuis-header p { 
+            color: #64748b; 
+            font-size: 0.95rem; 
+        }
+        
+        .form-group { 
+            margin-bottom: 20px; 
+            display: flex; 
+            flex-direction: column; 
         }
 
-        .avatar-wrapper:hover .profile-img {
-            transform: scale(1.05) rotate(3deg);
-        }
-
-        .profile-card h3 {
-            color: #1e3a8a;
-            margin: 10px 0 5px;
-            font-size: 1.35rem;
-            font-weight: 700;
-        }
-
-        .profile-card p {
-            color: #64748b;
-            font-size: 0.9rem;
-            margin-bottom: 20px;
-        }
-
-        /* Badge Status (Kelip-Kelip Menyegarkan) */
-        .status-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: #10b981;
-            color: white;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            animation: pulse 2s infinite;
-        }
-
-        .status-badge i {
-            font-size: 0.6rem;
-        }
-
-        /* Konten Menu (Kanan) */
-        .content-card {
-            background: #ffffff;
-            border: 1px solid #e2e8f0;
-            border-radius: 24px;
-            padding: 40px;
-            box-shadow: 0 10px 30px rgba(30, 58, 138, 0.04);
-            animation: fadeInUp 0.8s ease forwards;
-        }
-
-        .welcome-title {
-            color: #1e3a8a;
-            font-size: 2rem;
-            font-weight: 800;
-            margin: 0 0 10px;
-        }
-
-        .welcome-desc {
-            color: #64748b;
-            font-size: 1rem;
-            line-height: 1.6;
-            margin-bottom: 30px;
-        }
-
-        .instruction-text {
-            color: #475569;
-            font-weight: 700;
-            font-size: 0.85rem;
-            margin-bottom: 15px;
+        .form-group label { 
+            font-size: 0.85rem; 
+            font-weight: 700; 
+            color: #475569; 
+            margin-bottom: 8px; 
             text-transform: uppercase;
-            letter-spacing: 0.8px;
+            letter-spacing: 0.5px;
         }
 
-        /* Grid Kotak Menu Warna-Warni */
-        .menu-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-            gap: 15px;
+        .form-group input, .form-group select { 
+            padding: 14px; 
+            border: 2px solid #e2e8f0; 
+            border-radius: 12px; 
+            font-size: 0.95rem; 
+            outline: none; 
+            transition: all 0.2s; 
+            color: #334155; 
+            font-family: inherit;
         }
 
-        .menu-box {
-            border: none;
-            border-radius: 18px;
-            padding: 30px 15px;
-            text-align: center;
-            color: white;
-            cursor: pointer;
-            text-decoration: none;
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+        .form-group input:focus, .form-group select:focus { 
+            border-color: #1e3a8a; 
+            box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.08);
         }
 
-        .menu-box i {
-            font-size: 2.4rem;
-            margin-bottom: 15px;
-            transition: transform 0.3s ease;
-        }
-
-        .menu-box span {
-            font-weight: 700;
-            font-size: 1rem;
+        .form-row { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 15px; 
         }
         
-        .menu-purple { background: linear-gradient(135deg, #a855f7, #6b21a8); }
-        .menu-blue { background: linear-gradient(135deg, #3b82f6, #1d4ed8); }
-        .menu-green { background: linear-gradient(135deg, #10b981, #047857); }
-        .menu-rose { background: linear-gradient(135deg, #f43f5e, #e11d48); }
-        .menu-teal { background: linear-gradient(135deg, #06b6d4, #0891b2); }
-        .menu-amber { background: linear-gradient(135deg, #f59e0b, #b45309); }
-
-        .menu-box:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 25px rgba(0,0,0,0.15);
-        }
-
-        .menu-box:hover i {
-            transform: scale(1.15) rotate(-5deg);
-        }
-
-        /* Panel Kuis */
-        .kuis-box {
-            background: #ffffff;
-            border: 1px solid #e2e8f0;
-            border-radius: 24px;
-            padding: 40px;
-            box-shadow: 0 10px 30px rgba(30, 58, 138, 0.04);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .kuis-box::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 6px;
-            background: linear-gradient(to right, #3b82f6, #8b5cf6);
-        }
-
-        .form-group {
-            margin-bottom: 20px;
+        .btn-container {
             display: flex;
-            flex-direction: column;
+            gap: 12px;
+            margin-top: 5px;
         }
 
-        .form-group label {
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: #475569;
-            margin-bottom: 8px;
-        }
-
-        .form-group input, .form-group select {
-            padding: 14px;
-            border: 2px solid #e2e8f0;
-            border-radius: 12px;
-            font-size: 0.95rem;
-            outline: none;
-            color: #334155;
-        }
-
-        .form-group input:focus, .form-group select:focus {
-            border-color: #3b82f6;
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-        }
-        
-        .btn-primary {
-            width: 100%;
-            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
-            color: white;
-            border: none;
-            padding: 15px;
-            border-radius: 12px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
+        .btn-primary { 
+            width: 100%; 
+            background: linear-gradient(135deg, #1e3a8a 0%, #a855f7 100%); 
+            color: white; 
+            border: none; 
+            padding: 15px; 
+            border-radius: 14px; 
+            font-size: 1rem; 
+            font-weight: 700; 
+            cursor: pointer; 
+            transition: all 0.2s; 
+            box-shadow: 0 4px 15px rgba(168, 85, 247, 0.2); 
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
+            text-decoration: none;
         }
 
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(139, 92, 246, 0.3);
+        .btn-primary:hover { 
+            transform: translateY(-2px); 
+            box-shadow: 0 6px 20px rgba(168, 85, 247, 0.3); 
+        }
+
+        .btn-secondary {
+            background: #64748b;
+            box-shadow: 0 4px 15px rgba(100, 116, 139, 0.2); 
+        }
+        .btn-secondary:hover {
+            box-shadow: 0 6px 20px rgba(100, 116, 139, 0.3); 
         }
         
         .text-center { text-align: center; }
 
-        .spinner {
-            width: 40px;
-            height: 40px;
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #8b5cf6;
-            border-radius: 50%;
-            margin: 20px auto;
-            animation: spin 1s linear infinite;
+        .spinner { 
+            width: 45px; 
+            height: 45px; 
+            border: 4px solid #f3f3f3; 
+            border-top: 4px solid #a855f7; 
+            border-radius: 50%; 
+            margin: 25px auto; 
+            animation: spin 1s linear infinite; 
         }
 
-        .quiz-progress-bar {
-            width: 100%;
-            height: 6px;
-            background: #e2e8f0;
-            border-radius: 10px;
-            margin-bottom: 15px;
-            overflow: hidden;
+        @keyframes spin { 
+            0% { transform: rotate(0deg); } 
+            100% { transform: rotate(360deg); } 
+        }
+        
+        .quiz-progress-bar { 
+            width: 100%; 
+            height: 6px; 
+            background: #e2e8f0; 
+            border-radius: 10px; 
+            margin-bottom: 15px; 
+            overflow: hidden; 
         }
 
-        #progress-indicator {
-            height: 100%;
-            width: 0%;
-            background: linear-gradient(to right, #3b82f6, #8b5cf6);
-            transition: width 0.3s;
+        #progress-indicator { 
+            height: 100%; 
+            width: 0%; 
+            background: linear-gradient(to right, #1e3a8a, #a855f7); 
+            transition: width 0.3s; 
         }
 
-        .quiz-meta-info {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: #94a3b8;
-            margin-bottom: 20px;
+        .quiz-meta-info { 
+            display: flex; 
+            justify-content: space-between; 
+            font-size: 0.8rem; 
+            font-weight: 700; 
+            color: #94a3b8; 
+            margin-bottom: 20px; 
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
-        .soal-container h3 {
-            font-size: 1.25rem;
-            color: #1e3a8a;
-            line-height: 1.5;
-            font-weight: 600;
-            margin-bottom: 20px;
+        .soal-container { 
+            margin-bottom: 25px; 
         }
 
-        .soal-img {
-            max-width: 100%;
-            max-height: 220px;
-            border-radius: 12px;
-            margin-bottom: 15px;
-            display: block;
-            object-fit: contain;
+        .soal-container h3 { 
+            font-size: 1.2rem; 
+            color: #1e3a8a; 
+            line-height: 1.6; 
+            font-weight: 700; 
         }
 
-        .opsi-list {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
+        .soal-img { 
+            max-width: 100%; 
+            max-height: 220px; 
+            border-radius: 14px; 
+            margin-bottom: 15px; 
+            display: block; 
+            object-fit: contain; 
+        }
+        
+        .opsi-list { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 12px; 
         }
 
-        .opsi-btn {
-            display: flex;
-            align-items: center;
-            text-align: left;
-            padding: 15px 18px;
-            border: 2px solid #e2e8f0;
-            border-radius: 14px;
-            background: #fff;
-            font-size: 0.95rem;
-            font-weight: 500;
-            color: #475569;
-            cursor: pointer;
-            transition: all 0.2s;
+        .opsi-btn { 
+            display: flex; 
+            align-items: center; 
+            text-align: left; 
+            padding: 14px 18px; 
+            border: 2px solid #e2e8f0; 
+            border-radius: 14px; 
+            background: #fff; 
+            font-size: 0.95rem; 
+            font-weight: 600; 
+            color: #475569; 
+            cursor: pointer; 
+            transition: all 0.2s; 
+            font-family: inherit;
         }
 
-        .opsi-btn:hover {
-            border-color: #8b5cf6;
-            background: #faf5ff;
-            color: #8b5cf6;
+        .opsi-btn:hover { 
+            border-color: #a855f7; 
+            background: #faf5ff; 
+            color: #a855f7; 
         }
 
-        .badge-opsi {
-            display: inline-block;
-            width: 28px;
-            height: 28px;
-            background: #f1f5f9;
-            text-align: center;
-            line-height: 28px;
-            border-radius: 8px;
-            font-weight: 700;
-            font-size: 0.85rem;
-            margin-right: 12px;
-            color: #64748b;
+        .badge-opsi { 
+            display: inline-block; 
+            width: 28px; 
+            height: 28px; 
+            background: #f1f5f9; 
+            text-align: center; 
+            line-height: 28px; 
+            border-radius: 8px; 
+            font-weight: 800; 
+            font-size: 0.85rem; 
+            margin-right: 12px; 
+            color: #64748b; 
         }
 
-        .opsi-btn:hover .badge-opsi {
-            background: #8b5cf6;
-            color: #fff;
+        .opsi-btn:hover .badge-opsi { 
+            background: #a855f7; 
+            color: #fff; 
         }
         
         .result-icon { font-size: 4.5rem; margin-bottom: 15px; }
         .result-icon.lulus { color: #10b981; }
         .result-icon.remedial { color: #ef4444; }
-
-        .skor-badge-container {
-            background: #f8fafc;
-            border: 2px dashed #cbd5e1;
-            border-radius: 15px;
-            padding: 15px;
-            max-width: 180px;
-            margin: 0 auto 30px;
-            display: flex;
-            flex-direction: column;
+        #res-status { font-weight: 800; color: #1e3a8a; margin-bottom: 5px; font-size: 1.5rem;}
+        #res-message { color: #64748b; font-size: 0.95rem; margin-bottom: 25px; line-height: 1.5; }
+        
+        .skor-badge-container { 
+            background: #f8fafc; 
+            border: 2px dashed #cbd5e1; 
+            border-radius: 18px; 
+            padding: 15px; 
+            max-width: 180px; 
+            margin: 0 auto 30px; 
+            display: flex; 
+            flex-direction: column; 
         }
 
-        .skor-value { font-size: 3.2rem; font-weight: 800; color: #1e3a8a; }
+        .skor-title { font-size: 0.8rem; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; }
+        .skor-value { font-size: 3.5rem; font-weight: 800; color: #1e3a8a; }
 
-        /* --- ANIMASI --- */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
-            70% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
-        }
-
-        /* --- RESPONSIVE MOBILE --- */
-        @media (max-width: 768px) {
-            .ruang-belajar-container { margin: 20px auto; }
-            .dashboard-wrapper { grid-template-columns: 1fr; }
+        @media (max-width: 500px) {
             .form-row { grid-template-columns: 1fr; gap: 0; }
-            .content-card, .kuis-box { padding: 30px 20px; }
-            .welcome-title { font-size: 1.6rem; }
-            .menu-grid { grid-template-columns: repeat(2, 1fr); }
+            .kuis-box { padding: 25px 20px; }
+            .soal-container h3 { font-size: 1.05rem; }
+            .opsi-btn { font-size: 0.9rem; padding: 12px; }
         }
     </style>
 </head>
 <body>
 
-<div class="ruang-belajar-container">
-    
-    <!-- STEP 1: DASHBOARD BELAJAR UTAMA -->
-    <div class="dashboard-wrapper" id="dashboard-section">
-        <div class="profile-card">
-            <div class="avatar-wrapper">
-                <!-- Foto Guru (Ganti URL bila diperlukan) -->
-                <img alt="Foto Guru" class="profile-img" src="https://drive.google.com/thumbnail?authuser=0&sz=s200&id=1sGLNK2uaqy8KLavrpllT_9TS8K9Jz1wP"/>
-            </div>
-            <h3>RUANG BELAJAR MURID</h3>
-            <p>Oleh : Pak Zainal</p>
-            <span class="status-badge"><i class="fa-solid fa-circle"></i> Kelas Online Aktif</span>
-        </div>
-
-        <div class="content-card">
-            <h1 class="welcome-title">Selamat Datang!</h1>
-            <p class="welcome-desc">Halo anak hebat! Ini adalah tempat kuis digital interaktif untuk mengasah kemampuan belajarmu secara mandiri. Pilih menu di bawah untuk memulai ya!</p>
-            
-            <h4 class="instruction-text"><i class="fa-solid fa-compass"></i> Silahkan pilih apa yang ingin kamu akses:</h4>
-            
-            <div class="menu-grid">
-                <!-- Tombol 1: Baca Materi (Membuka di tab yang sama) -->
-                <a class="menu-box menu-purple" href="https://belajarlagipokoknya.blogspot.com/p/pendidikan-pancasila-kelas-5.html">
-                    <i class="fa-solid fa-book-open-reader"></i>
-                    <span>Baca Materi</span>
-                </a>
-                
-                <!-- Tombol 2: Latihan Soal -->
-                <button class="menu-box menu-blue" onclick="navigateToKuis()">
-                    <i class="fa-solid fa-gamepad"></i>
-                    <span>Latihan Soal</span>
-                </button>
-                
-                <!-- Tombol 3: Lihat Nilai (Membuka di tab yang sama) -->
-                <a class="menu-box menu-green" href="https://sdnbutoh1.github.io/butoh1/papan-skor/">
-                    <i class="fa-solid fa-ranking-star"></i>
-                    <span>Lihat Nilai</span>
-                </a>
-                
-                <!-- Tombol 4: Pembahasan -->
-                <button class="menu-box menu-rose" onclick="alert('Fitur Pembahasan dalam pengembangan!')">
-                    <i class="fa-solid fa-square-poll-horizontal"></i>
-                    <span>Pembahasan</span>
-                </button>
-                
-                <!-- Tombol 5: Info Menarik -->
-                <button class="menu-box menu-teal" onclick="alert('Fitur Info Menarik dalam pengembangan!')">
-                    <i class="fa-solid fa-lightbulb"></i>
-                    <span>Info Menarik</span>
-                </button>
-                
-                <!-- Tombol 6: Bantuan -->
-                <button class="menu-box menu-amber" onclick="alert('Hubungi wali kelas jika butuh bantuan.')">
-                    <i class="fa-solid fa-circle-info"></i>
-                    <span>Bantuan</span>
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- STEP 2: FORM PILIH MATERI LATIHAN SOAL -->
-    <div class="kuis-box" id="setup-section" style="display:none;">
-        <div class="text-center" style="margin-bottom: 25px;">
-            <h2 style="color: #1e3a8a; font-weight: 700;"><i class="fa-solid fa-clipboard-question"></i> Siapkan Dirimu</h2>
-            <p style="color: #64748b; font-size: 0.9rem;">Tulis nama lengkap dan pilih materi kuis latihan hari ini.</p>
+<div class="kuis-online-container">
+    <!-- STEP 1: FORM DATA DIRI (HANYA NAMA) & FILTER -->
+    <div id="setup-section" class="kuis-box">
+        <div class="kuis-header">
+            <h2><i class="fa-solid fa-user-astronaut"></i> Mulai Uji Pemahaman</h2>
+            <p>Tulis namamu, pilih materi, lalu kerjakan kuisnya dengan jujur ya!</p>
         </div>
         
         <div class="form-group">
-            <label><i class="fa-solid fa-user"></i> Nama Lengkap Murid</label>
-            <input id="siswa-nama" placeholder="Tulis nama lengkapmu..." type="text"/>
+            <label><i class="fa-solid fa-user"></i> Nama Lengkap</label>
+            <input type="text" id="siswa-nama" placeholder="Tulis nama lengkapmu di sini..." required>
         </div>
         
         <div class="form-row">
             <div class="form-group">
                 <label><i class="fa-solid fa-graduation-cap"></i> Pilih Kelas</label>
                 <select id="select-kelas" onchange="updateMapelOptions()">
-                    <option value="">-- Memuat Pilihan Kelas... --</option>
+                    <option value="">-- Pilih Kelas --</option>
                 </select>
             </div>
             <div class="form-group">
                 <label><i class="fa-solid fa-book-bookmark"></i> Pilih Mata Pelajaran</label>
-                <select disabled="disabled" id="select-mapel" onchange="updateBabOptions()">
+                <select id="select-mapel" onchange="updateBabOptions()" disabled>
                     <option value="">-- Pilih Mapel --</option>
                 </select>
             </div>
         </div>
         
         <div class="form-group">
-            <label><i class="fa-solid fa-layer-group"></i> Pilih Bab Pelajaran</label>
-            <select disabled="disabled" id="select-bab">
+            <label><i class="fa-solid fa-layer-group"></i> Pilih Bab</label>
+            <select id="select-bab" disabled>
                 <option value="">-- Pilih Bab --</option>
             </select>
         </div>
         
-        <div style="display: flex; gap: 10px;">
-            <button class="btn-primary" onclick="backToDashboard()" style="background: #64748b;"><i class="fa-solid fa-arrow-left"></i> Kembali</button>
-            <button class="btn-primary" onclick="loadQuestions()"><i class="fa-solid fa-play"></i> Mulai Kuis</button>
+        <div class="btn-container">
+            <a href="../" class="btn-primary btn-secondary"><i class="fa-solid fa-arrow-left"></i> Beranda</a>
+            <button id="btn-start" class="btn-primary" onclick="loadQuestions()"><i class="fa-solid fa-play"></i> Mulai Kuis</button>
         </div>
     </div>
 
-    <!-- STEP 3: LOADING SCREEN -->
-    <div class="kuis-box text-center" id="loading-section" style="display:none;">
+    <!-- STEP 2: LOADING SCREEN -->
+    <div id="loading-section" class="kuis-box text-center" style="display:none;">
         <div class="spinner"></div>
-        <p style="color: #64748b; font-weight: 500;">Mempersiapkan lembar soal kuis, mohon tunggu...</p>
+        <p style="margin-top: 15px; color: #64748b; font-weight: 500;">Mempersiapkan kuis interaktif, mohon tunggu...</p>
     </div>
 
-    <!-- STEP 4: INTERFASE PENGERJAAN SOAL -->
-    <div class="kuis-box" id="quiz-section" style="display:none;">
+    <!-- STEP 3: AREA SOAL -->
+    <div id="quiz-section" class="kuis-box" style="display:none;">
         <div class="quiz-progress-bar"><div id="progress-indicator"></div></div>
         <div class="quiz-meta-info">
-            <span id="quiz-info-materi">Materi</span>
-            <span id="quiz-info-number">Soal 0/0</span>
+            <span id="quiz-info-materi">Loading...</span>
+            <span id="quiz-info-number">Soal</span>
         </div>
         
         <div class="soal-container">
             <div id="soal-gambar-container"></div>
-            <h3 id="soal-teks">Pertanyaan kuis sedang dimuat...</h3>
+            <h3 id="soal-teks">Pertanyaan sedang dimuat...</h3>
         </div>
         
         <div class="opsi-list">
             <button class="opsi-btn" onclick="selectOption('A')"><span class="badge-opsi">A</span> <span id="text-opsi-a"></span></button>
             <button class="opsi-btn" onclick="selectOption('B')"><span class="badge-opsi">B</span> <span id="text-opsi-b"></span></button>
-            <button class="opsi-btn" onclick="selectOption('B')"><span class="badge-opsi">C</span> <span id="text-opsi-c"></span></button>
+            <button class="opsi-btn" onclick="selectOption('C')"><span class="badge-opsi">C</span> <span id="text-opsi-c"></span></button>
             <button class="opsi-btn" onclick="selectOption('D')"><span class="badge-opsi">D</span> <span id="text-opsi-d"></span></button>
         </div>
     </div>
 
-    <!-- STEP 5: HASIL SKOR AKHIR -->
-    <div class="kuis-box text-center" id="result-section" style="display:none;">
-        <div class="result-icon" id="res-icon"></div>
-        <h2 id="res-status">Hasil Akhir</h2>
-        <p id="res-message">Mengirim data ke rekap nilai...</p>
+    <!-- STEP 4: HASIL SKOR AKHIR -->
+    <div id="result-section" class="kuis-box text-center" style="display:none;">
+        <div class="result-icon" id="res-icon"><i class="fa-solid fa-trophy"></i></div>
+        <h2 id="res-status">Hasil Kuis</h2>
+        <p id="res-message">Proses pengiriman nilai...</p>
         
         <div class="skor-badge-container">
-            <span style="font-size: 0.8rem; font-weight: 600; color: #94a3b8;">Nilai Kamu</span>
+            <span class="skor-title">Nilai Kamu</span>
             <span class="skor-value" id="res-skor">0</span>
         </div>
         
-        <button class="btn-primary" onclick="resetQuiz()"><i class="fa-solid fa-house"></i> Selesai & Kembali</button>
+        <div class="btn-container">
+            <a href="../" class="btn-primary btn-secondary"><i class="fa-solid fa-house"></i> Beranda</a>
+            <button class="btn-primary" onclick="resetQuiz()"><i class="fa-solid fa-rotate-right"></i> Ulangi Latihan</button>
+        </div>
     </div>
 </div>
 
-<!-- ================= ENGINE JAVASCRIPT KUIS ================= -->
+<!-- ================= JAVASCRIPT APP LOGIC ================= -->
 <script>
-    // URL Web App Google Apps Script Anda (Tetap sinkron dengan database Spreadsheet Anda)
     const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxoB5JYdZ_YoE9-5Z4etI8yqJwH_MeYskwC6UPB8sNYlkZKPV1vbNjnD8EcdJdg_WWbTQ/exec";
     
     let metadataRelations = {};
@@ -574,55 +384,19 @@
     let currentQuestionIndex = 0;
     let scoreCount = 0;
     
-    // Inisialisasi engine saat dokumen selesai dimuat di GitHub Pages
-    function initQuizEngine() {
+    document.addEventListener("DOMContentLoaded", function() {
         fetchMetadata();
-    }
-    
-    if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", initQuizEngine);
-    } else {
-        initQuizEngine();
-    }
-
-    function navigateToKuis() {
-        document.getElementById("dashboard-section").style.display = "none";
-        document.getElementById("setup-section").style.display = "block";
-        if (Object.keys(metadataRelations).length === 0) {
-            fetchMetadata();
-        }
-    }
-    
-    function backToDashboard() {
-        document.getElementById("setup-section").style.display = "none";
-        document.getElementById("dashboard-section").style.display = "grid";
-    }
+    });
 
     function fetchMetadata() {
-        if (!WEB_APP_URL || WEB_APP_URL.includes("PASANG_URL")) {
-            const selectKelas = document.getElementById("select-kelas");
-            selectKelas.innerHTML = '<option value="">⚠️ Belum Pasang URL Web App Script</option>';
-            return;
-        }
-
         fetch(`${WEB_APP_URL}?action=getMetadata`)
             .then(res => res.json())
             .then(response => {
                 if(response.status === "success") {
                     metadataRelations = response.data.relations;
                     populateKelasOptions();
-                } else {
-                    showErrorDropdown("Gagal memproses struktur database");
                 }
-            }).catch(err => {
-                console.error(err);
-                showErrorDropdown("Gagal memuat sistem data online");
-            });
-    }
-
-    function showErrorDropdown(msg) {
-        const selectKelas = document.getElementById("select-kelas");
-        selectKelas.innerHTML = `<option value="">⚠️ ${msg}</option>`;
+            }).catch(err => alert("Gagal terhubung dengan server database soal."));
     }
 
     function populateKelasOptions() {
@@ -637,10 +411,13 @@
         const kelas = document.getElementById("select-kelas").value;
         const selectMapel = document.getElementById("select-mapel");
         const selectBab = document.getElementById("select-bab");
+        
         selectMapel.innerHTML = '<option value="">-- Pilih Mapel --</option>';
         selectBab.innerHTML = '<option value="">-- Pilih Bab --</option>';
         selectBab.disabled = true;
-        if(!kelas || !metadataRelations[kelas]) { selectMapel.disabled = true; return; }
+        
+        if(!kelas) { selectMapel.disabled = true; return; }
+        
         Object.keys(metadataRelations[kelas]).forEach(mapel => {
             selectMapel.innerHTML += `<option value="${mapel}">${mapel}</option>`;
         });
@@ -651,8 +428,11 @@
         const kelas = document.getElementById("select-kelas").value;
         const mapel = document.getElementById("select-mapel").value;
         const selectBab = document.getElementById("select-bab");
+        
         selectBab.innerHTML = '<option value="">-- Pilih Bab --</option>';
-        if(!mapel || !metadataRelations[kelas] || !metadataRelations[kelas][mapel]) { selectBab.disabled = true; return; }
+        
+        if(!mapel) { selectBab.disabled = true; return; }
+        
         metadataRelations[kelas][mapel].forEach(bab => {
             selectBab.innerHTML += `<option value="${bab}">${bab}</option>`;
         });
@@ -666,7 +446,7 @@
         const bab = document.getElementById("select-bab").value;
         
         if(!nama || !kelas || !mapel || !bab) {
-            alert("Harap isi nama dan pilih materi dengan lengkap!");
+            alert("Harap tulis nama dan pilih materi kuis terlebih dahulu!");
             return;
         }
         
@@ -678,22 +458,24 @@
             .then(response => {
                 document.getElementById("loading-section").style.display = "none";
                 if(response.status === "success" && response.data.length > 0) {
-                    // Batasi maksimal hanya 35 soal saja
-                    questionsData = response.data.slice(0, 35); 
-                    
-                    currentQuestionIndex = 0;
-                    scoreCount = 0;
-                    document.getElementById("quiz-section").style.display = "block";
-                    showQuestion();
+                    questionsData = response.data;
+                    startQuiz();
                 } else {
-                    alert("Soal latihan belum tersedia untuk materi ini.");
+                    alert("Soal belum tersedia untuk pilihan materi ini.");
                     document.getElementById("setup-section").style.display = "block";
                 }
-            }).catch(() => {
+            }).catch(err => {
                 document.getElementById("loading-section").style.display = "none";
                 document.getElementById("setup-section").style.display = "block";
-                alert("Gagal terhubung ke database internet.");
+                alert("Kesalahan memuat data soal.");
             });
+    }
+
+    function startQuiz() {
+        currentQuestionIndex = 0;
+        scoreCount = 0;
+        document.getElementById("quiz-section").style.display = "block";
+        showQuestion();
     }
 
     function showQuestion() {
@@ -709,7 +491,7 @@
         const imgContainer = document.getElementById("soal-gambar-container");
         imgContainer.innerHTML = "";
         if(currentQuestion.gambar && currentQuestion.gambar.startsWith("http")) {
-            imgContainer.innerHTML = `<img src="${currentQuestion.gambar}" class="soal-img" alt="Gambar Soal"/>`;
+            imgContainer.innerHTML = `<img src="${currentQuestion.gambar}" class="soal-img" alt="Gambar Soal">`;
         }
         
         document.getElementById("text-opsi-a").innerText = currentQuestion.opsi_a;
@@ -774,12 +556,12 @@
         
         if(status === "Lulus") {
             document.getElementById("res-status").innerText = "Hore! Kamu Lulus ✨";
-            document.getElementById("res-message").innerText = "Luar biasa, nilaimu sangat baik dan telah otomatis tersimpan!";
+            document.getElementById("res-message").innerText = "Hebat sekali! Teruskan semangat belajarmu.";
             iconDiv.className = "result-icon lulus";
             iconDiv.innerHTML = '<i class="fa-solid fa-circle-check"></i>';
         } else {
-            document.getElementById("res-status").innerText = "Tetap Semangat! 💪";
-            document.getElementById("res-message").innerText = "Nilai kamu sudah dicatat. Yuk belajar lagi dan coba kembali!";
+            document.getElementById("res-status").innerText = "Yuk Belajar Lagi! 💪";
+            document.getElementById("res-message").innerText = "Nilaimu masih di bawah KKM 80. Coba ulangi kuis lagi ya.";
             iconDiv.className = "result-icon remedial";
             iconDiv.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i>';
         }
@@ -787,7 +569,7 @@
 
     function resetQuiz() {
         document.getElementById("result-section").style.display = "none";
-        document.getElementById("dashboard-section").style.display = "grid";
+        document.getElementById("setup-section").style.display = "block";
         document.getElementById("select-bab").innerHTML = '<option value="">-- Pilih Bab --</option>';
         document.getElementById("select-bab").disabled = true;
         document.getElementById("select-mapel").selectedIndex = 0;
@@ -795,6 +577,5 @@
         document.getElementById("select-mapel").disabled = true;
     }
 </script>
-
 </body>
 </html>
