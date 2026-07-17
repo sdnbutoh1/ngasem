@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Materi &amp; Tugas - Ruang Belajar Murid</title>
+    
+    <!-- Load FontAwesome untuk Ikon -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+    
+    <!-- Google Fonts untuk Tampilan Modern -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- STYLE UTAMA -->
+    <style>
+        /* CSS Reset & Variabel Global */
+        :root {
+            --primary-gradient: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            --danger-gradient: linear-gradient(135deg, #ef4444, #f43f5e);
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
+            --bg-body: #f8fafc;
+            --card-border: #e2e8f0;
+        }
+
+        body {
+            margin: 0; 
+            padding: 0;
+            background-color: var(--bg-body);
+            font-family: 'Plus Jakarta Sans', 'Segoe UI', system-ui, -apple-system, sans-serif;
+            color: var(--text-dark);
+            line-height: 1.5;
+        }
+
+        .belajar-container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        /* Header Selamat Datang */
+        .header-materi {
+            background: var(--primary-gradient);
+            border-radius: 24px;
+            padding: 40px 25px;
+            color: white;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.15);
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.6s ease forwards;
+        }
+        
+        .header-materi h1 { 
+            margin: 0 0 10px; 
+            font-size: 2rem; 
+            font-weight: 800; 
+            letter-spacing: -0.5px;
+        }
+        
+        .header-materi p { 
+            margin: 0; 
+            font-size: 0.95rem; 
+            opacity: 0.9; 
+            font-weight: 500;
+        }
+
+        /* Grup Kelas */
+        .section-title {
+            font-size: 1.3rem;
+            color: #1e3a8a;
+            font-weight: 800;
+            margin: 40px 0 18px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            letter-spacing: -0.3px;
+        }
+
+        /* Container Akordeon Bab */
+        .bab-card {
+            background: #ffffff;
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            margin-bottom: 16px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .bab-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(139, 92, 246, 0.08);
+            border-color: #cbd5e1;
+        }
+
+        /* Tombol Klik Bab */
+        .bab-header {
+            background: #ffffff;
+            padding: 22px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            user-select: none;
+            transition: background 0.2s ease;
+        }
+        
+        .bab-header:hover { 
+            background: #faf5ff; 
+        }
+        
+        .bab-title-info { 
+            display: flex; 
+            align-items: center; 
+            gap: 16px; 
+        }
+        
+        .bab-icon {
+            width: 48px; 
+            height: 48px;
+            background: linear-gradient(135deg, #eff6ff, #f5f3ff);
+            color: #8b5cf6;
+            border-radius: 14px;
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+        
+        .bab-text h3 { 
+            margin: 0; 
+            font-size: 1.05rem; 
+            color: #1e3a8a; 
+            font-weight: 700; 
+            letter-spacing: -0.2px;
+        }
+        
+        .bab-text p { 
+            margin: 4px 0 0; 
+            font-size: 0.8rem; 
+            color: var(--text-muted); 
+            font-weight: 500;
+        }
+        
+        .bab-arrow {
+            color: var(--text-muted);
+            transition: transform 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        /* Area Isi Materi */
+        .bab-content {
+            display: none;
+            border-top: 1px dashed var(--card-border);
+            background: #fafbfd;
+            padding: 10px 22px 22px;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        /* Daftar Sub Materi */
+        .sub-list {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-top: 10px;
+        }
+        
+        .sub-item {
+            background: #ffffff;
+            border: 1px solid #f1f5f9;
+            border-radius: 16px;
+            padding: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.01);
+            transition: all 0.2s ease;
+        }
+        
+        .sub-item:hover { 
+            border-color: #cbd5e1; 
+            transform: scale(1.005);
+        }
+        
+        .sub-info h4 { 
+            margin: 0; 
+            font-size: 0.95rem; 
+            color: #334155; 
+            font-weight: 600; 
+        }
+        
+        .sub-info p { 
+            margin: 4px 0 0; 
+            font-size: 0.8rem; 
+            color: var(--text-muted); 
+        }
+
+        /* Tombol Aksi */
+        .action-buttons {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .btn-belajar {
+            text-decoration: none;
+            padding: 10px 16px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            border-radius: 12px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            border: none;
+        }
+        
+        .btn-baca {
+            background-color: #eff6ff;
+            color: #2563eb;
+        }
+        
+        .btn-baca:hover {
+            background-color: #2563eb;
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15);
+        }
+        
+        .btn-tugas {
+            background-color: #faf5ff;
+            color: #7c3aed;
+        }
+        
+        .btn-tugas:hover {
+            background-color: #7c3aed;
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(124, 58, 237, 0.15);
+        }
+
+        /* Sesi Spesial: Ulangan / Ujian */
+        .ujian-banner {
+            background: linear-gradient(135deg, #fffbeb, #fef3c7);
+            border: 1px solid #fde68a;
+            border-radius: 16px;
+            padding: 16px 20px;
+            margin-top: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .ujian-info { 
+            display: flex; 
+            align-items: center; 
+            gap: 14px; 
+        }
+        
+        .ujian-info i { 
+            color: #d97706; 
+            font-size: 1.3rem; 
+        }
+        
+        .ujian-text h5 { 
+            margin: 0; 
+            font-size: 0.95rem; 
+            color: #92400e; 
+            font-weight: 700; 
+        }
+        
+        .ujian-text p { 
+            margin: 4px 0 0; 
+            font-size: 0.78rem; 
+            color: #b45309; 
+        }
+        
+        .btn-ujian {
+            background: #d97706;
+            color: white;
+            text-decoration: none;
+            padding: 10px 18px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            border-radius: 12px;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+        
+        .btn-ujian:hover { 
+            background: #b45309; 
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(217, 119, 6, 0.2);
+        }
+
+        /* Banner PTS / PAS (Merah Elegan) */
+        .ujian-banner.akbar {
+            background: linear-gradient(135deg, #fef2f2, #fee2e2);
+            border: 1px solid #fecaca;
+        }
+        
+        .ujian-banner.akbar i { 
+            color: #dc2626; 
+        }
+        
+        .ujian-banner.akbar .ujian-text h5 { 
+            color: #991b1b; 
+        }
+        
+        .ujian-banner.akbar .ujian-text p { 
+            color: #b91c1c; 
+        }
+        
+        .ujian-banner.akbar .btn-ujian { 
+            background: #dc2626; 
+        }
+        
+        .ujian-banner.akbar .btn-ujian:hover { 
+            background: #991b1b; 
+            box-shadow: 0 4px 12px rgba(220, 38, 38, 0.2);
+        }
+
+        /* Keadaan Akordeon Aktif */
+        .bab-card.active .bab-arrow {
+            transform: rotate(180deg);
+            color: #8b5cf6;
+        }
+        
+        .bab-card.active .bab-header {
+            background: #faf5ff;
+        }
+
+        /* Animasi */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Responsif Layar Kecil (HP) */
+        @media (max-width: 640px) {
+            .belajar-container { margin: 20px auto; }
+            .header-materi { padding: 30px 20px; }
+            .header-materi h1 { font-size: 1.5rem; }
+            .bab-header { padding: 18px; }
+            .sub-item { flex-direction: column; align-items: flex-start; gap: 14px; }
+            .action-buttons { width: 100%; justify-content: flex-end; }
+            .ujian-banner { flex-direction: column; align-items: flex-start; gap: 14px; }
+            .btn-ujian { width: 100%; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="belajar-container">
+    
+    <!-- HEADER BERANDA -->
+    <div class="header-materi">
+        <h1><i class="fa-solid fa-graduation-cap"></i> Ruang Belajar &amp; Tugas</h1>
+        <p>Akses semua materi bacaan dan uji pemahaman mandiri di bawah ini secara asyik!</p>
+    </div>
+
+    <!-- SEKTOR KELAS 5 -->
+    <div class="section-title">
+        <i class="fa-solid fa-folder-open" style="color:#3b82f6;"></i> Kelas 5 - Pendidikan Pancasila
+    </div>
+
+    <!-- ================= BAB 1 ================= -->
+    <div class="bab-card">
+        <div class="bab-header" onclick="toggleBab(this)">
+            <div class="bab-title-info">
+                <div class="bab-icon"><i class="fa-solid fa-book"></i></div>
+                <div class="bab-text">
+                    <h3>Bab 1. Pancasila dalam Kehidupanku</h3>
+                    <p>Sub Bab: Sejarah Lahirnya Pancasila</p>
+                </div>
+            </div>
+            <div class="bab-arrow"><i class="fa-solid fa-chevron-down"></i></div>
+        </div>
+        <div class="bab-content">
+            <div class="sub-list">
+                <!-- Sub Materi 1 -->
+                <div class="sub-item">
+                    <div class="sub-info">
+                        <h4>Masa Pendudukan Jepang dan Janji Kemerdekaan</h4>
+                        <p>Materi: Sejarah lahirnya Pancasila</p>
+                    </div>
+                    <div class="action-buttons">
+                        <a class="btn-belajar btn-baca" href="#LINK_BACA_MATERI_1"><i class="fa-solid fa-book-open"></i> Baca</a>
+                        <a class="btn-belajar btn-tugas" href="#LINK_TUGAS_1"><i class="fa-solid fa-pen-to-square"></i> Tugas</a>
+                    </div>
+                </div>
+                <!-- Sub Materi 2 -->
+                <div class="sub-item">
+                    <div class="sub-info">
+                        <h4>Pembentukan BPUPKI</h4>
+                        <p>Materi: Sejarah lahirnya Pancasila</p>
+                    </div>
+                    <div class="action-buttons">
+                        <a class="btn-belajar btn-baca" href="#LINK_BACA_MATERI_2"><i class="fa-solid fa-book-open"></i> Baca</a>
+                        <a class="btn-belajar btn-tugas" href="#LINK_TUGAS_2"><i class="fa-solid fa-pen-to-square"></i> Tugas</a>
+                    </div>
+                </div>
+                <!-- Sub Materi 3 -->
+                <div class="sub-item">
+                    <div class="sub-info">
+                        <h4>Sidang BPUPKI dan Perumusan Pancasila</h4>
+                        <p>Materi: Sejarah lahirnya Pancasila</p>
+                    </div>
+                    <div class="action-buttons">
+                        <a class="btn-belajar btn-baca" href="#LINK_BACA_MATERI_3"><i class="fa-solid fa-book-open"></i> Baca</a>
+                        <a class="btn-belajar btn-tugas" href="#LINK_TUGAS_3"><i class="fa-solid fa-pen-to-square"></i> Tugas</a>
+                    </div>
+                </div>
+                <!-- Sub Materi 4 -->
+                <div class="sub-item">
+                    <div class="sub-info">
+                        <h4>Panitia Sembilan dan Piagam Jakarta</h4>
+                        <p>Materi: Sejarah lahirnya Pancasila</p>
+                    </div>
+                    <div class="action-buttons">
+                        <a class="btn-belajar btn-baca" href="#LINK_BACA_MATERI_4"><i class="fa-solid fa-book-open"></i> Baca</a>
+                        <a class="btn-belajar btn-tugas" href="#LINK_TUGAS_4"><i class="fa-solid fa-pen-to-square"></i> Tugas</a>
+                    </div>
+                </div>
+                <!-- Sub Materi 5 -->
+                <div class="sub-item">
+                    <div class="sub-info">
+                        <h4>Pembentukan PPKI</h4>
+                        <p>Materi: Sejarah lahirnya Pancasila</p>
+                    </div>
+                    <div class="action-buttons">
+                        <a class="btn-belajar btn-baca" href="#LINK_BACA_MATERI_5"><i class="fa-solid fa-book-open"></i> Baca</a>
+                        <a class="btn-belajar btn-tugas" href="#LINK_TUGAS_5"><i class="fa-solid fa-pen-to-square"></i> Tugas</a>
+                    </div>
+                </div>
+                <!-- Sub Materi 6 -->
+                <div class="sub-item">
+                    <div class="sub-info">
+                        <h4>Proklamasi Kemerdekaan Indonesia</h4>
+                        <p>Materi: Sejarah lahirnya Pancasila</p>
+                    </div>
+                    <div class="action-buttons">
+                        <a class="btn-belajar btn-baca" href="#LINK_BACA_MATERI_6"><i class="fa-solid fa-book-open"></i> Baca</a>
+                        <a class="btn-belajar btn-tugas" href="#LINK_TUGAS_6"><i class="fa-solid fa-pen-to-square"></i> Tugas</a>
+                    </div>
+                </div>
+                <!-- Sub Materi 7 -->
+                <div class="sub-item">
+                    <div class="sub-info">
+                        <h4>Sidang PPKI dan Pengesahan Pancasila</h4>
+                        <p>Materi: Sejarah lahirnya Pancasila</p>
+                    </div>
+                    <div class="action-buttons">
+                        <a class="btn-belajar btn-baca" href="#LINK_BACA_MATERI_7"><i class="fa-solid fa-book-open"></i> Baca</a>
+                        <a class="btn-belajar btn-tugas" href="#LINK_TUGAS_7"><i class="fa-solid fa-pen-to-square"></i> Tugas</a>
+                    </div>
+                </div>
+
+                <!-- GRUP ULANGAN HARIAN 1 -->
+                <div class="ujian-banner">
+                    <div class="ujian-info">
+                        <i class="fa-solid fa-circle-exclamation"></i>
+                        <div class="ujian-text">
+                            <h5>Yuk, Selesaikan Ulangan Harian 1!</h5>
+                            <p>Evaluasi pemahaman materi Sejarah Lahirnya Pancasila.</p>
+                        </div>
+                    </div>
+                    <a class="btn-ujian" href="#LINK_ULANGAN_HARIAN_1">Mulai Ujian</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= SUB BAB 2 ================= -->
+    <div class="bab-card">
+        <div class="bab-header" onclick="toggleBab(this)">
+            <div class="bab-title-info">
+                <div class="bab-icon"><i class="fa-solid fa-bookmark"></i></div>
+                <div class="bab-text">
+                    <h3>Pancasila dalam Kehidupanku</h3>
+                    <p>Sub Bab: Meneladani Sikap para Perumus Pancasila</p>
+                </div>
+            </div>
+            <div class="bab-arrow"><i class="fa-solid fa-chevron-down"></i></div>
+        </div>
+        <div class="bab-content">
+            <div class="sub-list">
+                <!-- Sub Materi 1 -->
+                <div class="sub-item">
+                    <div class="sub-info">
+                        <h4>Nilai-Nilai Keteladan para Perumus Pancasila</h4>
+                        <p>Materi: Meneladani Sikap para Perumus Pancasila</p>
+                    </div>
+                    <div class="action-buttons">
+                        <a class="btn-belajar btn-baca" href="#LINK_BACA_MATERI_8"><i class="fa-solid fa-book-open"></i> Baca</a>
+                        <a class="btn-belajar btn-tugas" href="#LINK_TUGAS_8"><i class="fa-solid fa-pen-to-square"></i> Tugas</a>
+                    </div>
+                </div>
+                <!-- Sub Materi 2 -->
+                <div class="sub-item">
+                    <div class="sub-info">
+                        <h4>Penerapan Nilai Keteladan dalam Kehidupan Sehari-hari</h4>
+                        <p>Materi: Meneladani Sikap para Perumus Pancasila</p>
+                    </div>
+                    <div class="action-buttons">
+                        <a class="btn-belajar btn-baca" href="#LINK_BACA_MATERI_9"><i class="fa-solid fa-book-open"></i> Baca</a>
+                        <a class="btn-belajar btn-tugas" href="#LINK_TUGAS_9"><i class="fa-solid fa-pen-to-square"></i> Tugas</a>
+                    </div>
+                </div>
+
+                <!-- GRUP ULANGAN HARIAN 2 -->
+                <div class="ujian-banner">
+                    <div class="ujian-info">
+                        <i class="fa-solid fa-circle-exclamation"></i>
+                        <div class="ujian-text">
+                            <h5>Yuk, Selesaikan Ulangan Harian 2!</h5>
+                            <p>Evaluasi pemahaman materi Meneladani Sikap para Perumus.</p>
+                        </div>
+                    </div>
+                    <a class="btn-ujian" href="#LINK_ULANGAN_HARIAN_2">Mulai Ujian</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= SUB BAB 3 ================= -->
+    <div class="bab-card">
+        <div class="bab-header" onclick="toggleBab(this)">
+            <div class="bab-title-info">
+                <div class="bab-icon"><i class="fa-solid fa-heart"></i></div>
+                <div class="bab-text">
+                    <h3>Pancasila dalam Kehidupanku</h3>
+                    <p>Sub Bab: Nilai-Nilai dalam Pancasila</p>
+                </div>
+            </div>
+            <div class="bab-arrow"><i class="fa-solid fa-chevron-down"></i></div>
+        </div>
+        <div class="bab-content">
+            <div class="sub-list">
+                <!-- Sub Materi 1 -->
+                <div class="sub-item">
+                    <div class="sub-info">
+                        <h4>Hubungan Antar Sila dalam Pancasila</h4>
+                        <p>Materi: Nilai-Nilai dalam Pancasila</p>
+                    </div>
+                    <div class="action-buttons">
+                        <a class="btn-belajar btn-baca" href="#LINK_BACA_MATERI_10"><i class="fa-solid fa-book-open"></i> Baca</a>
+                        <a class="btn-belajar btn-tugas" href="#LINK_TUGAS_10"><i class="fa-solid fa-pen-to-square"></i> Tugas</a>
+                    </div>
+                </div>
+                <!-- Sub Materi 2 -->
+                <div class="sub-item">
+                    <div class="sub-info">
+                        <h4>Fungsi Pancasila</h4>
+                        <p>Materi: Nilai-Nilai dalam Pancasila</p>
+                    </div>
+                    <div class="action-buttons">
+                        <a class="btn-belajar btn-baca" href="#LINK_BACA_MATERI_11"><i class="fa-solid fa-book-open"></i> Baca</a>
+                        <a class="btn-belajar btn-tugas" href="#LINK_TUGAS_11"><i class="fa-solid fa-pen-to-square"></i> Tugas</a>
+                    </div>
+                </div>
+                <!-- Sub Materi 3 -->
+                <div class="sub-item">
+                    <div class="sub-info">
+                        <h4>Penerapan Nilai-nilai Pancasila dalam Kehidupan Sehari-hari</h4>
+                        <p>Materi: Nilai-Nilai dalam Pancasila</p>
+                    </div>
+                    <div class="action-buttons">
+                        <a class="btn-belajar btn-baca" href="#LINK_BACA_MATERI_12"><i class="fa-solid fa-book-open"></i> Baca</a>
+                        <a class="btn-belajar btn-tugas" href="#LINK_TUGAS_12"><i class="fa-solid fa-pen-to-square"></i> Tugas</a>
+                    </div>
+                </div>
+
+                <!-- GRUP ULANGAN HARIAN 3 -->
+                <div class="ujian-banner">
+                    <div class="ujian-info">
+                        <i class="fa-solid fa-circle-exclamation"></i>
+                        <div class="ujian-text">
+                            <h5>Yuk, Selesaikan Ulangan Harian 3!</h5>
+                            <p>Evaluasi pemahaman materi Nilai-Nilai dalam Pancasila.</p>
+                        </div>
+                    </div>
+                    <a class="btn-ujian" href="#LINK_ULANGAN_HARIAN_3">Mulai Ujian</a>
+                </div>
+
+                <!-- EVALUASI PTS (Merah Mencolok & Elegan) -->
+                <div class="ujian-banner akbar">
+                    <div class="ujian-info">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                        <div class="ujian-text">
+                            <h5>Penilaian Tengah Semester Ganjil!</h5>
+                            <p>Ujian Tengah Semester Evaluasi Bab 1.</p>
+                        </div>
+                    </div>
+                    <a class="btn-ujian" href="#LINK_PTS">Mulai PTS</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= BAB 2 ================= -->
+    <div class="bab-card">
+        <div class="bab-header" onclick="toggleBab(this)">
+            <div class="bab-title-info">
+                <div class="bab-icon"><i class="fa-solid fa-scale-balanced"></i></div>
+                <div class="bab-text">
+                    <h3>Bab 2. Norma dalam Kehidupanku</h3>
+                    <p>Sub Bab: Mengenal Norma di Sekitarku</p>
+                </div>
+            </div>
+            <div class="bab-arrow"><i class="fa-solid fa-chevron-down"></i></div>
+        </div>
+        <div class="bab-content">
+            <div class="sub-list">
+                <!-- Sub Materi 1 -->
+                <div class="sub-item">
+                    <div class="sub-info">
+                        <h4>Mengenal Norma</h4>
+                        <p>Materi: Mengenal Norma di Sekitarku</p>
+                    </div>
+                    <div class="action-buttons">
+                        <a class="btn-belajar btn-baca" href="#LINK_BACA_MATERI_13"><i class="fa-solid fa-book-open"></i> Baca</a>
+                        <a class="btn-belajar btn-tugas" href="#LINK_TUGAS_13"><i class="fa-solid fa-pen-to-square"></i> Tugas</a>
+                    </div>
+                </div>
+                <!-- Sub Materi 2 -->
+                <div class="sub-item">
+                    <div class="sub-info">
+                        <h4>Berbagai Jenis Norma di Sekitarku</h4>
+                        <p>Materi: Mengenal Norma di Sekitarku</p>
+                    </div>
+                    <div class="action-buttons">
+                        <a class="btn-belajar btn-baca" href="#LINK_BACA_MATERI_14"><i class="fa-solid fa-book-open"></i> Baca</a>
+                        <a class="btn-belajar btn-tugas" href="#LINK_TUGAS_14"><i class="fa-solid fa-pen-to-square"></i> Tugas</a>
+                    </div>
+                </div>
+                <!-- Sub Materi 3 -->
+                <div class="sub-item">
+                    <div class="sub-info">
+                        <h4>Menyeimbangkan Hak dan Kewajiban</h4>
+                        <p>Materi: Mengenal Norma di Sekitarku</p>
+                    </div>
+                    <div class="action-buttons">
+                        <a class="btn-belajar btn-baca" href="#LINK_BACA_MATERI_15"><i class="fa-solid fa-book-open"></i> Baca</a>
+                        <a class="btn-belajar btn-tugas" href="#LINK_TUGAS_15"><i class="fa-solid fa-pen-to-square"></i> Tugas</a>
+                    </div>
+                </div>
+                <!-- Sub Materi 4 -->
+                <div class="sub-item">
+                    <div class="sub-info">
+                        <h4>Penyebab Terjadinya Pelanggaran Norma</h4>
+                        <p>Materi: Mengenal Norma di Sekitarku</p>
+                    </div>
+                    <div class="action-buttons">
+                        <a class="btn-belajar btn-baca" href="#LINK_BACA_MATERI_16"><i class="fa-solid fa-book-open"></i> Baca</a>
+                        <a class="btn-belajar btn-tugas" href="#LINK_TUGAS_16"><i class="fa-solid fa-pen-to-square"></i> Tugas</a>
+                    </div>
+                </div>
+                <!-- Sub Materi 5 -->
+                <div class="sub-item">
+                    <div class="sub-info">
+                        <h4>Bertindak Sesuai Norma</h4>
+                        <p>Materi: Mengenal Norma di Sekitarku</p>
+                    </div>
+                    <div class="action-buttons">
+                        <a class="btn-belajar btn-baca" href="#LINK_BACA_MATERI_17"><i class="fa-solid fa-book-open"></i> Baca</a>
+                        <a class="btn-belajar btn-tugas" href="#LINK_TUGAS_17"><i class="fa-solid fa-pen-to-square"></i> Tugas</a>
+                    </div>
+                </div>
+
+                <!-- GRUP ULANGAN HARIAN 3 -->
+                <div class="ujian-banner">
+                    <div class="ujian-info">
+                        <i class="fa-solid fa-circle-exclamation"></i>
+                        <div class="ujian-text">
+                            <h5>Yuk, Selesaikan Ulangan Harian 3!</h5>
+                            <p>Evaluasi pemahaman materi Mengenal Norma di Sekitarku.</p>
+                        </div>
+                    </div>
+                    <a class="btn-ujian" href="#LINK_ULANGAN_HARIAN_3_PART2">Mulai Ujian</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SEKTOR KELAS 6 -->
+    <div class="section-title" style="margin-top: 40px;">
+        <i class="fa-solid fa-folder-open" style="color:#8b5cf6;"></i> Kelas 6 - Pendidikan Pancasila
+    </div>
+
+    <div class="bab-card">
+        <div class="bab-header" onclick="toggleBab(this)">
+            <div class="bab-title-info">
+                <div class="bab-icon"><i class="fa-solid fa-users"></i></div>
+                <div class="bab-text">
+                    <h3>Norma dalam Kehidupanku</h3>
+                    <p>Sub Bab: Musyawarah Untuk Mufakat</p>
+                </div>
+            </div>
+            <div class="bab-arrow"><i class="fa-solid fa-chevron-down"></i></div>
+        </div>
+        <div class="bab-content">
+            <div class="sub-list">
+                <!-- Sub Materi 1 -->
+                <div class="sub-item">
+                    <div class="sub-info">
+                        <h4>Apa itu Musyawarah?</h4>
+                        <p>Materi: Musyawarah Untuk Mufakat</p>
+                    </div>
+                    <div class="action-buttons">
+                        <a class="btn-belajar btn-baca" href="#LINK_BACA_MATERI_18"><i class="fa-solid fa-book-open"></i> Baca</a>
+                        <a class="btn-belajar btn-tugas" href="#LINK_TUGAS_18"><i class="fa-solid fa-pen-to-square"></i> Tugas</a>
+                    </div>
+                </div>
+                <!-- Sub Materi 2 -->
+                <div class="sub-item">
+                    <div class="sub-info">
+                        <h4>Ciri-ciri musyawarah yang baik</h4>
+                        <p>Materi: Musyawarah Untuk Mufakat</p>
+                    </div>
+                    <div class="action-buttons">
+                        <a class="btn-belajar btn-baca" href="#LINK_BACA_MATERI_19"><i class="fa-solid fa-book-open"></i> Baca</a>
+                        <a class="btn-belajar btn-tugas" href="#LINK_TUGAS_19"><i class="fa-solid fa-pen-to-square"></i> Tugas</a>
+                    </div>
+                </div>
+                <!-- Sub Materi 3 -->
+                <div class="sub-item">
+                    <div class="sub-info">
+                        <h4>Syarat musyawarah yang baik</h4>
+                        <p>Materi: Musyawarah Untuk Mufakat</p>
+                    </div>
+                    <div class="action-buttons">
+                        <a class="btn-belajar btn-baca" href="#LINK_BACA_MATERI_20"><i class="fa-solid fa-book-open"></i> Baca</a>
+                        <a class="btn-belajar btn-tugas" href="#LINK_TUGAS_20"><i class="fa-solid fa-pen-to-square"></i> Tugas</a>
+                    </div>
+                </div>
+                <!-- Sub Materi 4 -->
+                <div class="sub-item">
+                    <div class="sub-info">
+                        <h4>Prinsip-prinsip dalam musyawarah</h4>
+                        <p>Materi: Musyawarah Untuk Mufakat</p>
+                    </div>
+                    <div class="action-buttons">
+                        <a class="btn-belajar btn-baca" href="#LINK_BACA_MATERI_21"><i class="fa-solid fa-book-open"></i> Baca</a>
+                        <a class="btn-belajar btn-tugas" href="#LINK_TUGAS_21"><i class="fa-solid fa-pen-to-square"></i> Tugas</a>
+                    </div>
+                </div>
+                <!-- Sub Materi 5 -->
+                <div class="sub-item">
+                    <div class="sub-info">
+                        <h4>Cara melaksanakan musyawarah</h4>
+                        <p>Materi: Musyawarah Untuk Mufakat</p>
+                    </div>
+                    <div class="action-buttons">
+                        <a class="btn-belajar btn-baca" href="#LINK_BACA_MATERI_22"><i class="fa-solid fa-book-open"></i> Baca</a>
+                        <a class="btn-belajar btn-tugas" href="#LINK_TUGAS_22"><i class="fa-solid fa-pen-to-square"></i> Tugas</a>
+                    </div>
+                </div>
+                <!-- Sub Materi 6 -->
+                <div class="sub-item">
+                    <div class="sub-info">
+                        <h4>Manfaat musyawarah</h4>
+                        <p>Materi: Musyawarah Untuk Mufakat</p>
+                    </div>
+                    <div class="action-buttons">
+                        <a class="btn-belajar btn-baca" href="#LINK_BACA_MATERI_23"><i class="fa-solid fa-book-open"></i> Baca</a>
+                        <a class="btn-belajar btn-tugas" href="#LINK_TUGAS_23"><i class="fa-solid fa-pen-to-square"></i> Tugas</a>
+                    </div>
+                </div>
+                <!-- Sub Materi 7 -->
+                <div class="sub-item">
+                    <div class="sub-info">
+                        <h4>Contoh musyawarah di berbagai tempat</h4>
+                        <p>Materi: Musyawarah Untuk Mufakat</p>
+                    </div>
+                    <div class="action-buttons">
+                        <a class="btn-belajar btn-baca" href="#LINK_BACA_MATERI_24"><i class="fa-solid fa-book-open"></i> Baca</a>
+                        <a class="btn-belajar btn-tugas" href="#LINK_TUGAS_24"><i class="fa-solid fa-pen-to-square"></i> Tugas</a>
+                    </div>
+                </div>
+
+                <!-- GRUP ULANGAN HARIAN 3 -->
+                <div class="ujian-banner">
+                    <div class="ujian-info">
+                        <i class="fa-solid fa-circle-exclamation"></i>
+                        <div class="ujian-text">
+                            <h5>Yuk, Selesaikan Ulangan Harian 3!</h5>
+                            <p>Evaluasi pemahaman materi Musyawarah Untuk Mufakat.</p>
+                        </div>
+                    </div>
+                    <a class="btn-ujian" href="#LINK_ULANGAN_HARIAN_3_PART3">Mulai Ujian</a>
+                </div>
+
+                <!-- EVALUASI PAS (Merah Mencolok & Elegan) -->
+                <div class="ujian-banner akbar">
+                    <div class="ujian-info">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                        <div class="ujian-text">
+                            <h5>Penilaian Akhir Semester (PAS)!</h5>
+                            <p>Evaluasi menyeluruh akhir semester ganjil.</p>
+                        </div>
+                    </div>
+                    <a class="btn-ujian" href="#LINK_PAS">Mulai PAS</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- JAVASCRIPT ANIMASI AKORDEON -->
+<script>
+    function toggleBab(element) {
+        const card = element.parentElement;
+        const content = card.querySelector('.bab-content');
+        
+        // Cek apakah saat ini sedang terbuka
+        const isOpen = card.classList.contains('active');
+        
+        if (isOpen) {
+            // Animasi tutup
+            content.style.display = 'none';
+            card.classList.remove('active');
+        } else {
+            // Buka
+            content.style.display = 'block';
+            card.classList.add('active');
+        }
+    }
+</script>
+
+</body>
+</html>
