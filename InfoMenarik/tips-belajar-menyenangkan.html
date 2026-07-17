@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5 Trik Sederhana Agar Belajar Tidak Terasa Membosankan</title>
+    <link rel="icon" type="image/png" href="../favicon.png">
+    
+    <!-- Google Fonts & FontAwesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        /* --- RESET & BASE STYLE --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #f8fafc;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: #334155;
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* --- NAVIGASI ATAS (MODEL KARTU) --- */
+        .top-nav {
+            display: flex;
+            align-items: center;
+            margin-bottom: 35px;
+            animation: fadeInDown 0.5s ease;
+        }
+
+        .btn-back-top {
+            text-decoration: none;
+            background-color: #ffffff;
+            color: #475569;
+            font-weight: 600;
+            font-size: 0.88rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .btn-back-top:hover {
+            background-color: #f1f5f9;
+            color: #0f172a;
+            border-color: #cbd5e1;
+            transform: translateX(-3px);
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+        }
+
+        /* --- ARTIKEL DETAIL --- */
+        .article-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.02);
+            margin-bottom: 35px;
+            animation: fadeInUp 0.7s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .post-meta {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.85rem;
+            color: #94a3b8;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .post-meta i {
+            color: #64748b;
+        }
+
+        .article-card h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #0f172a;
+            line-height: 1.3;
+            letter-spacing: -0.5px;
+            margin-bottom: 25px;
+        }
+
+        /* --- WADAH GAMBAR DENGAN ID GOOGLE DRIVE --- */
+        .image-container {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 20px;
+            padding: 12px;
+            margin-bottom: 35px;
+            text-align: center;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: auto;
+            max-height: 450px;
+            object-fit: cover;
+            border-radius: 14px;
+            background-color: #cbd5e1;
+        }
+
+        .image-caption {
+            font-size: 0.85rem;
+            color: #64748b;
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        /* --- AREA NARASI UTAMA --- */
+        .article-body p {
+            font-size: 1.05rem;
+            color: #334155;
+            margin-bottom: 25px;
+            text-align: justify;
+            text-indent: 30px;
+        }
+
+        .article-body ol {
+            margin: 0 0 25px 30px;
+            font-size: 1.05rem;
+            color: #334155;
+        }
+
+        .article-body ol li {
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .article-body ol li strong {
+            color: #0f172a;
+        }
+
+        /* Highlight Box untuk metode */
+        .method-box {
+            background-color: #f1f5f9;
+            border-left: 4px solid #475569;
+            padding: 20px;
+            border-radius: 0 16px 16px 0;
+            margin: 25px 0;
+        }
+
+        .method-box h3 {
+            font-size: 1.1rem;
+            color: #0f172a;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .method-box p {
+            margin-bottom: 0;
+            text-indent: 0;
+            font-size: 0.98rem;
+            color: #475569;
+        }
+
+        /* --- KONTANER TOMBOL KEMBALI BAWAH --- */
+        .action-row {
+            display: flex;
+            justify-content: center;
+            margin-top: 40px;
+            animation: fadeInUp 0.9s ease;
+        }
+
+        .btn-action {
+            text-decoration: none;
+            padding: 14px 32px;
+            border-radius: 14px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background-color: #ffffff;
+            color: #475569;
+            border: 1px solid #cbd5e1;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+            transition: all 0.25s ease;
+            cursor: pointer;
+        }
+
+        .btn-action:hover {
+            background-color: #0f172a;
+            color: #ffffff;
+            border-color: #0f172a;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(15, 23, 42, 0.15);
+        }
+
+        /* --- ANIMATIONS --- */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(25px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- LAYAR HP FRIENDLY --- */
+        @media (max-width: 640px) {
+            .container { padding: 20px 15px; }
+            .article-card { padding: 25px 20px; margin-bottom: 20px; }
+            .article-card h1 { font-size: 1.6rem; }
+            .article-body p { font-size: 0.98rem; text-indent: 20px; }
+            .article-body ol { margin-left: 20px; font-size: 0.98rem; }
+            .btn-action { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <!-- NAVIGASI ATAS -->
+    <nav class="top-nav">
+        <a href="index.html" class="btn-back-top">
+            <i class="fa-solid fa-arrow-left"></i> Kembali ke Info Menarik
+        </a>
+    </nav>
+
+    <!-- KARTU UTAMA ARTIKEL -->
+    <main class="article-card">
+        
+        <!-- INFO META -->
+        <div class="post-meta">
+            <span><i class="fa-regular fa-calendar"></i> 25 Juli 2026</span>
+            <span>•</span>
+            <span><i class="fa-regular fa-user"></i> Pak Zainal</span>
+        </div>
+
+        <!-- JUDUL -->
+        <h1>5 Trik Sederhana Agar Belajar Tidak Terasa Membosankan</h1>
+
+        <!-- WADAH FOTO (Tinggal ganti ID Google Drive kamu nanti) -->
+        <div class="image-container">
+            <!-- SILAHKAN GANTI "ID_FOTO_DRIVE_KAMU" DENGAN ID FILE DARI GOOGLE DRIVE -->
+            <img src="https://drive.google.com/thumbnail?sz=w800&id=1IT_JWZ7qQ0YkP7jnsVXXvOgUkRbjdRya" alt="Ilustrasi Belajar Menyenangkan">
+            <div class="image-caption"><i class="fa-solid fa-camera"></i> Mengubah atmosfer dan metode belajar terbukti efektif mengusir rasa kantuk dan bosan.</div>
+        </div>
+
+        <!-- ISI ARTIKEL / NARASI -->
+        <div class="article-body">
+            <p>Membaca tumpukan buku pelajaran selama berjam-jam sering kali menjadi rutinitas yang melelahkan. Bukannya materi masuk ke dalam memori otak, rasa kantuk dan jenuh justru sering datang menyerang terlebih dahulu. Fenomena ini sangat wajar dialami oleh para siswa, karena otak manusia secara alami membutuhkan stimulasi yang bervariasi agar tetap fokus dan aktif.</p>
+            
+            <p>Kunci utama dari belajar yang efektif bukanlah durasi waktu yang lama tanpa henti, melainkan kualitas konsentrasi dan bagaimana cara kita mengemas materi tersebut agar menarik. Agar proses belajarmu di rumah berjalan seru dan tidak monoton, berikut adalah 5 trik sederhana yang bisa langsung kamu praktikkan mulai malam ini:</p>
+
+            <ol>
+                <li>
+                    <strong>Gunakan Teknik Pomodoro (Belajar Berjeda):</strong> Jangan memaksa otak bekerja penuh selama 2 jam tanpa istirahat. Terapkan siklus konsentrasi berkala agar energi otak tetap terjaga konstan sepanjang sesi belajar.
+                </li>
+                
+                <div class="method-box">
+                    <h3>Cara Kerja Teknik Pomodoro:</h3>
+                    <p>Atur alarm selama 25 menit untuk fokus belajar total tanpa membuka media sosial. Setelah alarm berbunyi, beristirahatlah selama 5 menit untuk sekadar minum air atau meregangkan badan. Ulangi siklus ini sebanyak 4 kali, lalu ambil istirahat panjang selama 20-30 menit.</p>
+                </div>
+
+                <li>
+                    <strong>Ubah Teks Menjadi Mind Mapping Kreatif:</strong> Menghafal deretan kalimat panjang di buku teks sering kali membosankan. Cobalah meringkas materi menggunakan peta pikiran (*mind mapping*). Gambar satu lingkaran besar sebagai topik utama di tengah kertas kosong, lalu tarik cabang-cabang anak panah berwarna-warni untuk sub-topiknya. Metode visual ini mempermudah otak kanan mengingat pola.
+                </li>
+
+                <li>
+                    <strong>Praktikkan Metode Feynman (Berlagak Menjadi Guru):</strong> Salah satu cara terbaik untuk menguji apakah kamu sudah paham suatu materi adalah dengan mencoba menjelaskannya kembali. Bayangkan kamu sedang berdiri di depan kelas sebagai seorang guru yang mengajar murid-murid. Jelaskan konsep sulit tersebut menggunakan bahasa yang sesederhana mungkin.
+                </li>
+
+                <li>
+                    <strong>Variasikan Tempat dan Suasana Belajar:</strong> Terus-menerus duduk menghadap dinding meja belajar kamar bisa memicu kebosanan psikologis. Cobalah sesekali berpindah area kerja, seperti belajar di teras rumah pada sore hari, berpindah ke ruang tamu, atau menyalakan lampu belajar dengan iringan musik instrumental bertempo tenang (*Lo-Fi / Klasik*) tanpa lirik.
+                </li>
+
+                <li>
+                    <strong>Buat Sistem Reward (Hadiah Kecil):</strong> Berikan motivasi instan pada dirimu sendiri sebelum belajar dimulai. Buat perjanjian dengan dirimu, misalnya: *"Jika aku berhasil menyelesaikan ringkasan bab ini, aku boleh menonton 1 episode kartun kesukaanku atau memakan es krim di kulkas."* Hadiah kecil ini memicu pelepasan hormon dopamin yang membuat proses belajar terasa seperti sebuah misi permainan yang seru.
+                </li>
+            </ol>
+
+            <p>Dengan menerapkan kombinasi trik di atas, belajar tidak akan lagi dirasakan sebagai sebuah beban sekolah yang berat, melainkan aktivitas eksplorasi yang menantang dan menyenangkan. Selamat mencoba di rumah ya!</p>
+        </div>
+
+    </main>
+
+    <!-- TOMBOL AKSI BAWAH -->
+    <div class="action-row">
+        <a href="index.html" class="btn-action">
+            <i class="fa-solid fa-house"></i> Kembali ke Beranda
+        </a>
+    </div>
+
+</div>
+
+</body>
+</html>
