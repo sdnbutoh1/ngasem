@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kunci Jawaban: Sejarah Kelahiran Pancasila - Kelas V</title>
+    <link rel="icon" type="image/png" href="../../../favicon.png">
+    <!-- Load FontAwesome untuk Ikon Modern -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+      /* --- Gaya Dasar / Reset --- */
+      body {
+          margin: 0;
+          padding: 0;
+          background-color: #f8fafc;
+          font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+          color: #334155;
+          line-height: 1.8;
+      }
+
+      .container {
+          max-width: 850px;
+          margin: 40px auto;
+          padding: 0 20px;
+      }
+
+      /* --- Navigasi Atas --- */
+      .top-nav {
+          display: flex;
+          align-items: center;
+          margin-bottom: 25px;
+          animation: fadeInDown 0.5s ease;
+      }
+      .btn-back-top {
+          text-decoration: none;
+          color: #64748b;
+          font-weight: 600;
+          font-size: 0.9rem;
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          transition: color 0.2s;
+      }
+      .btn-back-top:hover {
+          color: #059669;
+      }
+
+      /* --- KOTAK LOGIN / KUNCI PASSWORD --- */
+      .login-box {
+          max-width: 420px;
+          margin: 80px auto;
+          padding: 40px 30px;
+          background: #ffffff;
+          border-radius: 24px;
+          border: 1px solid #e2e8f0;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+          text-align: center;
+          animation: fadeInUp 0.6s ease forwards;
+      }
+      .login-box h3 { 
+          margin: 0 0 12px 0; 
+          color: #0f172a; 
+          font-size: 1.4rem; 
+          font-weight: 800; 
+      }
+      .login-box p.info-login {
+          font-size: 0.9rem;
+          color: #64748b;
+          margin: 0;
+      }
+      .login-box input[type="password"] {
+          width: 100%; 
+          box-sizing: border-box;
+          padding: 14px; 
+          margin: 24px 0 12px; 
+          border: 1px solid #cbd5e1; 
+          border-radius: 14px;
+          font-size: 1rem;
+          transition: all 0.2s;
+          outline: none;
+          text-align: center;
+          font-weight: 600;
+          letter-spacing: 3px;
+      }
+      .login-box input[type="password"]:focus { 
+          border-color: #10b981; 
+          box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.15); 
+      }
+      .login-box button {
+          width: 100%; 
+          padding: 14px; 
+          background: linear-gradient(135deg, #10b981, #059669);
+          color: #fff; 
+          border: none; 
+          border-radius: 14px; 
+          cursor: pointer;
+          font-weight: 700;
+          font-size: 1rem;
+          transition: all 0.2s;
+          box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+      }
+      .login-box button:hover { 
+          transform: translateY(-2px);
+          box-shadow: 0 6px 16px rgba(16, 185, 129, 0.3);
+      }
+      .error-msg { 
+          color: #ef4444; 
+          font-size: 0.85rem; 
+          margin-top: 12px; 
+          font-weight: 600;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 6px;
+      }
+
+      /* --- HALAMAN KUNCI JAWABAN --- */
+      .answer-page {
+          background: #ffffff;
+          border: 1px solid #e2e8f0;
+          border-radius: 24px;
+          padding: 35px;
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.01);
+          animation: fadeInUp 0.6s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+          position: relative;
+      }
+      .answer-page::before {
+          content: ''; 
+          position: absolute; 
+          top: 0; 
+          left: 0; 
+          width: 100%; 
+          height: 6px;
+          background: linear-gradient(to right, #10b981, #059669);
+          border-radius: 24px 24px 0 0;
+      }
+
+      .answer-header {
+          text-align: center;
+          margin-bottom: 35px;
+      }
+      .answer-badge {
+          display: inline-block;
+          background: #ecfdf5;
+          color: #065f46;
+          padding: 6px 16px;
+          border-radius: 50px;
+          font-size: 0.8rem;
+          font-weight: 700;
+          letter-spacing: 0.5px;
+          margin-bottom: 12px;
+          border: 1px solid #a7f3d0;
+      }
+      .answer-header h2 {
+          margin: 5px 0 8px;
+          color: #0f172a;
+          font-weight: 800;
+          font-size: 1.6rem;
+      }
+      .answer-header p {
+          color: #64748b;
+          margin: 0;
+          font-size: 0.95rem;
+      }
+
+      .warning-box {
+          background: #fefce8;
+          border-left: 4px solid #eab308;
+          padding: 15px 20px;
+          border-radius: 0 14px 14px 0;
+          margin-bottom: 35px;
+          color: #713f12;
+          font-size: 0.95rem;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+      }
+      .warning-box i { color: #eab308; font-size: 1.1rem; }
+
+      /* --- Struktur Daftar Soal & Jawaban --- */
+      .qa-list {
+          display: flex;
+          flex-direction: column;
+          gap: 25px;
+      }
+      .qa-card {
+          background: #ffffff;
+          border: 1px solid #e2e8f0;
+          border-radius: 16px;
+          padding: 20px 24px;
+          transition: transform 0.2s, border-color 0.2s;
+      }
+      .qa-card:hover {
+          border-color: #cbd5e1;
+          background-color: #fafafa;
+      }
+      
+      .question-block {
+          font-weight: 700;
+          color: #1e293b;
+          font-size: 1.05rem;
+          display: flex;
+          gap: 12px;
+          margin-bottom: 12px;
+          align-items: flex-start;
+      }
+      .question-number {
+          background: #f1f5f9;
+          color: #475569;
+          min-width: 28px;
+          height: 28px;
+          border-radius: 8px;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 0.85rem;
+          font-weight: 700;
+      }
+      .question-text {
+          flex: 1;
+          padding-top: 1px;
+      }
+
+      .answer-block {
+          background-color: #f0fdf4;
+          border: 1px dashed #bbf7d0;
+          padding: 14px 18px;
+          border-radius: 12px;
+          color: #166534;
+          font-size: 1rem;
+          font-weight: 600;
+          display: flex;
+          gap: 10px;
+          align-items: flex-start;
+          margin-left: 40px;
+      }
+      .answer-block i {
+          color: #16a34a;
+          margin-top: 5px;
+          font-size: 0.95rem;
+      }
+
+      /* --- Baris Tombol Aksi Bawah --- */
+      .action-row {
+          display: flex;
+          gap: 15px;
+          margin-top: 35px;
+          animation: fadeInUp 0.8s ease forwards;
+      }
+      .btn-action {
+          text-decoration: none;
+          flex: 1;
+          padding: 16px 20px;
+          border-radius: 16px;
+          font-weight: 700;
+          font-size: 0.95rem;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+          transition: all 0.2s ease;
+      }
+      .btn-danger {
+          background-color: #ef4444;
+          color: white;
+          box-shadow: 0 4px 12px rgba(239, 68, 68, 0.15);
+      }
+      .btn-danger:hover {
+          background-color: #dc2626;
+          transform: translateY(-2px);
+          box-shadow: 0 6px 16px rgba(239, 68, 68, 0.25);
+      }
+
+      /* --- Keyframes Animasi --- */
+      @keyframes fadeInUp {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
+      }
+      @keyframes fadeInDown {
+          from { opacity: 0; transform: translateY(-15px); }
+          to { opacity: 1; transform: translateY(0); }
+      }
+
+      /* --- Optimasi HP --- */
+      @media (max-width: 640px) {
+          .container { margin: 20px auto; }
+          .login-box { padding: 30px 20px; margin: 50px auto; }
+          .answer-page { padding: 20px; }
+          .answer-header h2 { font-size: 1.3rem; }
+          .qa-card { padding: 16px; }
+          .question-block { font-size: 0.95rem; gap: 8px; }
+          .answer-block { margin-left: 0; font-size: 0.9rem; padding: 12px; }
+          .warning-box { font-size: 0.85rem; padding: 12px; }
+      }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <!-- NAVIGASI ATAS -->
+    <div class="top-nav">
+        <a href="../kunci-pancasila.html" class="btn-back-top">
+            <i class="fa-solid fa-chevron-left"></i> Kembali ke Daftar Kunci
+        </a>
+    </div>
+
+    <!-- PANEL VERIFIKASI AKSES (PASSWORD) -->
+    <div id="loginJawaban" class="login-box">
+        <h3><i class="fa-solid fa-shield-halved" style="color: #10b981;"></i> Verifikasi Akses Guru</h3>
+        <p class="info-login">Masukkan kode otentikasi lembar jawaban untuk membuka berkas ini.</p>
+        <input type="password" id="passGuru" placeholder="Ketik Password Disini">
+        <button onclick="cekPassword()">Buka Lembar Jawaban</button>
+        <div id="pesanPass" class="error-msg"></div>
+    </div>
+
+    <!-- KONTEN LEMBAR KUNCI JAWABAN (TERSEMBUNYI) -->
+    <div class="answer-page" id="halamanJawaban" style="display:none;">
+
+        <div class="answer-header">
+            <span class="answer-badge"><i class="fa-solid fa-key"></i> KHUSUS GURU</span>
+            <h2>Uji Pemahaman: Sejarah Kelahiran Pancasila</h2>
+            <p>Bagian A • Pendidikan Pancasila Kelas V SD</p>
+        </div>
+
+        <div class="warning-box">
+            <i class="fa-solid fa-circle-exclamation"></i>
+            <span>Dilarang mendistribusikan mentah halaman rahasia ini langsung kepada peserta didik sebelum evaluasi berakhir.</span>
+        </div>
+
+        <!-- DAFTAR 16 SOAL DAN JAWABAN -->
+        <div class="qa-list">
+
+            <!-- Soal 1 -->
+            <div class="qa-card">
+                <div class="question-block">
+                    <div class="question-number">1</div>
+                    <div class="question-text">Berdasarkan teks bacaan, berapakah perkiraan lama waktu bangsa Belanda menjajah Indonesia?</div>
+                </div>
+                <div class="answer-block">
+                    <i class="fa-solid fa-square-check"></i>
+                    <div>Sekitar 350 tahun.</div>
+                </div>
+            </div>
+
+            <!-- Soal 2 -->
+            <div class="qa-card">
+                <div class="question-block">
+                    <div class="question-number">2</div>
+                    <div class="question-text">Berapa tahun bangsa Jepang menguasai atau menjajah wilayah Indonesia?</div>
+                </div>
+                <div class="answer-block">
+                    <i class="fa-solid fa-square-check"></i>
+                    <div>Selama 3,5 tahun (tiga setengah tahun).</div>
+                </div>
+            </div>
+
+            <!-- Soal 3 -->
+            <div class="qa-card">
+                <div class="question-block">
+                    <div class="question-number">3</div>
+                    <div class="question-text">Peristiwa penting apa yang terjadi pada tanggal 7 Desember 1941 (atau 8 Desember waktu Jepang)?</div>
+                </div>
+                <div class="answer-block">
+                    <i class="fa-solid fa-square-check"></i>
+                    <div>Jepang meluncurkan serangan mendadak ke pangkalan angkatan laut Amerika Serikat di Pearl Harbor, Hawaii.</div>
+                </div>
+            </div>
+
+            <!-- Soal 4 -->
+            <div class="qa-card">
+                <div class="question-block">
+                    <div class="question-number">4</div>
+                    <div class="question-text">Di manakah lokasi pangkalan angkatan laut Amerika Serikat yang diserang oleh Jepang?</div>
+                </div>
+                <div class="answer-block">
+                    <i class="fa-solid fa-square-check"></i>
+                    <div>Di Pearl Harbor, Hawaii.</div>
+                </div>
+            </div>
+
+            <!-- Soal 5 -->
+            <div class="qa-card">
+                <div class="question-block">
+                    <div class="question-number">5</div>
+                    <div class="question-text">Perang besar apa yang dipicu akibat dari serangan Jepang ke Pearl Harbor di kawasan Pasifik?</div>
+                </div>
+                <div class="answer-block">
+                    <i class="fa-solid fa-square-check"></i>
+                    <div>Perang Dunia II di kawasan Pasifik.</div>
+                </div>
+            </div>
+
+            <!-- Soal 6 -->
+            <div class="qa-card">
+                <div class="question-block">
+                    <div class="question-number">6</div>
+                    <div class="question-text">Sebutkan dua istilah atau nama lain yang digunakan untuk menyebut Perang Dunia II di kawasan Pasifik tersebut!</div>
+                </div>
+                <div class="answer-block">
+                    <i class="fa-solid fa-square-check"></i>
+                    <div>Perang Pasifik atau Perang Asia Timur Raya.</div>
+                </div>
+            </div>
+
+            <!-- Soal 7 -->
+            <div class="qa-card">
+                <div class="question-block">
+                    <div class="question-number">7</div>
+                    <div class="question-text">Kawasan benua bagian mana saja yang menjadi target ambisi Jepang untuk dikuasai secara penuh?</div>
+                </div>
+                <div class="answer-block">
+                    <i class="fa-solid fa-square-check"></i>
+                    <div>Seluruh wilayah Asia Timur dan Asia Tenggara.</div>
+                </div>
+            </div>
+
+            <!-- Soal 8 -->
+            <div class="qa-card">
+                <div class="question-block">
+                    <div class="question-number">8</div>
+                    <div class="question-text">Siapakah bangsa asing yang sedang menjajah dan menguasai Indonesia ketika tentara Jepang pertama kali datang menyerbu?</div>
+                </div>
+                <div class="answer-block">
+                    <i class="fa-solid fa-square-check"></i>
+                    <div>Bangsa Belanda.</div>
+                </div>
+            </div>
+
+            <!-- Soal 9 -->
+            <div class="qa-card">
+                <div class="question-block">
+                    <div class="question-number">9</div>
+                    <div class="question-text">Apa alasan utama Jepang berkeinginan kuat untuk menyerbu dan menguasai wilayah Asia Tenggara termasuk Indonesia?</div>
+                </div>
+                <div class="answer-block">
+                    <i class="fa-solid fa-square-check"></i>
+                    <div>Untuk menguasai seluruh wilayah strategis tersebut dan memanfaatkan kekayaan alamnya demi kepentingan perang mereka setelah memukul mundur kekuatan barat (Belanda).</div>
+                </div>
+            </div>
+
+            <!-- Soal 10 -->
+            <div class="qa-card">
+                <div class="question-block">
+                    <div class="question-number">10</div>
+                    <div class="question-text">Mengapa tentara Belanda akhirnya terpaksa menyerah tanpa syarat kepada pihak militer Jepang?</div>
+                </div>
+                <div class="answer-block">
+                    <i class="fa-solid fa-square-check"></i>
+                    <div>Karena tentara Belanda tidak mampu membendung gelombang serangan pasukan Jepang yang sangat kuat, serta kota penting Batavia beserta seluruh Pulau Jawa telah berhasil diduduki Jepang.</div>
+                </div>
+            </div>
+
+            <!-- Soal 11 -->
+            <div class="qa-card">
+                <div class="question-block">
+                    <div class="question-number">11</div>
+                    <div class="question-text">Sebutkan nama kota pusat pemerintahan penting yang berhasil diduduki jepang sebelum mereka menguasai seluruh Pulau Jawa!</div>
+                </div>
+                <div class="answer-block">
+                    <i class="fa-solid fa-square-check"></i>
+                    <div>Batavia (Jakarta).</div>
+                </div>
+            </div>
+
+            <!-- Soal 12 -->
+            <div class="qa-card">
+                <div class="question-block">
+                    <div class="question-number">12</div>
+                    <div class="question-text">Apa nama perjanjian bersejarah yang menandai penyerahan kekuasaan Indonesia dari tangan Belanda kepada Jepang?</div>
+                </div>
+                <div class="answer-block">
+                    <i class="fa-solid fa-square-check"></i>
+                    <div>Perjanjian Kalijati.</div>
+                </div>
+            </div>
+
+            <!-- Soal 13 -->
+            <div class="qa-card">
+                <div class="question-block">
+                    <div class="question-number">13</div>
+                    <div class="question-text">Pada tanggal berapakah Perjanjian Kalijati resmi ditandatangani oleh kedua belah pihak?</div>
+                </div>
+                <div class="answer-block">
+                    <i class="fa-solid fa-square-check"></i>
+                    <div>Pada tanggal 8 Maret 1942.</div>
+                </div>
+            </div>
+
+            <!-- Soal 14 -->
+            <div class="qa-card">
+                <div class="question-block">
+                    <div class="question-number">14</div>
+                    <div class="question-text">Siapakah nama Gubernur Jenderal yang menjadi wakil resmi dari pihak belanda dalam Perjanjian Kalijati?</div>
+                </div>
+                <div class="answer-block">
+                    <i class="fa-solid fa-square-check"></i>
+                    <div>Gubernur Jenderal Tjarda van Starkenborgh Stachouwer.</div>
+                </div>
+            </div>
+
+            <!-- Soal 15 -->
+            <div class="qa-card">
+                <div class="question-block">
+                    <div class="question-number">15</div>
+                    <div class="question-text">Siapakah nama tokoh militer berpangkat letnan jenderal yang mendampingi pihak belanda saat penandatanganan perjanjian tersebut?</div>
+                </div>
+                <div class="answer-block">
+                    <i class="fa-solid fa-square-check"></i>
+                    <div>Letnan Jenderal Heinrik Ter Poorten.</div>
+                </div>
+            </div>
+
+            <!-- Soal 16 -->
+            <div class="qa-card">
+                <div class="question-block">
+                    <div class="question-number">16</div>
+                    <div class="question-text">Siapakah nama jenderal tinggi militer yang menjadi wakil resmi dari pihak kekaisaran jepang dalam Perjanjian Kalijati?</div>
+                </div>
+                <div class="answer-block">
+                    <i class="fa-solid fa-square-check"></i>
+                    <div>Jenderal Hitoshi Imamura.</div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- TOMBOL KEMBALI BAWAH -->
+    <div class="action-row">
+        <a href="../../../" class="btn-action btn-danger">
+            <i class="fa-solid fa-arrow-left-long"></i> Kembali ke Menu Utama
+        </a>
+    </div>
+
+</div>
+
+<!-- LOGIKA JAVASCRIPT VERIFIKASI -->
+<script>
+function cekPassword(){
+    const passInput = document.getElementById("passGuru").value;
+    const errorNotif = document.getElementById("pesanPass");
+    
+    // Validasi Password RBM5 secara case-sensitive
+    if(passInput === "RBM5"){
+        document.getElementById("loginJawaban").style.display = "none";
+        document.getElementById("halamanJawaban").style.display = "block";
+        errorNotif.innerHTML = ""; 
+    } else {
+        errorNotif.innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Sandi salah! Akses ditolak.";
+        document.getElementById("passGuru").focus();
+    }
+}
+
+// Fitur deteksi tombol Enter agar pengguna nyaman
+document.getElementById("passGuru").addEventListener("keydown", function(e){
+    if(e.key === "Enter") {
+        cekPassword();
+    }
+});
+</script>
+
+</body>
+</html>
