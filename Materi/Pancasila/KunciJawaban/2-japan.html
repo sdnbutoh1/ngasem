@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kunci Jawaban: Masa Pendudukan Jepang - Kelas V</title>
+    <link rel="icon" type="image/png" href="../../favicon.png">
+    
+    <!-- Load FontAwesome untuk Ikon Modern -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+      /* --- Gaya Dasar / Reset --- */
+      body {
+          margin: 0;
+          padding: 0;
+          background-color: #f8fafc;
+          font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+          color: #334155;
+          line-height: 1.8;
+      }
+
+      .container {
+          max-width: 800px;
+          margin: 40px auto;
+          padding: 0 20px;
+      }
+
+      /* --- Navigasi Atas --- */
+      .top-nav {
+          display: flex;
+          align-items: center;
+          margin-bottom: 25px;
+          animation: fadeInDown 0.5s ease;
+      }
+      .btn-back-top {
+          text-decoration: none;
+          color: #64748b;
+          font-weight: 600;
+          font-size: 0.9rem;
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          transition: color 0.2s;
+      }
+      .btn-back-top:hover {
+          color: #3b82f6;
+      }
+
+      /* --- KOTAK AKSES / LOGIN PASSWORD --- */
+      .login-box {
+          max-width: 400px;
+          margin: 60px auto;
+          padding: 35px 30px;
+          background: #ffffff;
+          border-radius: 24px;
+          border: 1px solid #e2e8f0;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+          text-align: center;
+          animation: fadeInUp 0.6s ease forwards;
+      }
+      .login-box h3 { 
+          margin: 0 0 10px 0; 
+          color: #1e3a8a; 
+          font-size: 1.4rem; 
+          font-weight: 800; 
+      }
+      .login-box p.info-login {
+          font-size: 0.9rem;
+          color: #64748b;
+          margin: 0;
+      }
+      .login-box input[type="password"] {
+          width: 100%; 
+          box-sizing: border-box;
+          padding: 14px; 
+          margin: 20px 0 10px; 
+          border: 1px solid #cbd5e1; 
+          border-radius: 12px;
+          font-size: 1rem;
+          transition: all 0.2s;
+          outline: none;
+          text-align: center;
+          font-weight: 600;
+          letter-spacing: 2px;
+      }
+      .login-box input[type="password"]:focus { 
+          border-color: #2563eb; 
+          box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15); 
+      }
+      .login-box button {
+          width: 100%; 
+          padding: 14px; 
+          background: linear-gradient(135deg, #2563eb, #1d4ed8);
+          color: #fff; 
+          border: none; 
+          border-radius: 12px; 
+          cursor: pointer;
+          font-weight: 700;
+          font-size: 1rem;
+          transition: all 0.2s;
+          box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15);
+      }
+      .login-box button:hover { 
+          transform: translateY(-2px);
+          box-shadow: 0 6px 16px rgba(37, 99, 235, 0.25);
+      }
+      .error-msg { 
+          color: #ef4444; 
+          font-size: 0.85rem; 
+          margin-top: 10px; 
+          font-weight: 600;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 6px;
+      }
+
+      /* --- HALAMAN KUNCI JAWABAN (SETELAH TERBUKA) --- */
+      .answer-page {
+          background: #ffffff;
+          border: 1px solid #e2e8f0;
+          border-radius: 24px;
+          padding: 35px;
+          margin-top: 10px;
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.01);
+          animation: fadeInUp 0.6s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+          position: relative;
+          overflow: hidden;
+      }
+      .answer-page::before {
+          content: ''; 
+          position: absolute; 
+          top: 0; 
+          left: 0; 
+          width: 100%; 
+          height: 6px;
+          background: linear-gradient(to right, #10b981, #059669);
+      }
+
+      .answer-header {
+          text-align: center;
+          margin-bottom: 30px;
+      }
+      .answer-badge {
+          display: inline-block;
+          background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+          color: #065f46;
+          padding: 6px 16px;
+          border-radius: 50px;
+          font-size: 0.8rem;
+          font-weight: 700;
+          letter-spacing: 0.5px;
+          margin-bottom: 12px;
+      }
+      .answer-header h2 {
+          margin: 5px 0 8px;
+          color: #111827;
+          font-weight: 800;
+          font-size: 1.6rem;
+      }
+      .answer-header p {
+          color: #64748b;
+          margin: 0;
+          font-size: 0.95rem;
+      }
+
+      .warning-box {
+          background: #fefce8;
+          border-left: 4px solid #eab308;
+          padding: 15px 20px;
+          border-radius: 0 12px 12px 0;
+          margin-bottom: 30px;
+          color: #713f12;
+          font-size: 0.95rem;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+      }
+      .warning-box i { color: #eab308; font-size: 1.1rem; }
+
+      /* --- Tabel Responsif --- */
+      .table-container {
+          overflow-x: auto;
+          border: 1px solid #e2e8f0;
+          border-radius: 14px;
+      }
+      .answer-table {
+          width: 100%;
+          border-collapse: collapse;
+          text-align: left;
+          font-size: 1rem;
+      }
+      .answer-table th {
+          background-color: #f8fafc;
+          color: #475569;
+          padding: 14px 18px;
+          font-weight: 700;
+          border-bottom: 2px solid #e2e8f0;
+      }
+      .answer-table td {
+          border-bottom: 1px solid #e2e8f0;
+          padding: 16px 18px;
+          vertical-align: top;
+          color: #334155;
+      }
+      .answer-table tr:last-child td {
+          border-bottom: none;
+      }
+      .answer-table tr:nth-child(even) {
+          background-color: #f8fafc/50;
+      }
+      .answer-table tr:hover {
+          background-color: #f0fdf4;
+      }
+
+      /* --- Baris Tombol Aksi Bawah --- */
+      .action-row {
+          display: flex;
+          gap: 15px;
+          margin-top: 35px;
+          animation: fadeInUp 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+      }
+      .btn-action {
+          text-decoration: none;
+          flex: 1;
+          padding: 16px 20px;
+          border-radius: 16px;
+          font-weight: 700;
+          font-size: 0.95rem;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+          transition: all 0.2s ease;
+      }
+      .btn-danger {
+          background-color: #ef4444;
+          color: white;
+          box-shadow: 0 4px 12px rgba(239, 68, 68, 0.15);
+      }
+      .btn-danger:hover {
+          background-color: #dc2626;
+          transform: translateY(-2px);
+          box-shadow: 0 6px 16px rgba(239, 68, 68, 0.25);
+      }
+
+      /* --- Keyframes Animasi --- */
+      @keyframes fadeInUp {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
+      }
+      @keyframes fadeInDown {
+          from { opacity: 0; transform: translateY(-15px); }
+          to { opacity: 1; transform: translateY(0); }
+      }
+
+      /* --- Optimasi HP --- */
+      @media (max-width: 640px) {
+          .container { margin: 20px auto; }
+          .login-box { padding: 25px 20px; margin: 40px auto; }
+          .answer-page { padding: 20px; }
+          .answer-header h2 { font-size: 1.3rem; }
+          .answer-table th, .answer-table td { padding: 12px; font-size: 0.9rem; }
+          .warning-box { font-size: 0.85rem; padding: 12px; }
+      }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    
+    <!-- NAVIGASI ATAS -->
+    <div class="top-nav">
+        <a href="pancasila-kelas-5.html" class="btn-back-top">
+            <i class="fa-solid fa-chevron-left"></i> Kembali ke Daftar Bab
+        </a>
+    </div>
+
+    <!-- BOX INPUT PASSWORD GURU -->
+    <div id="loginJawaban" class="login-box">
+        <h3><i class="fa-solid fa-lock" style="color: #eab308;"></i> Kunci Jawaban Guru</h3>
+        <p class="info-login">Halaman ini dilindungi. Masukkan kode akses khusus guru untuk membukanya.</p>
+        <input type="password" id="passGuru" placeholder="Masukkan Password">
+        <button onclick="cekPassword()">Buka Kunci</button>
+        <div id="pesanPass" class="error-msg"></div>
+    </div>
+
+    <!-- HALAMAN KUNCI JAWABAN (TERSEMBUNYI SEBELUM LOGIN) -->
+    <div class="answer-page" id="halamanJawaban" style="display:none;">
+
+        <div class="answer-header">
+            <span class="answer-badge">
+                <i class="fa-solid fa-key"></i> HAK AKSES GURU
+            </span>
+            <h2>Kunci Jawaban Uji Pemahaman</h2>
+            <p>Materi: Pendudukan Jepang dan Janji Kemerdekaan Indonesia</p>
+        </div>
+
+        <div class="warning-box">
+            <i class="fa-solid fa-circle-exclamation"></i>
+            <span>Gunakan kunci jawaban ini setelah siswa selesai mengerjakan soal secara mandiri.</span>
+        </div>
+
+        <!-- Wadah Tabel agar mudah digeser di HP -->
+        <div class="table-container">
+            <table class="answer-table">
+                <thead>
+                    <tr>
+                        <th width="60">No</th>
+                        <th>Kunci Jawaban Resmi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><b>1</b></td>
+                        <td>Karena Jepang mengaku akan membebaskan Indonesia dari penjajahan Belanda.</td>
+                    </tr>
+                    <tr>
+                        <td><b>2</b></td>
+                        <td>Saudara Tua.</td>
+                    </tr>
+                    <tr>
+                        <td><b>3</b></td>
+                        <td>Jepang Pemimpin Asia, Jepang Pelindung Asia, dan Jepang Cahaya Asia.</td>
+                    </tr>
+                    <tr>
+                        <td><b>4</b></td>
+                        <td>29 April 1942.</td>
+                    </tr>
+                    <tr>
+                        <td><b>5</b></td>
+                        <td>Romusa adalah kerja paksa yang dilakukan oleh Jepang.</td>
+                    </tr>
+                    <tr>
+                        <td><b>6</b></td>
+                        <td>Contoh jawaban: kerja paksa (romusa), kelaparan, penyiksaan, perampasan hasil bumi.</td>
+                    </tr>
+                    <tr>
+                        <td><b>7</b></td>
+                        <td>Karena Jepang mulai mengalami banyak kekalahan dalam Perang Dunia II dan ingin memperoleh dukungan rakyat Indonesia.</td>
+                    </tr>
+                    <tr>
+                        <td><b>8</b></td>
+                        <td>7 September 1944.</td>
+                    </tr>
+                    <tr>
+                        <td><b>9</b></td>
+                        <td>Jenderal Kuniaki Koiso (Perdana Menteri Jepang).</td>
+                    </tr>
+                    <tr>
+                        <td><b>10</b></td>
+                        <td>Karena janji tersebut belum jelas pelaksanaannya dan rakyat sudah merasakan penderitaan selama pendudukan Jepang.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <!-- TOMBOL AKSI BAWAH -->
+    <div class="action-row">
+        <a href="../../" class="btn-action btn-danger">
+            <i class="fa-solid fa-circle-arrow-left"></i> Kembali
+        </a>
+    </div>
+
+</div>
+
+<!-- JAVASCRIPT VALIDASI -->
+<script>
+function cekPassword(){
+    const inputPass = document.getElementById("passGuru").value;
+    const pesan = document.getElementById("pesanPass");
+    
+    if(inputPass === "RBM5"){
+        document.getElementById("loginJawaban").style.display = "none";
+        document.getElementById("halamanJawaban").style.display = "block";
+        pesan.innerHTML = ""; // Bersihkan pesan error jika ada
+    } else {
+        pesan.innerHTML = "<i class='fa-solid fa-circle-xmark'></i> Password salah, silakan coba lagi!";
+        // Efek getar ringan pada input saat salah (Opsional)
+        document.getElementById("passGuru").focus();
+    }
+}
+
+// Menjalankan fungsi klik ketika menekan tombol Enter di keyboard
+document.getElementById("passGuru").addEventListener("keydown", function(e){
+    if(e.key === "Enter") {
+        cekPassword();
+    }
+});
+</script>
+
+</body>
+</html>
