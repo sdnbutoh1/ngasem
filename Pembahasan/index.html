@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pembahasan Soal - Ruang Belajar Murid</title>
+    <link rel="icon" type="image/png" href="../favicon.png">
+    <!-- Load FontAwesome untuk Ikon Lucu & Keren -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- STYLE CUSTOM PORTAL PEMBAHASAN MERAH KUNING -->
+    <style>
+      body {
+          margin: 0; 
+          padding: 0;
+          background-color: #fffbeb; /* Background kuning super soft agar mata tidak lelah */
+          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+          color: #1e293b;
+      }
+
+      .portal-container {
+          max-width: 1000px;
+          margin: 40px auto;
+          padding: 0 20px;
+      }
+
+      /* Header Portal (Merah dengan aksen gradien Kuning Emas) */
+      .header-portal {
+          background: linear-gradient(135deg, #dc2626 0%, #eab308 100%);
+          border-radius: 24px;
+          padding: 40px 25px;
+          color: white;
+          text-align: center;
+          box-shadow: 0 10px 25px rgba(220, 38, 38, 0.2);
+          margin-bottom: 35px;
+          animation: fadeInUp 0.6s ease forwards;
+      }
+      .header-portal h1 { margin: 0 0 10px; font-size: 2rem; font-weight: 800; text-shadow: 0 2px 4px rgba(0,0,0,0.15); }
+      .header-portal p { margin: 0; font-size: 1rem; opacity: 0.95; font-style: italic; font-weight: 500; }
+
+      /* Grid Mapel */
+      .mapel-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+          gap: 20px;
+          animation: fadeInUp 0.8s ease forwards;
+      }
+
+      /* Kartu Mapel */
+      .mapel-card {
+          background: #ffffff;
+          border: 1px solid #fef08a; /* Border kuning soft */
+          border-radius: 20px;
+          padding: 24px;
+          box-shadow: 0 4px 15px rgba(220, 38, 38, 0.02);
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+          position: relative;
+          overflow: hidden;
+      }
+      .mapel-card::before {
+          content: ''; 
+          position: absolute; 
+          top: 0; 
+          left: 0; 
+          width: 6px; 
+          height: 100%;
+          background: linear-gradient(to bottom, #dc2626, #eab308); /* Garis kiri gradien merah-kuning */
+      }
+      .mapel-card:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 12px 25px rgba(220, 38, 38, 0.08);
+          border-color: #fde047;
+      }
+
+      /* Info Konten Mapel */
+      .mapel-info {
+          display: flex;
+          align-items: center;
+          gap: 15px;
+          margin-bottom: 20px;
+      }
+      .mapel-icon {
+          width: 50px; 
+          height: 50px;
+          background: linear-gradient(135deg, #fef2f2, #fef9c3); /* Background ikon merah-kuning soft */
+          color: #dc2626; /* Ikon warna merah utama */
+          border-radius: 14px;
+          display: flex; 
+          align-items: center; 
+          justify-content: center;
+          font-size: 1.4rem;
+          transition: all 0.3s;
+      }
+      .mapel-card:hover .mapel-icon {
+          background: linear-gradient(135deg, #dc2626, #eab308);
+          color: white;
+          transform: scale(1.05) rotate(-5deg);
+      }
+      .mapel-info h3 { margin: 0; font-size: 1.15rem; color: #991b1b; font-weight: 700; }
+
+      /* Area Pemilihan Kelas */
+      .kelas-zone {
+          border-top: 1px dashed #fef08a;
+          padding-top: 15px;
+      }
+      .kelas-zone span {
+          display: block;
+          font-size: 0.8rem;
+          color: #78350f;
+          font-weight: 700;
+          margin-bottom: 10px;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+      }
+      
+      /* Flex Button Kelas */
+      .kelas-row {
+          display: flex;
+          gap: 8px;
+          flex-wrap: wrap;
+      }
+      .btn-kelas {
+          text-decoration: none;
+          width: 36px;
+          height: 36px;
+          border-radius: 50%;
+          background-color: #fffbeb;
+          color: #b45309;
+          font-weight: 700;
+          font-size: 0.85rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: all 0.2s;
+          border: 1px solid #fef08a;
+      }
+      .btn-kelas:hover {
+          background: linear-gradient(135deg, #dc2626, #eab308);
+          color: white;
+          border-color: transparent;
+          transform: scale(1.1);
+          box-shadow: 0 4px 10px rgba(220, 38, 38, 0.25);
+      }
+
+      /* Animasi */
+      @keyframes fadeInUp {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
+      }
+
+      /* HP Friendly Optimization */
+      @media (max-width: 640px) {
+          .header-portal { padding: 30px 15px; }
+          .header-portal h1 { font-size: 1.5rem; }
+          .mapel-grid { grid-template-columns: 1fr; }
+          .kelas-row { gap: 10px; }
+          .btn-kelas { width: 42px; height: 42px; font-size: 0.95rem; }
+      }
+    </style>
+</head>
+<body>
+
+<div class="portal-container">
+    
+    <!-- HEADER INSTRUKSI -->
+    <div class="header-portal">
+        <h1><i class="fa-solid fa-square-poll-horizontal"></i> Ruang Pembahasan Soal</h1>
+        <p>Silahkan Pilih Mata Pelajaran untuk melihat pembahasan kuis latihanmu</p>
+    </div>
+
+    <!-- GRID SELEKSI UTAMA -->
+    <div class="mapel-grid">
+        
+        <!-- 1. PAI dan Budi Pekerti -->
+        <div class="mapel-card">
+            <div class="mapel-info">
+                <div class="mapel-icon"><i class="fa-solid fa-mosque"></i></div>
+                <h3>PAI dan Budi Pekerti</h3>
+            </div>
+            <div class="kelas-zone">
+                <span>Pilih Kelas:</span>
+                <div class="kelas-row">
+                    <a class="btn-kelas" href="pai-kelas-1.html">I</a>
+                    <a class="btn-kelas" href="pai-kelas-2.html">II</a>
+                    <a class="btn-kelas" href="pai-kelas-3.html">III</a>
+                    <a class="btn-kelas" href="pai-kelas-4.html">IV</a>
+                    <a class="btn-kelas" href="pai-kelas-5.html">V</a>
+                    <a class="btn-kelas" href="pai-kelas-6.html">VI</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. Pendidikan Pancasila -->
+        <div class="mapel-card">
+            <div class="mapel-info">
+                <div class="mapel-icon"><i class="fa-solid fa-landmark"></i></div>
+                <h3>Pendidikan Pancasila</h3>
+            </div>
+            <div class="kelas-zone">
+                <span>Pilih Kelas:</span>
+                <div class="kelas-row">
+                    <a class="btn-kelas" href="pancasila-kelas-1.html">I</a>
+                    <a class="btn-kelas" href="pancasila-kelas-2.html">II</a>
+                    <a class="btn-kelas" href="pancasila-kelas-3.html">III</a>
+                    <a class="btn-kelas" href="pancasila-kelas-4.html">IV</a>
+                    <a class="btn-kelas" href="Pancasila/">V</a>
+                    <a class="btn-kelas" href="dalampengembangan/">VI</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. Bahasa Indonesia -->
+        <div class="mapel-card">
+            <div class="mapel-info">
+                <div class="mapel-icon"><i class="fa-solid fa-comments"></i></div>
+                <h3>Bahasa Indonesia</h3>
+            </div>
+            <div class="kelas-zone">
+                <span>Pilih Kelas:</span>
+                <div class="kelas-row">
+                    <a class="btn-kelas" href="indonesia-kelas-1.html">I</a>
+                    <a class="btn-kelas" href="indonesia-kelas-2.html">II</a>
+                    <a class="btn-kelas" href="indonesia-kelas-3.html">III</a>
+                    <a class="btn-kelas" href="indonesia-kelas-4.html">IV</a>
+                    <a class="btn-kelas" href="indonesia-kelas-5.html">V</a>
+                    <a class="btn-kelas" href="indonesia-kelas-6.html">VI</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. IPA dan Sosial (IPAS) -->
+        <div class="mapel-card">
+            <div class="mapel-info">
+                <div class="mapel-icon"><i class="fa-solid fa-flask-vial"></i></div>
+                <h3>IPA dan Sosial</h3>
+            </div>
+            <div class="kelas-zone">
+                <span>Pilih Kelas:</span>
+                <div class="kelas-row">
+                    <a class="btn-kelas" href="ipas-kelas-1.html">I</a>
+                    <a class="btn-kelas" href="ipas-kelas-2.html">II</a>
+                    <a class="btn-kelas" href="ipas-kelas-3.html">III</a>
+                    <a class="btn-kelas" href="ipas-kelas-4.html">IV</a>
+                    <a class="btn-kelas" href="ipas-kelas-5.html">V</a>
+                    <a class="btn-kelas" href="ipas-kelas-6.html">VI</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. Matematika -->
+        <div class="mapel-card">
+            <div class="mapel-info">
+                <div class="mapel-icon"><i class="fa-solid fa-calculator"></i></div>
+                <h3>Matematika</h3>
+            </div>
+            <div class="kelas-zone">
+                <span>Pilih Kelas:</span>
+                <div class="kelas-row">
+                    <a class="btn-kelas" href="matematika-kelas-1.html">I</a>
+                    <a class="btn-kelas" href="matematika-kelas-2.html">II</a>
+                    <a class="btn-kelas" href="matematika-kelas-3.html">III</a>
+                    <a class="btn-kelas" href="matematika-kelas-4.html">IV</a>
+                    <a class="btn-kelas" href="matematika-kelas-5.html">V</a>
+                    <a class="btn-kelas" href="matematika-kelas-6.html">VI</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 6. PJOK -->
+        <div class="mapel-card">
+            <div class="mapel-info">
+                <div class="mapel-icon"><i class="fa-solid fa-basketball"></i></div>
+                <h3>PJOK</h3>
+            </div>
+            <div class="kelas-zone">
+                <span>Pilih Kelas:</span>
+                <div class="kelas-row">
+                    <a class="btn-kelas" href="pjok-kelas-1.html">I</a>
+                    <a class="btn-kelas" href="pjok-kelas-2.html">II</a>
+                    <a class="btn-kelas" href="pjok-kelas-3.html">III</a>
+                    <a class="btn-kelas" href="pjok-kelas-4.html">IV</a>
+                    <a class="btn-kelas" href="pjok-kelas-5.html">V</a>
+                    <a class="btn-kelas" href="pjok-kelas-6.html">VI</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 7. Seni Rupa -->
+        <div class="mapel-card">
+            <div class="mapel-info">
+                <div class="mapel-icon"><i class="fa-solid fa-palette"></i></div>
+                <h3>Seni Rupa</h3>
+            </div>
+            <div class="kelas-zone">
+                <span>Pilih Kelas:</span>
+                <div class="kelas-row">
+                    <a class="btn-kelas" href="seni-kelas-1.html">I</a>
+                    <a class="btn-kelas" href="seni-kelas-2.html">II</a>
+                    <a class="btn-kelas" href="seni-kelas-3.html">III</a>
+                    <a class="btn-kelas" href="seni-kelas-4.html">IV</a>
+                    <a class="btn-kelas" href="seni-kelas-5.html">V</a>
+                    <a class="btn-kelas" href="seni-kelas-6.html">VI</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 8. Bahasa Inggris -->
+        <div class="mapel-card">
+            <div class="mapel-info">
+                <div class="mapel-icon"><i class="fa-solid fa-earth-americas"></i></div>
+                <h3>Bahasa Inggris</h3>
+            </div>
+            <div class="kelas-zone">
+                <span>Pilih Kelas:</span>
+                <div class="kelas-row">
+                    <a class="btn-kelas" href="inggris-kelas-1.html">I</a>
+                    <a class="btn-kelas" href="inggris-kelas-2.html">II</a>
+                    <a class="btn-kelas" href="inggris-kelas-3.html">III</a>
+                    <a class="btn-kelas" href="inggris-kelas-4.html">IV</a>
+                    <a class="btn-kelas" href="inggris-kelas-5.html">V</a>
+                    <a class="btn-kelas" href="inggris-kelas-6.html">VI</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 9. Bahasa Jawa -->
+        <div class="mapel-card">
+            <div class="mapel-info">
+                <div class="mapel-icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
+                <h3>Bahasa Jawa</h3>
+            </div>
+            <div class="kelas-zone">
+                <span>Pilih Kelas:</span>
+                <div class="kelas-row">
+                    <a class="btn-kelas" href="jawa-kelas-1.html">I</a>
+                    <a class="btn-kelas" href="jawa-kelas-2.html">II</a>
+                    <a class="btn-kelas" href="jawa-kelas-3.html">III</a>
+                    <a class="btn-kelas" href="jawa-kelas-4.html">IV</a>
+                    <a class="btn-kelas" href="jawa-kelas-5.html">V</a>
+                    <a class="btn-kelas" href="jawa-kelas-6.html">VI</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 10. Literasi Digital -->
+        <div class="mapel-card">
+            <div class="mapel-info">
+                <div class="mapel-icon"><i class="fa-solid fa-laptop-code"></i></div>
+                <h3>Literasi Digital</h3>
+            </div>
+            <div class="kelas-zone">
+                <span>Pilih Kelas:</span>
+                <div class="kelas-row">
+                    <a class="btn-kelas" href="digital-kelas-1.html">I</a>
+                    <a class="btn-kelas" href="digital-kelas-2.html">II</a>
+                    <a class="btn-kelas" href="digital-kelas-3.html">III</a>
+                    <a class="btn-kelas" href="digital-kelas-4.html">IV</a>
+                    <a class="btn-kelas" href="digital-kelas-5.html">V</a>
+                    <a class="btn-kelas" href="digital-kelas-6.html">VI</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>
