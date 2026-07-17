@@ -57,6 +57,9 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            /* ANIMASI MASUK: Muncul halus dari bawah */
+            animation: fadeInUp 0.6s ease forwards;
+            opacity: 0;
         }
         
         /* Garis Gradien Atas pada Card Kiri */
@@ -78,12 +81,20 @@
             overflow: hidden;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
             border: 6px solid #f8fafc;
+            cursor: pointer;
         }
 
         .profile-img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            /* ANIMASI: Transisi gerak gambar profil */
+            transition: transform 0.3s ease;
+        }
+
+        /* HOVER: Gambar membesar dan miring manis */
+        .avatar-wrapper:hover .profile-img {
+            transform: scale(1.06) rotate(3deg);
         }
 
         .profile-card h3 {
@@ -107,7 +118,7 @@
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            background: #10b981; /* Hijau Emerald asli yang lebih seger */
+            background: #10b981;
             color: white;
             padding: 10px 22px;
             border-radius: 30px;
@@ -124,25 +135,6 @@
             animation: pulse-glow 1.5s infinite ease-in-out;
         }
 
-        /* Keyframes untuk Animasi Kelip Kelip */
-        @keyframes pulse-glow {
-            0% {
-                transform: scale(0.9);
-                opacity: 0.4;
-                text-shadow: 0 0 0 rgba(255, 255, 255, 0);
-            }
-            50% {
-                transform: scale(1.2);
-                opacity: 1;
-                text-shadow: 0 0 10px rgba(255, 255, 255, 1), 0 0 20px rgba(255, 255, 255, 0.8);
-            }
-            100% {
-                transform: scale(0.9);
-                opacity: 0.4;
-                text-shadow: 0 0 0 rgba(255, 255, 255, 0);
-            }
-        }
-
         /* --- SISI KANAN: CONTENT CARD --- */
         .content-card {
             flex: 2;
@@ -154,6 +146,9 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
+            /* ANIMASI MASUK: Muncul halus menyusul setelah kartu profil */
+            animation: fadeInUp 0.8s ease forwards;
+            opacity: 0;
         }
 
         .welcome-title {
@@ -203,11 +198,14 @@
             align-items: center;
             justify-content: center;
             gap: 15px;
+            /* ANIMASI: Transisi membal yang halus menggunakan cubic-bezier */
             transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
         .menu-box i {
             font-size: 2.5rem;
+            /* ANIMASI: Transisi mandiri untuk ikon di dalam tombol */
+            transition: transform 0.3s ease;
         }
 
         .menu-box span {
@@ -216,19 +214,56 @@
             letter-spacing: 0.3px;
         }
 
-        /* Warna Tombol yang Diperbaiki */
+        /* Warna Tombol */
         .menu-purple { background: #8230c4; }
         .menu-blue { background: #2563eb; }
-        .menu-green { background: #00a762; } /* Warna hijau yang jauh lebih hidup dan pas */
+        .menu-green { background: #00a762; }
         .menu-rose { background: #e11d48; }
         .menu-teal { background: #0891b2; }
         .menu-amber { background: #ca6a04; }
 
-        /* Efek Hover Elegan */
+        /* HOVER: Tombol membal naik sedikit ke atas */
         .menu-box:hover {
             transform: translateY(-6px);
             box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
             filter: brightness(1.1);
+        }
+
+        /* HOVER IKON: Ikon membesar & miring berlawanan arah saat tombol disentuh */
+        .menu-box:hover i {
+            transform: scale(1.15) rotate(-5deg);
+        }
+
+        /* --- JALUR ANIMASI KEYFRAMES --- */
+        /* Animasi masuk dari arah bawah */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Animasi kelip status online */
+        @keyframes pulse-glow {
+            0% {
+                transform: scale(0.9);
+                opacity: 0.4;
+                text-shadow: 0 0 0 rgba(255, 255, 255, 0);
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: 1;
+                text-shadow: 0 0 10px rgba(255, 255, 255, 1), 0 0 20px rgba(255, 255, 255, 0.8);
+            }
+            100% {
+                transform: scale(0.9);
+                opacity: 0.4;
+                text-shadow: 0 0 0 rgba(255, 255, 255, 0);
+            }
         }
 
         /* --- RESPONSIVE UNTUK HP DAN LAPTOP SEDANG --- */
