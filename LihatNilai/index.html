@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Papan Skor Murid</title>
+    <link rel="icon" type="image/png" href="RBM.PNG_11zon.png">
+    <!-- Aset Visual Font & Icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0; padding: 0;
+            background-color: #f8fafc;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: #334155;
+        }
+
+        .container-skor {
+            max-width: 1050px;
+            margin: 40px auto;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+
+        .header-skor {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            border-radius: 24px;
+            padding: 35px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 25px rgba(30, 58, 138, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .header-title h1 { margin: 0 0 5px 0; font-size: 1.8rem; font-weight: 700; color: #ffffff; }
+        .header-title p { margin: 0; opacity: 0.85; font-size: 0.95rem; color: #ffffff; }
+
+        .filter-skor {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            align-items: flex-end;
+        }
+        .form-grup { display: flex; flex-direction: column; }
+        .form-grup label { font-size: 0.8rem; font-weight: 600; color: #64748b; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .form-grup input { padding: 12px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 0.95rem; outline: none; color: #334155; background: #fff; font-family: inherit; }
+        .form-grup input:focus { border-color: #3b82f6; }
+        
+        .btn-reset-skor { background: #64748b; color: white; border: none; padding: 12px; border-radius: 12px; font-weight: 600; font-size: 0.95rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; font-family: inherit; transition: background 0.2s; }
+        .btn-reset-skor:hover { background: #475569; }
+
+        /* PERBAIKAN UTAMA: Mengaktifkan scroll horizontal di HP */
+        .tabel-wrapper {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 20px;
+            overflow-x: auto; /* Izinkan geser horizontal */
+            overflow-y: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            -webkit-overflow-scrolling: touch; /* Membuat scroll di iPhone/iOS jadi mulus */
+        }
+        
+        table { width: 100%; border-collapse: collapse; min-width: 800px; } /* Memaksa tabel punya ruang minimal agar kolom kanan tidak gepeng */
+        th { background-color: #f8fafc; color: #64748b; font-weight: 600; padding: 16px 20px; border-bottom: 2px solid #e2e8f0; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.5px; }
+        td { padding: 16px 20px; border-bottom: 1px solid #e2e8f0; color: #475569; font-size: 0.95rem; }
+
+        .badge-status-siswa { display: inline-block; padding: 6px 14px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; text-align: center; }
+        .lulus-style { background-color: #dcfce7; color: #15803d; }
+        .remedial-style { background-color: #fee2e2; color: #b91c1c; }
+        .skor-tebal { font-weight: 700; color: #1e3a8a; font-size: 1.1rem; }
+
+        .info-box { padding: 40px; text-align: center; color: #64748b; font-weight: 500; }
+        .loader-putar { width: 35px; height: 35px; border: 4px solid #f3f3f3; border-top: 4px solid #3b82f6; border-radius: 50%; margin: 0 auto 15px; animation: spin 1s linear infinite; }
+        
+        /* Tambahan petunjuk visual khusus di layar HP */
+        .petunjuk-geser {
+            display: none;
+            text-align: right;
+            font-size: 0.75rem;
+            color: #94a3b8;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        /* Kustomisasi khusus perangkat mobile (Layar di bawah 768px) */
+        @media (max-width: 768px) {
+            .container-skor { margin: 15px auto; padding: 0 12px; }
+            .header-skor { padding: 20px; border-radius: 16px; }
+            .header-skor div:last-child { display: none; } /* Sembunyikan ikon besar di header agar hemat ruang */
+            .header-title h1 { font-size: 1.4rem; }
+            .filter-skor { padding: 15px; border-radius: 16px; }
+            .petunjuk-geser { display: block; } /* Munculkan teks petunjuk geser tabel */
+        }
+    </style>
+</head>
+<body>
+
+<div class="container-skor">
+    
+    <!-- Header Papan Skor -->
+    <div class="header-skor">
+        <div class="header-title">
+            <h1><i class="fa-solid fa-trophy" style="color: #f59e0b;"></i> Catatan Nilai Latihan</h1>
+            <p style="margin: 0; opacity: 0.85;">Data diambil secara real-time</p>
+        </div>
+        <div style="font-size: 3.5rem; opacity: 0.2;"><i class="fa-solid fa-square-poll-horizontal"></i></div>
+    </div>
+
+    <!-- Kontrol Filter -->
+    <div class="filter-skor">
+        <div class="form-grup">
+            <label><i class="fa-solid fa-calendar-day"></i> Pilih Tanggal</label>
+            <input type="date" id="cari-tanggal" onchange="prosesFilterSkor()">
+        </div>
+        <div class="form-grup">
+            <label><i class="fa-solid fa-magnifying-glass"></i> Cari Nama / Kelas</label>
+            <input type="text" id="cari-kata-kunci" placeholder="Ketik nama atau kelas..." oninput="prosesFilterSkor()">
+        </div>
+        <button class="btn-reset-skor" onclick="bersihkanSemuaFilter()">
+            <i class="fa-solid fa-rotate-left"></i> Reset Pencarian
+        </button>
+    </div>
+
+    <!-- Teks petunjuk kecil untuk user HP -->
+    <div class="petunjuk-geser"><i class="fa-solid fa-arrow-left-long"></i> Geser tabel ke kiri untuk melihat nilai <i class="fa-solid fa-arrow-right-long"></i></div>
+
+    <!-- Tabel Nilai -->
+    <div class="tabel-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>Tanggal Pengerjaan</th>
+                    <th>Nama Lengkap</th>
+                    <th>Kelas</th>
+                    <th>Mata Pelajaran &amp; Bab</th>
+                    <th>Skor</th>
+                    <th>Status Kelulusan</th>
+                </tr>
+            </thead>
+            <tbody id="konten-skor-rows"></tbody>
+        </table>
+        
+        <div id="status-loading" class="info-box">
+            <div class="loader-putar"></div>
+            <p>Sedang memuat data nilai dari server...</p>
+        </div>
+        <div id="status-kosong" class="info-box" style="display: none;">
+            <i class="fa-solid fa-box-open" style="font-size: 2.5rem; margin-bottom: 10px; color: #cbd5e1; display: block;"></i>
+            <p>Tidak ada rekaman nilai murid untuk kriteria filter ini.</p>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    // URL Web App Google Apps Script Anda
+    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxoB5JYdZ_YoE9-5Z4etI8yqJwH_MeYskwC6UPB8sNYlkZKPV1vbNjnD8EcdJdg_WWbTQ/exec";
+    let masterDataSkor = [];
+
+    document.addEventListener("DOMContentLoaded", function() {
+        const hariIni = new Date().toISOString().split('T')[0];
+        document.getElementById('cari-tanggal').value = hariIni;
+        muatDataDariServer();
+    });
+
+    function muatDataDariServer() {
+        fetch(`${WEB_APP_URL}?action=getScores`)
+            .then(res => res.json())
+            .then(response => {
+                document.getElementById("status-loading").style.display = "none";
+                if (response.status === "success" && response.data) {
+                    masterDataSkor = response.data;
+                    prosesFilterSkor();
+                } else {
+                    document.getElementById("status-kosong").style.display = "block";
+                }
+            })
+            .catch(() => {
+                document.getElementById("status-loading").innerHTML = "⚠️ Gagal terhubung ke server database.";
+            });
+    }
+
+    function prosesFilterSkor() {
+        const inputTanggal = document.getElementById("cari-tanggal").value;
+        const inputKeyword = document.getElementById("cari-kata-kunci").value.toLowerCase().trim();
+        const tbody = document.getElementById("konten-skor-rows");
+        
+        tbody.innerHTML = "";
+        
+        const dataTersaring = masterDataSkor.filter(item => {
+            const tanggalMurni = item.tanggal ? item.tanggal.split("T")[0].split(" ")[0] : "";
+            const cocokTanggal = inputTanggal ? (tanggalMurni === inputTanggal) : true;
+            const cocokKeyword = item.nama.toLowerCase().includes(inputKeyword) || item.kelas.toString().toLowerCase().includes(inputKeyword);
+            return cocokTanggal && cocokKeyword;
+        });
+
+        if (dataTersaring.length === 0) {
+            document.getElementById("status-kosong").style.display = "block";
+            return;
+        }
+        document.getElementById("status-kosong").style.display = "none";
+
+        dataTersaring.forEach(item => {
+            const classBadge = item.status === "Lulus" ? "lulus-style" : "remedial-style";
+            
+            let tanggalTampil = item.tanggal || "-";
+            if(tanggalTampil.includes("T") || tanggalTampil.includes("-")) {
+                tanggalTampil = new Date(item.tanggal).toLocaleDateString('id-ID', { day:'numeric', month:'short', year:'numeric' });
+            }
+
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td><i class="fa-regular fa-clock" style="color:#94a3b8;margin-right:5px;"></i> ${tanggalTampil}</td>
+                <td style="font-weight:600;color:#0f172a;">${item.nama}</td>
+                <td><span style="background:#f1f5f9;padding:5px 10px;border-radius:6px;font-size:0.85rem;font-weight:600;">${item.kelas}</span></td>
+                <td><span style="color:#0f766e;font-weight:600;">${item.mapel}</span><br><small style="color:#64748b;font-weight:500;">${item.bab}</small></td>
+                <td class="skor-tebal">${item.skor}</td>
+                <td><span class="badge-status-siswa ${classBadge}">${item.status}</span></td>
+            `;
+            tbody.appendChild(row);
+        });
+    }
+
+    function bersihkanSemuaFilter() {
+        document.getElementById("cari-tanggal").value = "";
+        document.getElementById("cari-kata-kunci").value = "";
+        prosesFilterSkor();
+    }
+</script>
+
+</body>
+</html>
