@@ -158,6 +158,35 @@
           .mapel-grid { grid-template-columns: 1fr; }
           .kelas-row { gap: 10px; }
           .btn-kelas { width: 42px; height: 42px; font-size: 0.95rem; }
+      
+      }
+      .top-nav {
+          display: flex;
+          align-items: center;
+          margin-bottom: 25px;
+          animation: fadeInDown 0.5s ease;
+      }
+      .btn-back-top {
+          text-decoration: none;
+          background-color: #f8fafc; /* Warna dasar kartu putih bersih */
+          color: #0f172a; /* Teks abu-abu elegan (Slate) */
+          font-weight: 600;
+          font-size: 0.88rem;
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          padding: 10px 20px; /* Jarak dalam agar membentuk kartu */
+          border: 1px solid #e2e8f0; /* Garis tepi abu-abu tipis */
+          border-radius: 12px; /* Sudut melengkung halus khas modern-card */
+          box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04); /* Efek bayangan halus */
+          transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .btn-back-top:hover {
+          background-color: #f8fafc; /* Berubah abu-abu super soft saat disentuh */
+          color: #0f172a; /* Teks menajam jadi charcoal */
+          border-color: #cbd5e1; /* Garis tepi menggelap sedikit */
+          transform: translateX(-3px); /* Efek bergeser sedikit ke kiri saat di-hover */
+          box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08); /* Bayangan menonjol */
       }
     </style>
 </head>
@@ -170,6 +199,12 @@
         <h1><i class="fa-solid fa-layer-group"></i> Ruang Belajar Murid</h1>
         <p>Silahkan Baca Materi sesuai Mata Pelajaran yang tersedia</p>
     </div>
+    
+<div class="top-nav">
+    <a href="daftar-bab.html" class="btn-back-top">
+        <i class="fa-solid fa-chevron-left"></i> Kembali ke Daftar Bab
+    </a>
+</div>
 
     <!-- GRID SELEKSI UTAMA -->
     <div class="mapel-grid">
