@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruang Belajar Murid</title>
+    
+    <!-- Google Fonts & FontAwesome untuk Ikon -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        /* --- RESET & BASE STYLE --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7fc;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: #1e293b;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* --- LAYOUT UTAMA --- */
+        .ruang-belajar-container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 40px 20px;
+            display: flex;
+            align-items: stretch;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        /* --- SISI KIRI: PROFILE CARD --- */
+        .profile-card {
+            flex: 1;
+            max-width: 360px;
+            background: #ffffff;
+            border-radius: 36px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.03);
+            border: 1px solid #eef2f6;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Garis Gradien Atas pada Card Kiri */
+        .profile-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(90deg, #3b82f6 0%, #8b5cf6 100%);
+        }
+
+        .avatar-wrapper {
+            width: 210px;
+            height: 210px;
+            margin-bottom: 25px;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            border: 6px solid #f8fafc;
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-card h3 {
+            color: #1e3a8a;
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin: 10px 0 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .profile-card p {
+            color: #64748b;
+            font-size: 0.95rem;
+            margin: 0 0 25px;
+            font-weight: 500;
+        }
+
+        /* Badge Status (Ijo Seger) */
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #10b981; /* Hijau Emerald asli yang lebih seger */
+            color: white;
+            padding: 10px 22px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            border: none;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
+        }
+
+        /* Efek Kelip-Kelip (Pulse) pada Titik Hijau */
+        .status-badge i {
+            font-size: 0.65rem;
+            color: #ffffff;
+            animation: pulse-glow 1.5s infinite ease-in-out;
+        }
+
+        /* Keyframes untuk Animasi Kelip Kelip */
+        @keyframes pulse-glow {
+            0% {
+                transform: scale(0.9);
+                opacity: 0.4;
+                text-shadow: 0 0 0 rgba(255, 255, 255, 0);
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: 1;
+                text-shadow: 0 0 10px rgba(255, 255, 255, 1), 0 0 20px rgba(255, 255, 255, 0.8);
+            }
+            100% {
+                transform: scale(0.9);
+                opacity: 0.4;
+                text-shadow: 0 0 0 rgba(255, 255, 255, 0);
+            }
+        }
+
+        /* --- SISI KANAN: CONTENT CARD --- */
+        .content-card {
+            flex: 2;
+            background: #ffffff;
+            border-radius: 36px;
+            padding: 50px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.03);
+            border: 1px solid #eef2f6;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .welcome-title {
+            color: #1e3a8a;
+            font-size: 2.3rem;
+            font-weight: 800;
+            margin: 0 0 15px;
+        }
+
+        .welcome-desc {
+            color: #64748b;
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-bottom: 35px;
+            font-weight: 400;
+        }
+
+        .instruction-text {
+            color: #334155;
+            font-weight: 800;
+            font-size: 0.85rem;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* --- GRID MENU TOMBOL --- */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .menu-box {
+            border: none;
+            border-radius: 24px;
+            padding: 35px 20px;
+            text-align: center;
+            color: white;
+            cursor: pointer;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .menu-box i {
+            font-size: 2.5rem;
+        }
+
+        .menu-box span {
+            font-weight: 700;
+            font-size: 1.05rem;
+            letter-spacing: 0.3px;
+        }
+
+        /* Warna Tombol yang Diperbaiki */
+        .menu-purple { background: #8230c4; }
+        .menu-blue { background: #2563eb; }
+        .menu-green { background: #00a762; } /* Warna hijau yang jauh lebih hidup dan pas */
+        .menu-rose { background: #e11d48; }
+        .menu-teal { background: #0891b2; }
+        .menu-amber { background: #ca6a04; }
+
+        /* Efek Hover Elegan */
+        .menu-box:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+            filter: brightness(1.1);
+        }
+
+        /* --- RESPONSIVE UNTUK HP DAN LAPTOP SEDANG --- */
+        @media (max-width: 1024px) {
+            .ruang-belajar-container {
+                flex-direction: column;
+                align-items: center;
+                padding: 20px;
+            }
+            .profile-card {
+                max-width: 100%;
+                width: 100%;
+            }
+            .content-card {
+                width: 100%;
+                padding: 35px 25px;
+            }
+            .menu-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+            .welcome-title {
+                font-size: 1.8rem;
+                text-align: center;
+            }
+            .welcome-desc {
+                font-size: 0.95rem;
+                text-align: center;
+            }
+            .instruction-text {
+                justify-content: center;
+            }
+            .avatar-wrapper {
+                width: 160px;
+                height: 160px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="ruang-belajar-container">
+        
+        <!-- SISI KIRI: KARTU PROFIL -->
+        <div class="profile-card">
+            <div class="avatar-wrapper">
+                <img src="https://lh3.googleusercontent.com/d/1sGLNK2uaqy8KLavrpllT_9TS8K9Jz1wP=s400" alt="Ruang Belajar Murid" class="profile-img">
+            </div>
+            <h3>Ruang Belajar Murid</h3>
+            <p>Oleh : Pak Zainal</p>
+            <div class="status-badge">
+                <i class="fa-solid fa-circle"></i> Kelas Online Aktif
+            </div>
+        </div>
+
+        <!-- SISI KANAN: PANEL SELAMAT DATANG & MENU -->
+        <div class="content-card">
+            <h1 class="welcome-title">Selamat Datang!</h1>
+            <p class="welcome-desc">Halo anak hebat! Ini adalah tempat kuis digital interaktif untuk mengasah kemampuan belajarmu secara mandiri. Pilih menu di bawah untuk memulai ya!</p>
+            
+            <h4 class="instruction-text">
+                <i class="fa-solid fa-compass"></i> Silahkan pilih apa yang ingin kamu akses:
+            </h4>
+            
+            <div class="menu-grid">
+                <!-- Tombol 1: Baca Materi -->
+                <a href="/p/mapel.html" class="menu-box menu-purple">
+                    <i class="fa-solid fa-book-open-reader"></i>
+                    <span>Baca Materi</span>
+                </a>
+                
+                <!-- Tombol 2: Latihan Soal -->
+                <a href="#latihan-soal" class="menu-box menu-blue">
+                    <i class="fa-solid fa-gamepad"></i>
+                    <span>Latihan Soal</span>
+                </a>
+                
+                <!-- Tombol 3: Lihat Nilai -->
+                <a href="https://sdnbutoh1.github.io/butoh1/papan-skor/" target="_blank" class="menu-box menu-green">
+                    <i class="fa-solid fa-ranking-star"></i>
+                    <span>Lihat Nilai</span>
+                </a>
+                
+                <!-- Tombol 4: Pembahasan -->
+                <a href="#pembahasan" class="menu-box menu-rose">
+                    <i class="fa-solid fa-square-poll-horizontal"></i>
+                    <span>Pembahasan</span>
+                </a>
+                
+                <!-- Tombol 5: Info Menarik -->
+                <a href="#info-menarik" class="menu-box menu-teal">
+                    <i class="fa-solid fa-lightbulb"></i>
+                    <span>Info Menarik</span>
+                </a>
+                
+                <!-- Tombol 6: Bantuan -->
+                <a href="#bantuan" class="menu-box menu-amber">
+                    <i class="fa-solid fa-circle-info"></i>
+                    <span>Bantuan</span>
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
