@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apakah AI Akan Menggantikan Peran Guru Di Masa Depan?</title>
+    <link rel="icon" type="image/png" href="../favicon.png">
+    
+    <!-- Google Fonts & FontAwesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        /* --- RESET & BASE STYLE --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #f8fafc;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: #334155;
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* --- NAVIGASI ATAS (MODEL KARTU) --- */
+        .top-nav {
+            display: flex;
+            align-items: center;
+            margin-bottom: 35px;
+            animation: fadeInDown 0.5s ease;
+        }
+
+        .btn-back-top {
+            text-decoration: none;
+            background-color: #ffffff;
+            color: #475569;
+            font-weight: 600;
+            font-size: 0.88rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .btn-back-top:hover {
+            background-color: #f1f5f9;
+            color: #0f172a;
+            border-color: #cbd5e1;
+            transform: translateX(-3px);
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+        }
+
+        /* --- ARTIKEL DETAIL --- */
+        .article-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.02);
+            margin-bottom: 35px;
+            animation: fadeInUp 0.7s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .post-meta {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.85rem;
+            color: #94a3b8;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .post-meta i {
+            color: #64748b;
+        }
+
+        .article-card h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #0f172a;
+            line-height: 1.3;
+            letter-spacing: -0.5px;
+            margin-bottom: 25px;
+        }
+
+        /* --- WADAH GAMBAR DENGAN ID GOOGLE DRIVE --- */
+        .image-container {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 20px;
+            padding: 12px;
+            margin-bottom: 35px;
+            text-align: center;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: auto;
+            max-height: 450px;
+            object-fit: cover;
+            border-radius: 14px;
+            background-color: #cbd5e1;
+        }
+
+        .image-caption {
+            font-size: 0.85rem;
+            color: #64748b;
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        /* --- AREA NARASI UTAMA --- */
+        .article-body p {
+            font-size: 1.05rem;
+            color: #334155;
+            margin-bottom: 25px;
+            text-align: justify;
+        }
+
+        /* Paragraf pertama tanpa indentasi khusus untuk pembuka gambar */
+        .article-body p.lead {
+            text-indent: 0;
+            font-size: 1.15rem;
+            color: #1e293b;
+            font-weight: 600;
+            border-left: 4px solid #94a3b8;
+            padding-left: 15px;
+            margin-bottom: 30px;
+        }
+
+        .article-body p:not(.lead) {
+            text-indent: 30px;
+        }
+
+        .article-body h2 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin: 35px 0 15px 0;
+        }
+
+        /* Kriteria Perbandingan / Poin Penting */
+        .comparison-box {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+
+        .comparison-item {
+            margin-bottom: 15px;
+        }
+
+        .comparison-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .comparison-item strong {
+            color: #0f172a;
+            display: inline-block;
+            margin-bottom: 4px;
+        }
+
+        /* --- KONTANER TOMBOL KEMBALI BAWAH --- */
+        .action-row {
+            display: flex;
+            justify-content: center;
+            margin-top: 40px;
+            animation: fadeInUp 0.9s ease;
+        }
+
+        .btn-action {
+            text-decoration: none;
+            padding: 14px 32px;
+            border-radius: 14px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background-color: #ffffff;
+            color: #475569;
+            border: 1px solid #cbd5e1;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+            transition: all 0.25s ease;
+            cursor: pointer;
+        }
+
+        .btn-action:hover {
+            background-color: #0f172a;
+            color: #ffffff;
+            border-color: #0f172a;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(15, 23, 42, 0.15);
+        }
+
+        /* --- ANIMATIONS --- */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(25px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- LAYAR HP FRIENDLY --- */
+        @media (max-width: 640px) {
+            .container { padding: 20px 15px; }
+            .article-card { padding: 25px 20px; margin-bottom: 20px; }
+            .article-card h1 { font-size: 1.6rem; }
+            .article-body p.lead { font-size: 1.05rem; }
+            .article-body p:not(.lead) { font-size: 0.98rem; text-indent: 20px; }
+            .btn-action { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <!-- NAVIGASI ATAS -->
+    <nav class="top-nav">
+        <a href="index.html" class="btn-back-top">
+            <i class="fa-solid fa-arrow-left"></i> Kembali ke Info Menarik
+        </a>
+    </nav>
+
+    <!-- KARTU UTAMA ARTIKEL -->
+    <main class="article-card">
+        
+        <!-- INFO META -->
+        <div class="post-meta">
+            <span><i class="fa-regular fa-calendar"></i> 18 Juli 2026</span>
+            <span>•</span>
+            <span><i class="fa-regular fa-user"></i> Pak Zainal</span>
+        </div>
+
+        <!-- JUDUL -->
+        <h1>Apakah AI Akan Menggantikan Peran Guru Di Masa Depan?</h1>
+
+        <!-- WADAH FOTO (Tinggal ganti ID Google Drive kamu nanti) -->
+        <div class="image-container">
+            <!-- SILAHKAN GANTI "ID_FOTO_DRIVE_KAMU" DENGAN ID FILE DARI GOOGLE DRIVE -->
+            <img src="https://drive.google.com/thumbnail?sz=w800&id=1rQaK0zi6-BubiRwmt-f-V9N9eprA6jCm" alt="Ilustrasi AI dalam Pendidikan">
+            <div class="image-caption"><i class="fa-solid fa-camera"></i> Kecerdasan buatan hadir sebagai mitra guru, bukan pengganti esensi kemanusiaan.</div>
+        </div>
+
+        <!-- ISI ARTIKEL / NARASI -->
+        <div class="article-body">
+            <p class="lead">Sebuah pandangan optimis mengenai kolaborasi cerdas antara teknologi kecerdasan buatan (AI) dan sentuhan empati dari seorang guru.</p>
+            
+            <p>Perkembangan teknologi kecerdasan buatan (*Artificial Intelligence*) bergerak dengan kecepatan yang mencengangkan. Kini, AI mampu menyusun esai teks ilmiah, memecahkan rumus matematika rumit dalam hitungan detik, hingga mendesain rencana pembelajaran materi sekolah yang dipersonalisasi. Di tengah lompatan teknologi ini, muncul sebuah pertanyaan besar yang memicu perdebatan hangat di dunia pendidikan: Apakah ruang kelas di masa depan tidak lagi membutuhkan kehadiran seorang guru fisik?</p>
+            
+            <p>Jika kita melihat sekilas kemampuan teknisnya, AI memang tampak memiliki segala jawaban atas ilmu pengetahuan. Namun, esensi sejati dari pendidikan tidak sekadar tentang mentransfer tumpukan data dan rumus dari buku ke kepala siswa. Pendidikan adalah sebuah proses pembentukan karakter, moral, serta cara bersikap di tengah masyarakat.</p>
+
+            <h2>Kelebihan AI vs Sentuhan Jiwa Seorang Guru</h2>
+            
+            <p>AI adalah mesin yang bekerja berdasarkan algoritma matematis. Ia memiliki keunggulan luar biasa dalam efisiensi administratif dan analisis data kognitif individual siswa. Meski begitu, ada batasan fundamental yang tidak akan pernah bisa dilompati oleh secanggih apa pun kecerdasan buatan yang diciptakan manusia.</p>
+
+            <div class="comparison-box">
+                <div class="comparison-item">
+                    <strong>1. Kecerdasan vs Empati:</strong> AI mungkin tahu metode tercepat untuk menyelesaikan tugas perkalian pecahan, namun AI tidak akan pernah mengerti mengapa mata seorang murid berkaca-kaca di sudut kelas karena cemas atau kurang percaya diri.
+                </div>
+                <div class="comparison-item">
+                    <strong>2. Instruksi vs Inspirasi:</strong> AI bisa memberikan instruksi penugasan mandiri secara runut, tetapi hanya seorang guru yang memiliki kehangatan senyuman, tepukan di pundak, serta kalimat penyemangat yang mampu membangkitkan impian masa depan seorang anak.
+                </div>
+                <div class="comparison-item">
+                    <strong>3. Logika vs Moral:</strong> Sistem berbasis mesin memproses data secara biner (benar atau salah). Di sisi lain, pembentukan nilai moral Pancasila, kejujuran, kegotongroyongan, dan keteladanan budi pekerti hanya bisa ditularkan lewat interaksi sosial antar-manusia nyata.
+                </div>
+            </div>
+
+            <h2>Konsep Guru di Masa Depan: Co-Pilot Pendidikan</h2>
+            
+            <p>Masa depan pendidikan bukanlah tentang persaingan antara manusia melawan mesin, melainkan tentang konsep *augmented teaching*—bagaimana guru memanfaatkan AI sebagai asisten (*co-pilot*) yang cerdas. Dengan membiarkan AI mengurus tugas-tugas administratif rutin seperti merekap absensi, menyusun draf materi dasar, atau memeriksa latihan soal pilihan ganda, guru justru mendapatkan hal yang paling berharga: **Waktu**.</p>
+
+            <p>Waktu yang luang tersebut akhirnya bisa dialokasikan penuh oleh guru untuk mendekati murid secara personal, memberikan bimbingan moral yang intensif, serta merancang diskusi-diskusi interaktif yang memicu nalar kritis anak. Ruang Belajar Murid ini adalah salah satu contoh nyata bagaimana integrasi digital digunakan untuk mempermudah akses belajar, sementara peran pendidik tetap memegang kendali penuh atas arah tumbuh kembang mental sang siswa.</p>
+
+            <p>Kesimpulannya, AI tidak akan pernah menggantikan peran guru di masa depan. Namun, guru yang paham cara berkolaborasi dengan AI dipastikan akan menggantikan guru yang menolak untuk beradaptasi dengan kemajuan teknologi modern.</p>
+        </div>
+
+    </main>
+
+    <!-- TOMBOL AKSI BAWAH -->
+    <div class="action-row">
+        <a href="index.html" class="btn-action">
+            <i class="fa-solid fa-house"></i> Kembali ke Beranda
+        </a>
+    </div>
+
+</div>
+
+</body>
+</html>
