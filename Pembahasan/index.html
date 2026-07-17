@@ -56,6 +56,7 @@
           justify-content: center;
           overflow: hidden;
           backdrop-filter: blur(4px);
+          flex-shrink: 0; /* Mencegah logo gepeng/menciut */
       }
 
       .logo-kustom-wrapper img {
@@ -200,7 +201,7 @@
           to { opacity: 1; transform: translateY(0); }
       }
 
-      /* HP Friendly Optimization */
+      /* PERBAIKAN OPTIMASI HP (TAMPILAN DI RESPONSIVE DI HP) */
       @media (max-width: 768px) {
           .portal-container { margin: 15px auto; padding: 0 12px; }
           .header-portal { padding: 20px; border-radius: 16px; }
@@ -208,12 +209,20 @@
           /* Menyembunyikan ikon dekorasi kanan di HP secara presisi */
           .header-portal > div:last-child { display: none; }
           
-          .header-title h1 { font-size: 1.3rem; }
-          .header-title p { font-size: 0.85rem; }
+          /* Kustomisasi Ukuran Logo & Jarak di HP agar Tidak Kekecilan */
+          .header-title-wrapper { gap: 14px; }
+          .logo-kustom-wrapper { 
+              width: 55px; 
+              height: 55px; 
+              border-radius: 12px; 
+          }
+          
+          .header-title h1 { font-size: 1.25rem; }
+          .header-title p { font-size: 0.82rem; line-height: 1.2; }
+          
           .mapel-grid { grid-template-columns: 1fr; }
           .kelas-row { gap: 10px; }
           .btn-kelas { width: 42px; height: 42px; font-size: 0.95rem; }
-          .logo-kustom-wrapper { width: 45px; height: 45px; border-radius: 10px; }
       }
     </style>
 </head>
@@ -226,7 +235,7 @@
         <div class="header-title-wrapper">
             <!-- LOGO KUSTOM ANDA: Masukkan ID foto Drive Anda pada src di bawah ini -->
             <div class="logo-kustom-wrapper">
-                <img src="https://drive.google.com/thumbnail?sz=120&id=1sGLNK2uaqy8KLavrpllT_9TS8K9Jz1wP" alt="Logo RBM" onerror="this.src='../favicon.png'">
+                <img src="https://drive.google.com/thumbnail?sz=120&id=ID_FOTO_LOGOMU_DISINI" alt="Logo RBM" onerror="this.src='https://img.icons8.com/fluency/96/education.png'">
             </div>
             <div class="header-title">
                 <h1>PEMBAHASAN SOAL</h1>
