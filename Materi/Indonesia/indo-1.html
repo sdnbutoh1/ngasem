@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi Bahasa Indonesia: Memahami Karakter Lewat Deskripsi</title>
+    <link rel="icon" type="image/png" href="../../favicon.png">
+    <!-- Google Fonts & FontAwesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        /* --- Gaya Dasar & Tipografi --- */
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f3ff;
+            color: #334155;
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        /* --- Tombol Cetak Melayang --- */
+        .btn-print-floating {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #6366f1, #4f46e5);
+            color: white;
+            border: none;
+            padding: 12px 22px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            z-index: 9999;
+            transition: all 0.2s ease;
+        }
+        .btn-print-floating:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(99, 102, 241, 0.4);
+        }
+
+        /* --- Kartu Materi Utama --- */
+        .materi-card {
+            background: #ffffff;
+            border: 1px solid #e0e7ff;
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 4px 25px rgba(99, 102, 241, 0.03);
+            margin-bottom: 30px;
+        }
+
+        .materi-title {
+            color: #4f46e5;
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin-top: 0;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .materi-card p {
+            font-size: 1.05rem;
+            text-align: justify;
+            color: #475569;
+        }
+
+        .sub-title {
+            color: #6366f1;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin: 30px 0 15px 0;
+        }
+
+        /* --- Daftar Terstruktur --- */
+        .styled-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 25px 0;
+        }
+
+        .styled-list li {
+            position: relative;
+            padding-left: 40px;
+            margin-bottom: 18px;
+            font-size: 1rem;
+            text-align: justify;
+        }
+
+        .list-num {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            background-color: #e0e7ff;
+            color: #4f46e5;
+            width: 26px;
+            height: 26px;
+            border-radius: 6px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.85rem;
+        }
+
+        .list-content strong {
+            color: #1e293b;
+            font-weight: 700;
+        }
+
+        /* --- Kotak Penjelasan Adjektiva --- */
+        .note-box {
+            background-color: #f8fafc;
+            border-left: 4px solid #94a3b8;
+            padding: 15px 20px;
+            border-radius: 0 12px 12px 0;
+            margin: 15px 0 25px 40px;
+            font-size: 0.95rem;
+            color: #475569;
+        }
+
+        /* --- Kotak Info "Tahukah Kamu?" --- */
+        .info-callout {
+            border: 2px dashed #c084fc;
+            background-color: #faf5ff;
+            padding: 25px;
+            border-radius: 16px;
+            margin-top: 35px;
+        }
+        
+        .info-callout-title {
+            color: #a855f7;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .info-callout p {
+            margin: 0;
+            font-size: 0.98rem;
+            color: #5b21b6;
+        }
+
+        /* --- Kartu Evaluasi / Tugas --- */
+        .tugas-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.01);
+            margin-bottom: 30px;
+        }
+
+        .tugas-header {
+            margin-bottom: 30px;
+        }
+
+        .tugas-badge {
+            display: inline-block;
+            background: #6366f1;
+            color: white;
+            padding: 4px 14px;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+        }
+
+        .tugas-header h2 {
+            margin: 0 0 8px 0;
+            font-size: 1.5rem;
+            color: #0f172a;
+            font-weight: 800;
+        }
+
+        .tugas-instruction {
+            background-color: #eff6ff;
+            border: 1px solid #bfdbfe;
+            padding: 12px 20px;
+            border-radius: 12px;
+            color: #2563eb;
+            font-size: 0.95rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* --- Susunan 12 Pertanyaan --- */
+        .questions-list {
+            display: flex;
+            flex-direction: column;
+            gap: 22px;
+            margin-top: 25px;
+        }
+
+        .q-box {
+            display: flex;
+            gap: 12px;
+            font-size: 1rem;
+        }
+
+        .q-num {
+            font-weight: 700;
+            color: #6366f1;
+            min-width: 25px;
+        }
+
+        .q-text {
+            color: #334155;
+            font-weight: 500;
+        }
+
+        /* --- Navigasi Halaman Bawah --- */
+        .nav-footer {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            margin-top: 40px;
+        }
+
+        .btn-nav {
+            text-decoration: none;
+            flex: 1;
+            padding: 14px 20px;
+            border-radius: 14px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.2s;
+        }
+
+        .btn-prev {
+            background-color: #e2e8f0;
+            color: #475569;
+        }
+        .btn-prev:hover { background-color: #cbd5e1; }
+
+        .btn-next {
+            background-color: #4f46e5;
+            color: white;
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2);
+        }
+        .btn-next:hover {
+            background-color: #3730a3;
+            box-shadow: 0 6px 16px rgba(79, 70, 229, 0.3);
+        }
+
+        /* ===================================================
+           PENGATURAN PRINT (OTOMATIS BERSIH SAAT DICETAK)
+        ====================================================== */
+        @media print {
+            body {
+                background-color: #ffffff;
+                color: #000000;
+            }
+            .container {
+                max-width: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            .materi-card, .tugas-card {
+                border: none;
+                box-shadow: none;
+                padding: 0;
+                margin-bottom: 30px;
+            }
+            .btn-print-floating, .nav-footer {
+                display: none !important;
+            }
+            .list-num {
+                border: 1px solid #000;
+                background-color: transparent !important;
+                color: #000 !important;
+            }
+            .info-callout {
+                border: 1px dashed #000;
+                background-color: transparent !important;
+            }
+            .info-callout p, .info-callout-title { color: #000 !important; }
+            .tugas-instruction {
+                background-color: transparent !important;
+                border: 1px solid #000;
+                color: #000;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Tombol Cetak Interaktif -->
+<button class="btn-print-floating" onclick="window.print()">
+    <i class="fa-solid fa-print"></i> Cetak Lembar Kerja
+</button>
+
+<div class="container">
+
+    <!-- URAIAN MATERI (PARAPHRASED) -->
+    <div class="materi-card">
+        <h1 class="materi-title">
+            <i class="fa-solid fa-user-gear"></i> A. Menelusuri Sifat dan Ciri Seseorang Lewat Teks Deskripsi
+        </h1>
+        <p>Kita dapat memahami kepribadian serta keunikan diri seseorang melalui paparan teks deskripsi. Jenis karangan ini merupakan bagian penting dalam keterampilan berbahasa yang memfokuskan diri pada penggambaran konkret suatu objek hasil pengamatan. Tujuannya adalah melukiskan wujud fisik, watak, rasa, maupun corak suatu objek secara detail dengan mengoptimalkan peran pancaindra dalam proses penjelasannya.</p>
+
+        <!-- Bagian Struktur -->
+        <div class="sub-title">Kerangka Struktur Teks Deskripsi</div>
+        <p>Sebuah karangan deskriptif disusun berdasarkan pondasi struktur berikut:</p>
+        
+        <ul class="styled-list">
+            <li>
+                <div class="list-num">1</div>
+                <div class="list-content">
+                    <strong>Penetapan Objek (Identifikasi):</strong> Bagian pembuka yang menyajikan gambaran umum atau informasi awal mengenai hal yang diulas.
+                </div>
+            </li>
+            <li>
+                <div class="list-num">2</div>
+                <div class="list-content">
+                    <strong>Pemaparan Detail (Deskripsi Bagian):</strong> Uraian khusus yang dijabarkan secara mendalam berdasarkan sudut pandang pribadi penulis. Ketika mengulas kepribadian individu, aspek yang diangkat meliputi bentuk fisik, perangai, kesukaan, serta pola kebiasaan.
+                </div>
+            </li>
+            <li>
+                <div class="list-num">3</div>
+                <div class="list-content">
+                    <strong>Konklusi (Simpulan):</strong> Bagian akhir yang berfungsi sebagai penutup atau rangkuman inti teks.
+                </div>
+            </li>
+        </ul>
+
+        <!-- Bagian Ciri-Ciri -->
+        <div class="sub-title">Karakteristik Utama Teks Deskripsi</div>
+        <p>Jenis teks ini memiliki beberapa indikator khas, di antaranya:</p>
+
+        <ul class="styled-list">
+            <li>
+                <div class="list-num">1</div>
+                <div class="list-content">
+                    <strong>Melukiskan Wujud Objek:</strong> Memvisualisasikan entitas tertentu (seperti orang, lokasi, benda, atau situasi) secara transparan, rinci, dan spesifik.
+                </div>
+            </li>
+            <li>
+                <div class="list-num">2</div>
+                <div class="list-content">
+                    <strong>Memanfaatkan Indra Tubuh:</strong> Mengaplikasikan diksi yang merangsang fungsi pancaindra (melihat, mendengar, menghirup, mengecap, meraba) agar pembaca seolah merasakan suasananya langsung.
+                </div>
+            </li>
+            <li>
+                <div class="list-num">3</div>
+                <div class="list-content">
+                    <strong>Sudut Pandang Netral & Pribadi:</strong> Penyajiannya bisa berpijak pada fakta riil lapangan (objektif) atau berdasarkan opini pribadi penulis (subjektif), bahkan perpaduan keduanya.
+                </div>
+            </li>
+            <li>
+                <div class="list-num">4</div>
+                <div class="list-content">
+                    <strong>Pemakaian Adjektiva:</strong> Memuat kata sifat (misalnya <i>luas, wangi, menawan, sejuk</i>) serta kata keterangan (seperti <i>sangat, secara perlahan</i>) untuk memperkuat ilustrasi tulisan.
+                </div>
+            </li>
+        </ul>
+
+        <!-- Catatan Tambahan Kata Sifat -->
+        <div class="note-box">
+            <i class="fa-solid fa-bookmark" style="color: #64748b; margin-right: 5px;"></i> 
+            Kata sifat dikenal juga dengan istilah <b>adjektiva</b>. Golongan kata ini berfungsi memodifikasi kata benda atau kata ganti. Peran utamanya adalah menerangkan kondisi atau keadaan suatu hal agar lebih jelas.
+        </div>
+
+        <!-- Box Tahukah Kamu? -->
+        <div class="info-callout">
+            <div class="info-callout-title">
+                <i class="fa-solid fa-lightbulb"></i> Tahukah Kamu?
+            </div>
+            <p>Penyampaian informasi dalam sebuah bacaan dapat didistribusikan lewat dua cara, yakni secara eksplisit (tersurat) dan implisit (tersirat). Informasi disebut tersurat apabila tertulis secara transparan dan jelas di dalam teks. Sebaliknya, informasi dinamakan tersirat jika tidak dicantumkan langsung secara tekstual, sehingga menuntut pembaca untuk menyimpulkan maknanya sendiri.</p>
+            <p style="margin-top: 10px;">Adapun kategori objek yang biasa dideskripsikan meliputi manusia, fauna, flora, serta benda-benda lainnya. Terbentuknya kata sifat itu sendiri dipengaruhi oleh beberapa proses kebahasaan.</p>
+        </div>
+    </div>
+
+    <!-- TUGAS MANDIRI / EVALUASI (PARAPHRASED) -->
+    <div class="tugas-card">
+        <div class="tugas-header">
+            <span class="tugas-badge">Tugas Mandiri</span>
+            <h2>Uji Pemahaman Bahasa</h2>
+            <div class="tugas-instruction">
+                <i class="fa-solid fa-pen-to-square"></i>
+                <span>Petunjuk: Salinlah 12 soal uraian berikut dan jawablah dengan benar di buku tulis masing-masing!</span>
+            </div>
+        </div>
+
+        <div class="questions-list">
+            <!-- Soal 1 -->
+            <div class="q-box">
+                <div class="q-num">1.</div>
+                <div class="q-text">Bagaimanakah cara kita mengenali watak atau tanda khas individu melalui sebuah tulisan deskriptif berdasarkan teks?</div>
+            </div>
+            <!-- Soal 2 -->
+            <div class="q-box">
+                <div class="q-num">2.</div>
+                <div class="q-text">Jelaskan fungsi atau target utama dari penulisan sebuah karangan deskripsi!</div>
+            </div>
+            <!-- Soal 3 -->
+            <div class="q-box">
+                <div class="q-num">3.</div>
+                <div class="q-text">Kenapa proses penjabaran hal dalam teks deskripsi wajib melibatkan peran pancaindra?</div>
+            </div>
+            <!-- Soal 4 -->
+            <div class="q-box">
+                <div class="q-num">4.</div>
+                <div class="q-text">Tuliskan secara berurutan tiga susunan struktur pokok yang membangun sebuah teks deskripsi!</div>
+            </div>
+            <!-- Soal 5 -->
+            <div class="q-box">
+                <div class="q-num">5.</div>
+                <div class="q-text">Apa yang dimaksud dengan tahap awal "Identifikasi Objek" pada kerangka teks deskripsi?</div>
+            </div>
+            <!-- Soal 6 -->
+            <div class="q-box">
+                <div class="q-num">6.</div>
+                <div class="q-text">Unsur apa saja yang dapat dikupas ketika seorang penulis menyusun bagian "Deskripsi Bagian" terkait kepribadian manusia?</div>
+            </div>
+            <!-- Soal 7 -->
+            <div class="q-box">
+                <div class="q-num">7.</div>
+                <div class="q-text">Teks deskripsi berfungsi menggambarkan objek secara spesifik. Berikan contoh entitas objek yang dapat diangkat!</div>
+            </div>
+            <!-- Soal 8 -->
+            <div class="q-box">
+                <div class="q-num">8.</div>
+                <div class="q-text">Tuliskan kembali 5 aktivitas alat indra manusia yang tercantum pada poin karakteristik kedua di atas!</div>
+            </div>
+            <!-- Soal 9 -->
+            <div class="q-box">
+                <div class="q-num">9.</div>
+                <div class="q-text">Terangkan ketidaksamaan antara pemaparan informasi secara "Objektif" dengan penyajian secara "Subjektif"!</div>
+            </div>
+            <!-- Soal 10 -->
+            <div class="q-box">
+                <div class="q-num">10.</div>
+                <div class="q-text">Apakah istilah ilmiah atau tata bahasa lain dari kata sifat, dan apa definisinya merujuk pada teks?</div>
+            </div>
+            <!-- Soal 11 -->
+            <div class="q-box">
+                <div class="q-num">11.</div>
+                <div class="q-text">Sebutkan jenis-jenis makhluk hidup maupun benda yang lazim dijadikan bahan objek dalam penggunaan kata sifat!</div>
+            </div>
+            <!-- Soal 12 -->
+            <div class="q-box">
+                <div class="q-num">12.</div>
+                <div class="q-text">Berdasarkan ulasan pada kolom "Tahukah Kamu?", jabarkan perbedaan mencolok antara informasi tersurat dan informasi tersirat!</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOMBOL NAVIGASI BAWAH (SEPERTI PADA GAMBAR) -->
+    <div class="nav-footer">
+        <a href="../../" class="btn-nav btn-prev">
+            <i class="fa-solid fa-angle-left"></i> Materi Sebelumnya
+        </a>
+        <a href="indo-2.html" class="btn-nav btn-next">
+            Materi Selanjutnya <i class="fa-solid fa-angle-right"></i>
+        </a>
+    </div>
+
+</div>
+
+</body>
+</html>
