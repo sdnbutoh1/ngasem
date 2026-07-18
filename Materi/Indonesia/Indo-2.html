@@ -230,6 +230,47 @@
             transform: translateY(-3px);
             box-shadow: 0 6px 20px rgba(79, 70, 229, 0.4);
         }
+        .action-row {
+          display: flex;
+          gap: 15px;
+          margin-top: 40px;
+          animation: fadeInUp 0.9s cubic-bezier(0.25, 0.8, 0.25, 1);
+      }
+      .btn-action {
+          text-decoration: none;
+          flex: 1;
+          padding: 16px 20px;
+          border-radius: 16px;
+          font-weight: 700;
+          font-size: 0.95rem;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+          transition: all 0.2s ease;
+          cursor: pointer;
+          border: none;
+      }
+      .btn-danger {
+          background-color: #ef4444;
+          color: white;
+          box-shadow: 0 4px 12px rgba(239, 68, 68, 0.15);
+      }
+      .btn-danger:hover {
+          background-color: #dc2626;
+          transform: translateY(-2px);
+          box-shadow: 0 6px 16px rgba(239, 68, 68, 0.25);
+      }
+      .btn-success {
+          background-color: #10b981;
+          color: white;
+          box-shadow: 0 4px 12px rgba(16, 185, 129, 0.15);
+      }
+      .btn-success:hover {
+          background-color: #059669;
+          transform: translateY(-2px);
+          box-shadow: 0 6px 16px rgba(16, 185, 129, 0.25);
+      }
 
         /* --- Pengaturan Cetak (Print CSS) --- */
         @media print {
@@ -266,6 +307,7 @@
                 border-bottom: 1px dashed #000;
             }
         }
+    
     </style>
 </head>
 <body>
@@ -449,6 +491,14 @@
             <div class="answer-line"></div>
             <div class="answer-line"></div>
         </div>
+    </div>
+<div class="action-row">
+        <a href="../../" class="btn-action btn-danger">
+            <i class="fa-solid fa-circle-arrow-left"></i> Kembali Beranda
+        </a>
+        <a href="../../LatihanSoal/" class="btn-action btn-success">
+            <i class="fa-solid fa-pencil"></i> Saya Siap Ulangan!
+        </a>
     </div>
 
 </div>
