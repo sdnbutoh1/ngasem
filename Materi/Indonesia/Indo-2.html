@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi & Tugas: Teks Deskripsi "Dua Temanku"</title>
+    <link rel="icon" type="image/png" href="../../favicon.png">
+    <!-- Google Fonts & FontAwesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        /* --- Reset & Gaya Dasar --- */
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8fafc;
+            color: #1e293b;
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        /* --- Kartu Utama Materi --- */
+        .materi-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+
+        .materi-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(to right, #3b82f6, #1d4ed8);
+        }
+
+        .materi-header {
+            text-align: center;
+            margin-bottom: 35px;
+            border-bottom: 1px solid #edf2f7;
+            padding-bottom: 20px;
+        }
+
+        .materi-badge {
+            display: inline-block;
+            background: #dbeafe;
+            color: #1e40af;
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .materi-header h1 {
+            margin: 5px 0;
+            font-size: 1.8rem;
+            color: #0f172a;
+            font-weight: 800;
+        }
+
+        /* --- Kotak Teks Cerita --- */
+        .cerita-box {
+            background-color: #f8fafc;
+            border-left: 5px solid #3b82f6;
+            padding: 25px;
+            border-radius: 4px 16px 16px 4px;
+            margin-bottom: 35px;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        .cerita-title {
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin-top: 0;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .cerita-box p {
+            text-indent: 30px;
+            text-align: justify;
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+            color: #334155;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin: 30px 0 15px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title i {
+            color: #3b82f6;
+        }
+
+        /* --- Gaya Tabel Kustom --- */
+        .custom-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+            font-size: 0.95rem;
+            background: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+        }
+
+        .custom-table th {
+            background-color: #f1f5f9;
+            color: #334155;
+            font-weight: 700;
+            text-align: left;
+            padding: 14px 18px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .custom-table td {
+            padding: 14px 18px;
+            border-bottom: 1px solid #edf2f7;
+            color: #475569;
+            vertical-align: top;
+        }
+
+        .custom-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .custom-table ol, .custom-table ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .custom-table li {
+            margin-bottom: 6px;
+        }
+
+        /* --- Halaman Tugas Mandiri --- */
+        .tugas-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tugas-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(to right, #10b981, #059669);
+        }
+
+        .tugas-badge {
+            display: inline-block;
+            background: #d1fae5;
+            color: #065f46;
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .question-item {
+            margin-bottom: 25px;
+        }
+
+        .question-text {
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 10px;
+        }
+
+        .answer-line {
+            border-bottom: 1px dashed #cbd5e1;
+            height: 30px;
+            margin-top: 8px;
+        }
+
+        /* --- Tombol Cetak Melayang --- */
+        .btn-print {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #4f46e5, #3730a3);
+            color: white;
+            border: none;
+            padding: 14px 24px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 9999;
+            transition: all 0.2s ease;
+        }
+
+        .btn-print:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(79, 70, 229, 0.4);
+        }
+
+        /* --- Pengaturan Cetak (Print CSS) --- */
+        @media print {
+            body {
+                background-color: #ffffff;
+                color: #000000;
+                font-size: 11pt;
+            }
+            .container {
+                max-width: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            .materi-card, .tugas-card {
+                border: none;
+                box-shadow: none;
+                padding: 0;
+                margin-bottom: 40px;
+                page-break-inside: avoid;
+            }
+            .materi-card::before, .tugas-card::before, .btn-print {
+                display: none !important;
+            }
+            .cerita-box {
+                background-color: #ffffff;
+                border: 1px solid #000;
+            }
+            .custom-table th {
+                background-color: #f1f5f9 !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .answer-line {
+                border-bottom: 1px dashed #000;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Tombol Akses Cetak Elegan -->
+<button class="btn-print" onclick="window.print()">
+    <i class="fa-solid fa-print"></i> Cetak Halaman / Tugas
+</button>
+
+<div class="container">
+
+    <!-- BAGIAN MATERI SESUAI GAMBAR -->
+    <div class="materi-card">
+        <div class="materi-header">
+            <span class="materi-badge">KURIKULUM MERDEKA</span>
+            <h1>Membaca Teks Deskripsi: Tokoh Cerita</h1>
+        </div>
+
+<div class="image-container">
+    <div class="image-placeholder-text">
+        <i class="fa-regular fa-image"></i>
+    </div>
+    <img src="https://drive.google.com/thumbnail?sz=w800&id=1SR2gDdSucAO34Qh8KzGtqOEHah6Y6VyF" alt="Ilustrasi Sejarah Pearl Harbor / Kedatangan Jepang">
+</div>
+
+        <!-- Wadah Cerita "Dua Temanku" -->
+        <div class="cerita-box">
+            <div class="cerita-title">Dua Temanku</div>
+            <p>Rara dan Rifan teman sekelasku di SD Paulan 02. Rara memiliki nama lengkap Rara Maharani, sedangkan nama lengkap Rifan adalah Rifan Dewantara. Rara dan Rifan berusia 11 tahun.</p>
+            <p>Rara berambut panjang berwarna cokelat. Rambutnya selalu diikat rapi ke belakang. Warna matanya senada dengan warna rambutnya yang membuatnya terlihat sangat menawan. Tubuhnya tinggi dan ramping. Rara terlihat anggun saat berjalan. Sifatnya sangat bersemangat dan penuh energi. Sifat Rara selalu membuat kami tertawa dan merasa ceria ketika bersamanya. Dia sangat optimistis dan selalu mencoba melihat sisi positif dalam segala situasi.</p>
+            <p>Rifan memiliki rambut lurus, pendek, dan berwarna hitam. Rambutnya selalu terlihat rapi dan terawat. Ia mengenakan kacamata bulat. Matanya berwarna cokelat tua terlihat sangat tajam. Meskipun tubuhnya besar dan kuat, Rifan memiliki sifat yang tenang dan sabar. Terkadang Rifan terlihat serius, tetapi dia sangat baik dan siap membantu teman.</p>
+        </div>
+
+        <!-- Tabel 1: Struktur Teks Deskripsi -->
+        <div class="section-title">
+            <i class="fa-solid fa-sitemap"></i> Informasi Struktur Teks Deskripsi
+        </div>
+        <table class="custom-table">
+            <thead>
+                <tr>
+                    <th style="width: 30%;">Struktur Teks Deskripsi</th>
+                    <th style="width: 70%;">Penjelasan</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><b>Identifikasi Objek</b></td>
+                    <td>Aku memiliki teman bernama Rara dan Rifan.</td>
+                </tr>
+                <tr>
+                    <td><b>Deskripsi Fisik</b></td>
+                    <td>
+                        <ol type="a">
+                            <li>Rara berambut panjang berwarna cokelat. Rambutnya selalu diikat rapi ke belakang. Tubuhnya tinggi dan ramping.</li>
+                            <li>Rifan memiliki rambut lurus, pendek, dan berwarna hitam. Ia mengenakan kacamata bulat. Matanya berwarna cokelat tua. Tubuhnya besar dan kuat.</li>
+                        </ol>
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>Deskripsi Sifat</b></td>
+                    <td>
+                        <ol type="a">
+                            <li>Sifat Rara selalu membuat kami tertawa dan merasa ceria ketika bersamanya.</li>
+                            <li>Rifan memiliki sifat yang tenang dan sabar.</li>
+                        </ol>
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>Deskripsi Kesukaan dan Kebiasaan</b></td>
+                    <td>
+                        <ol type="a">
+                            <li>Dia sangat optimistis dan selalu mencoba melihat sisi positif dalam segala situasi.</li>
+                            <li>Terkadang Rifan terlihat serius, tetapi dia sangat baik dan siap membantu teman.</li>
+                        </ol>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Tabel 2: Persamaan dan Perbedaan -->
+        <div class="section-title">
+            <i class="fa-solid fa-scale-balanced"></i> Analisis Perbandingan Tokoh
+        </div>
+        <table class="custom-table">
+            <thead>
+                <tr>
+                    <th style="width: 50%;">Persamaan</th>
+                    <th style="width: 50%;">Perbedaan</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <ol type="a">
+                            <li>Tokoh di atas adalah satu kelas di SD Paulan 02.</li>
+                            <li>Tokoh di atas berusia sama, yaitu 11 tahun.</li>
+                        </ol>
+                    </td>
+                    <td>
+                        <ol type="a">
+                            <li>Rara dan Rifan memiliki perbedaan ciri fisik.</li>
+                            <li>Rara dan Rifan memiliki perbedaan watak dan sifat.</li>
+                        </ol>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Tabel 3: Kosakata Baru -->
+        <div class="section-title">
+            <i class="fa-solid fa-book-atlas"></i> Jelajah Kosakata Baru
+        </div>
+        <table class="custom-table">
+            <thead>
+                <tr>
+                    <th style="width: 10%; text-align: center;">No.</th>
+                    <th style="width: 35%;">Kosakata</th>
+                    <th style="width: 55%;">Makna</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="text-align: center;">1.</td>
+                    <td><b>Anggun</b></td>
+                    <td>Menawan; mempesona.</td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;">2.</td>
+                    <td><b>Ramping</b></td>
+                    <td>Langsing; agak kurus.</td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;">3.</td>
+                    <td><b>Optimistis</b></td>
+                    <td>Bersifat optimis; penuh harapan.</td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;">4.</td>
+                    <td><b>Serius</b></td>
+                    <td>Sungguh-sungguh.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- BAGIAN TUGAS MANDIRI (EVALUASI) -->
+    <div class="tugas-card">
+        <div class="materi-header" style="margin-bottom: 25px;">
+            <span class="tugas-badge">LEMBAR KERJA SISWA</span>
+            <h1>Tugas Uji Pemahaman Materi</h1>
+            <p style="margin: 5px 0 0 0; font-size: 0.95rem; color: #64748b;">Kerjakanlah soal-soal uraian di bawah ini berdasarkan bacaan "Dua Temanku"!</p>
+        </div>
+
+        <div class="question-item">
+            <div class="question-text">1. Di manakah Rara dan Rifan bersekolah, serta berapakah usia mereka saat ini?</div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+
+        <div class="question-item">
+            <div class="question-text">2. Jelaskan perbedaan ciri-ciri fisik yang mencolok antara tokoh Rara dan tokoh Rifan berdasarkan isi teks!</div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+
+        <div class="question-item">
+            <div class="question-text">3. Mengapa penulis merasa sangat senang dan ceria ketika sedang bersama atau berinteraksi dengan Rara?</div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+
+        <div class="question-item">
+            <div class="question-text">4. Sebutkan sifat-sifat baik yang dimiliki oleh Rifan walaupun ia kerap kali terlihat sebagai anak yang serius!</div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+
+        <div class="question-item">
+            <div class="question-text">5. Buatlah masing-masing satu kalimat baru menggunakan kosakata baru berikut: (a) Ramping, dan (b) Optimistis!</div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+            <div class="answer-line"></div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
